@@ -6,6 +6,7 @@ package controlador;
  * @author Grupo E
  */
 import Vista.FrmEditarPropietario;
+import Vista.PnlIngresoSolicitudes;
 import Vista.PnlRegistroPropietario;
 import controlador.Excepciones.CedulaPropietarioException;
 import controlador.Excepciones.EdadExcepcion;
@@ -251,5 +252,25 @@ public class ValidarCampos {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String fechaConFormato = simpleDateFormat.format(date);
         return fechaConFormato;
+    }
+    
+    public boolean validarCamposVaciosSolicitud(PnlIngresoSolicitudes pnlIngresoSolicitudes){
+        if (!pnlIngresoSolicitudes.getTxtIdFactura().getText().isEmpty()
+                && !pnlIngresoSolicitudes.getTxtaDescripcion().getText().isEmpty()){
+            return true;
+        }
+        
+        else {
+            JOptionPane.showMessageDialog(null, "LLene todos los campos");
+            return false;
+        }
+    }
+    
+    public void validarNumeros(KeyEvent evt, JTextField txtCampo){
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
     }
 }
