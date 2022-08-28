@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import modelo.CobroDomiciliados;
 import modelo.CuentaBancaria;
 import modelo.Propietario;
 import modelo.Vehiculo;
@@ -38,6 +39,9 @@ public class PropietarioDB {
     private int resultado;
     private String ejecutarSentencia;
     
+     private ArrayList<CobroDomiciliados> listaCobrosDomiciliados;
+    private ArrayList<CobroDomiciliados> listaCobrosDomiciliadosMes;
+    private CobroDomiciliados cobrosDomiciliados;
     
     public PropietarioDB() {};
     /*
@@ -350,5 +354,87 @@ public class PropietarioDB {
             System.out.println(ex);
         }
 
+    }
+    
+    /*
+    * Este metodo extrae la lista de los cobros de los propietarios domiciliados
+    */    
+    
+    public ArrayList<CobroDomiciliados> listarCobrosDomiciliados(){
+        listaCobrosDomiciliados = new ArrayList();
+        ejecutarSentencia= "{ call VER_TABLA_COBROS_PROPIETARIOS_DOMICILIADOS(?)}";
+        try {    
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.executeQuery();
+            resultSet = (ResultSet)callableStatement.getObject(1);  
+            while (resultSet.next()) {
+                cobrosDomiciliados = new CobroDomiciliados();
+                cobrosDomiciliados.setCedulaPropietario(resultSet.getString("CEDULA"));
+                cobrosDomiciliados.setNombrePropietario(resultSet.getString("NOMBRE"));
+                cobrosDomiciliados.setTipoImpuesto(resultSet.getString("DESCRIPCION"));
+                cobrosDomiciliados.setValorImpuesto(resultSet.getFloat("VALOR"));
+                cobrosDomiciliados.setSaldo(resultSet.getFloat("SALDO"));
+                cobrosDomiciliados.setCtaBancaria(resultSet.getString("NUM_CTA_BANCARIA"));
+                cobrosDomiciliados.setMesPago(resultSet.getInt("MES_PAGO"));
+                listaCobrosDomiciliados.add(cobrosDomiciliados); 
+            }
+            nuevaConeccion.close();
+            callableStatement.close();
+            resultSet.close();   
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Error en listado");
+        }
+    return listaCobrosDomiciliados;
+    }
+    
+    
+    public ArrayList<CobroDomiciliados> listarCobrosDomiciliadosMes(Integer mes){
+        listaCobrosDomiciliadosMes = new ArrayList();
+        
+        ejecutarSentencia= "{ call VER_TABLA_COBROS_DOMICILIADOS2("+mes+",?)}";
+        try {    
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.executeQuery();
+            resultSet = (ResultSet)callableStatement.getObject(1);  
+            while (resultSet.next()) {
+                cobrosDomiciliados = new CobroDomiciliados();
+                cobrosDomiciliados.setCedulaPropietario(resultSet.getString("CEDULA"));
+                cobrosDomiciliados.setNombrePropietario(resultSet.getString("NOMBRE"));
+                cobrosDomiciliados.setTipoImpuesto(resultSet.getString("DESCRIPCION"));
+                cobrosDomiciliados.setValorImpuesto(resultSet.getFloat("VALOR"));
+                cobrosDomiciliados.setSaldo(resultSet.getFloat("SALDO"));
+                cobrosDomiciliados.setCtaBancaria(resultSet.getString("NUM_CTA_BANCARIA"));
+                cobrosDomiciliados.setMesPago(resultSet.getInt("MES_PAGO"));
+                listaCobrosDomiciliadosMes.add(cobrosDomiciliados); 
+            }
+            nuevaConeccion.close();
+            callableStatement.close();
+            resultSet.close();   
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Error en listado");
+        }
+    return listaCobrosDomiciliadosMes;
+    }
+    
+    public void ActualizarSaldoDomiciliados(String numCtaBancaria, float saldoActualizado){
+        ejecutarSentencia= "{call ACTUALIZAR_SALDO_PROPIETARIO_DOMICILIADO('"+numCtaBancaria+"',"+saldoActualizado+")}";
+        try {    
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            callableStatement.executeQuery();
+            nuevaConeccion.close();
+            callableStatement.close();  
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Error en listado");
+        }
     }
 }

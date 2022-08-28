@@ -69,7 +69,7 @@
             <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Pagos    |"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mniActualizarTarifas">
+            <MenuItem class="javax.swing.JMenuItem" name="mniListarPropietariosDomiciliados">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>

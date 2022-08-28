@@ -64,6 +64,14 @@ public class FrmEmpleado extends javax.swing.JFrame {
         this.mniRegistrarPropietario = mniRegistrarPropietario;
     }
 
+    public JMenuItem getMniListarPropietariosDomiciliados() {
+        return mniListarPropietariosDomiciliados;
+    }
+
+    public void setMniListarPropietariosDomiciliados(JMenuItem mniListarPropietariosDomiciliados) {
+        this.mniListarPropietariosDomiciliados = mniListarPropietariosDomiciliados;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,7 +92,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
         mniRegistrarPropietario = new javax.swing.JMenuItem();
         mniListarPropietario = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        mniActualizarTarifas = new javax.swing.JMenuItem();
+        mniListarPropietariosDomiciliados = new javax.swing.JMenuItem();
         mniEstadisticaPag = new javax.swing.JMenuItem();
         mniEstadisticaDeu = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -232,9 +240,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         jMenu4.setBackground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Gestión de Pagos    |");
 
-        mniActualizarTarifas.setBackground(new java.awt.Color(255, 255, 255));
-        mniActualizarTarifas.setText("Listar Propietarios Domiciliados");
-        jMenu4.add(mniActualizarTarifas);
+        mniListarPropietariosDomiciliados.setBackground(new java.awt.Color(255, 255, 255));
+        mniListarPropietariosDomiciliados.setText("Listar Propietarios Domiciliados");
+        jMenu4.add(mniListarPropietariosDomiciliados);
 
         mniEstadisticaPag.setBackground(new java.awt.Color(255, 255, 255));
         mniEstadisticaPag.setText("Listar Propietarios no Domiciliados");
@@ -306,6 +314,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
     private void aniadirListenerFrmEmpleado(){
         this.mniRegistrarPropietario.addActionListener(new ListenerFrmEmpleado(this));
         this.mniListarPropietario.addActionListener(new ListenerFrmEmpleado(this));
+        this.mniListarPropietariosDomiciliados.addActionListener(new ListenerFrmEmpleado(this));
         this.btnCerrarSesion.addActionListener(new ListenerFrmEmpleado(this));
     }
 
@@ -326,10 +335,10 @@ public class FrmEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblRol;
-    private javax.swing.JMenuItem mniActualizarTarifas;
     private javax.swing.JMenuItem mniEstadisticaDeu;
     private javax.swing.JMenuItem mniEstadisticaPag;
     private javax.swing.JMenuItem mniListarPropietario;
+    private javax.swing.JMenuItem mniListarPropietariosDomiciliados;
     private javax.swing.JMenuItem mniListarSolicitudes;
     private javax.swing.JMenuItem mniRegistrarPropietario;
     private javax.swing.JPanel panelAdmin;
