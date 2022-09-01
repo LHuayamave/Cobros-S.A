@@ -219,7 +219,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblEnero.setShowVerticalLines(false);
         jScrollPane14.setViewportView(tblEnero);
 
         javax.swing.GroupLayout pnlEneroLayout = new javax.swing.GroupLayout(pnlEnero);
@@ -251,7 +250,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblFebrero.setShowVerticalLines(false);
         jScrollPane15.setViewportView(tblFebrero);
 
         javax.swing.GroupLayout pnlFebreroLayout = new javax.swing.GroupLayout(pnlFebrero);
@@ -283,7 +281,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblMarzo.setShowVerticalLines(false);
         jScrollPane16.setViewportView(tblMarzo);
 
         javax.swing.GroupLayout pnlMarzoLayout = new javax.swing.GroupLayout(pnlMarzo);
@@ -315,7 +312,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblAbril.setShowVerticalLines(false);
         jScrollPane17.setViewportView(tblAbril);
 
         javax.swing.GroupLayout pnlAbrilLayout = new javax.swing.GroupLayout(pnlAbril);
@@ -347,7 +343,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblMayo.setShowVerticalLines(false);
         jScrollPane18.setViewportView(tblMayo);
 
         javax.swing.GroupLayout pnlMayoLayout = new javax.swing.GroupLayout(pnlMayo);
@@ -379,7 +374,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblJunio.setShowVerticalLines(false);
         jScrollPane19.setViewportView(tblJunio);
 
         javax.swing.GroupLayout pnlJunioLayout = new javax.swing.GroupLayout(pnlJunio);
@@ -411,7 +405,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblJulio.setShowVerticalLines(false);
         jScrollPane20.setViewportView(tblJulio);
 
         javax.swing.GroupLayout pnlJulioLayout = new javax.swing.GroupLayout(pnlJulio);
@@ -443,7 +436,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblAgosto.setShowVerticalLines(false);
         jScrollPane21.setViewportView(tblAgosto);
 
         javax.swing.GroupLayout pnlAgostoLayout = new javax.swing.GroupLayout(pnlAgosto);
@@ -475,7 +467,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblSeptiembre.setShowVerticalLines(false);
         jScrollPane22.setViewportView(tblSeptiembre);
 
         javax.swing.GroupLayout pnlSeptiembreLayout = new javax.swing.GroupLayout(pnlSeptiembre);
@@ -507,7 +498,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblOctubre.setShowVerticalLines(false);
         jScrollPane23.setViewportView(tblOctubre);
 
         javax.swing.GroupLayout pnlOctubreLayout = new javax.swing.GroupLayout(pnlOctubre);
@@ -539,7 +529,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblNoviembre.setShowVerticalLines(false);
         jScrollPane24.setViewportView(tblNoviembre);
 
         javax.swing.GroupLayout pnlNoviembreLayout = new javax.swing.GroupLayout(pnlNoviembre);
@@ -571,7 +560,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblDiciembre.setShowVerticalLines(false);
         jScrollPane25.setViewportView(tblDiciembre);
 
         javax.swing.GroupLayout pnlDiciembreLayout = new javax.swing.GroupLayout(pnlDiciembre);
@@ -603,7 +591,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "MES COBRO", "COBRO REALIZADO", "SELECCIONAR"
             }
         ));
-        tblTodos.setShowVerticalLines(false);
         jScrollPane13.setViewportView(tblTodos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -40,16 +40,16 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
     public ListenerPnlIngresoSolicitudes(PnlIngresoSolicitudes panelIngresoSolicitudes){
         this.panelIngresoSolicitudes = panelIngresoSolicitudes;
         validarCampo = new ValidarCampos();
-        addActionListeners();
+        addListeners();
         addKeyListeners();
     }
 
     /**
      * Metodo que asigna los ActionListeners correspondientes
      */
-    private void addActionListeners(){
-        panelIngresoSolicitudes.getBtnGuardarSolicitud().addActionListener(this);
+    private void addListeners(){
         panelIngresoSolicitudes.getBtnCancelar().addActionListener(this);
+        panelIngresoSolicitudes.getBtnGuardarSolicitud().addActionListener(this);
     
     }
     
@@ -115,8 +115,7 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
     public void actionPerformed(ActionEvent e) {
             
         if(e.getSource() == panelIngresoSolicitudes.getBtnGuardarSolicitud()){
-            validarRegistroSolicitud();
-            limpiarCampos();
+            System.out.println("boton guardar");
         }
         
         else if(e.getSource() == panelIngresoSolicitudes.getBtnCancelar()){

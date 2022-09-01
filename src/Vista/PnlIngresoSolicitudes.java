@@ -151,26 +151,50 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
         return BtnCancelar;
     }
 
+    public void setBtnCancelar(JButton BtnCancelar) {
+        this.BtnCancelar = BtnCancelar;
+    }
+
     public JButton getBtnGuardarSolicitud() {
         return btnGuardarSolicitud;
+    }
+
+    public void setBtnGuardarSolicitud(JButton btnGuardarSolicitud) {
+        this.btnGuardarSolicitud = btnGuardarSolicitud;
     }
 
     public JComboBox<String> getCmbTipoSolicitud() {
         return cmbTipoSolicitud;
     }
 
+    public void setCmbTipoSolicitud(JComboBox<String> cmbTipoSolicitud) {
+        this.cmbTipoSolicitud = cmbTipoSolicitud;
+    }
+
     public JLabel getLblNumeroSolicitud() {
         return lblNumeroSolicitud;
+    }
+
+    public void setLblNumeroSolicitud(JLabel lblNumeroSolicitud) {
+        this.lblNumeroSolicitud = lblNumeroSolicitud;
     }
 
     public JTextField getTxtIdFactura() {
         return txtIdFactura;
     }
-    
+
+    public void setTxtIdFactura(JTextField txtIdFactura) {
+        this.txtIdFactura = txtIdFactura;
+    }
+
     public JTextArea getTxtaDescripcion() {
         return txtaDescripcion;
     }
 
+    public void setTxtaDescripcion(JTextArea txtaDescripcion) {
+        this.txtaDescripcion = txtaDescripcion;
+    }
+    
     
     
     

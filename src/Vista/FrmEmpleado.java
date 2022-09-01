@@ -72,6 +72,25 @@ public class FrmEmpleado extends javax.swing.JFrame {
         this.mniListarPropietariosDomiciliados = mniListarPropietariosDomiciliados;
     }
 
+    public JMenuItem getMniIngresarSolicitudes() {
+        return mniIngresarSolicitudes;
+    }
+
+    public void setMniIngresarSolicitudes(JMenuItem mniIngresarSolicitudes) {
+        this.mniIngresarSolicitudes = mniIngresarSolicitudes;
+    }
+
+    public JMenuItem getMniControlPagos() {
+        return mniControlPagos;
+    }
+
+    public void setMniControlPagos(JMenuItem mniControlPagos) {
+        this.mniControlPagos = mniControlPagos;
+    }
+    
+    
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,9 +113,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         mniListarPropietariosDomiciliados = new javax.swing.JMenuItem();
         mniEstadisticaPag = new javax.swing.JMenuItem();
-        mniEstadisticaDeu = new javax.swing.JMenuItem();
+        mniControlPagos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        mniListarSolicitudes = new javax.swing.JMenuItem();
+        mniIngresarSolicitudes = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         jPanel3.setBackground(new java.awt.Color(205, 235, 217));
@@ -207,7 +226,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+                .addComponent(panelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -248,18 +267,18 @@ public class FrmEmpleado extends javax.swing.JFrame {
         mniEstadisticaPag.setText("Listar Propietarios no Domiciliados");
         jMenu4.add(mniEstadisticaPag);
 
-        mniEstadisticaDeu.setBackground(new java.awt.Color(255, 255, 255));
-        mniEstadisticaDeu.setText("Control de Pagos");
-        jMenu4.add(mniEstadisticaDeu);
+        mniControlPagos.setBackground(new java.awt.Color(255, 255, 255));
+        mniControlPagos.setText("Control de Pagos");
+        jMenu4.add(mniControlPagos);
 
         jMenuBar1.add(jMenu4);
 
         jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Gestión de Solicitudes");
 
-        mniListarSolicitudes.setBackground(new java.awt.Color(255, 255, 255));
-        mniListarSolicitudes.setText("Ingresar Solicitudes");
-        jMenu1.add(mniListarSolicitudes);
+        mniIngresarSolicitudes.setBackground(new java.awt.Color(255, 255, 255));
+        mniIngresarSolicitudes.setText("Ingresar Solicitudes");
+        jMenu1.add(mniIngresarSolicitudes);
 
         jMenuItem1.setText("Verificar Estado de Solicitudes");
         jMenu1.add(jMenuItem1);
@@ -316,6 +335,8 @@ public class FrmEmpleado extends javax.swing.JFrame {
         this.mniListarPropietario.addActionListener(new ListenerFrmEmpleado(this));
         this.mniListarPropietariosDomiciliados.addActionListener(new ListenerFrmEmpleado(this));
         this.btnCerrarSesion.addActionListener(new ListenerFrmEmpleado(this));
+        this.mniIngresarSolicitudes.addActionListener(new ListenerFrmEmpleado(this));
+        this.mniControlPagos.addActionListener(new ListenerFrmEmpleado(this));
     }
 
 
@@ -335,11 +356,11 @@ public class FrmEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblRol;
-    private javax.swing.JMenuItem mniEstadisticaDeu;
+    private javax.swing.JMenuItem mniControlPagos;
     private javax.swing.JMenuItem mniEstadisticaPag;
+    private javax.swing.JMenuItem mniIngresarSolicitudes;
     private javax.swing.JMenuItem mniListarPropietario;
     private javax.swing.JMenuItem mniListarPropietariosDomiciliados;
-    private javax.swing.JMenuItem mniListarSolicitudes;
     private javax.swing.JMenuItem mniRegistrarPropietario;
     private javax.swing.JPanel panelAdmin;
     // End of variables declaration//GEN-END:variables

@@ -111,7 +111,7 @@ public class EmpleadoDB {
     public ArrayList<Empleado> ListEmpleado() {
         arrayEmpleado = new ArrayList();
 
-        try {
+        try {            
             sentenciaPL_SQL = "{ call VER_TABLA_EMPLEADO(?)}";
             nuevaConeccion = ConexionDB.conectar();
             callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
