@@ -27,12 +27,14 @@ public class PnlControlPagos extends javax.swing.JPanel {
         initComponents();
         modeloTabla = new DefaultTableModel();
         // Crea las filas de las tablas.
-        modeloTabla.addColumn("#");
+        modeloTabla.addColumn("#Cedula");
         modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Tiempo de aviso");
+        modeloTabla.addColumn("F. Emision");
+        modeloTabla.addColumn("F. Vencimiento");
+        modeloTabla.addColumn("Pago");
         modeloTabla.addColumn("Multa");
-        modeloTabla.addColumn("Aviso de recargo");
-        modeloTabla.addColumn("Pagos");
+        modeloTabla.addColumn("Recargo");
+        modeloTabla.addColumn("Tipo Impuesto");
         this.tblControlPago.setModel(modeloTabla);
     }
 
@@ -45,23 +47,13 @@ public class PnlControlPagos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblControlPago = new javax.swing.JTable();
         btnGenerarMulta = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jcbFiltro = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblControlPago = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        tblControlPago.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "#", "NOMBRE", "TIEMPO DE AVISO", "MULTA", "NOTIFICACION DE RECARGO", "PAGOS"
-            }
-        ));
-        jScrollPane1.setViewportView(tblControlPago);
 
         btnGenerarMulta.setText("Generar multa");
         btnGenerarMulta.addActionListener(new java.awt.event.ActionListener() {
@@ -70,40 +62,56 @@ public class PnlControlPagos extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("CONTROL DE PAGOS");
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel2.setText("Control de Pagos");
 
         jcbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Todos", "Pago", "Deuda"}));
+
+        tblControlPago.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#CEDULA", "NOMBRE", "F. EMISION", "F. VENCIMIENTO", "PAGO ", "MULTA", "RECARGO", "TIPO IMPUESTO"
+            }
+        ));
+        jScrollPane1.setViewportView(tblControlPago);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(600, 600, 600)
-                        .addComponent(jcbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 76, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGenerarMulta)))
-                .addContainerGap())
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 546, Short.MAX_VALUE)
+                .addComponent(jcbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGenerarMulta)
+                .addGap(45, 45, 45))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(42, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 367, Short.MAX_VALUE)
                 .addComponent(btnGenerarMulta)
-                .addGap(15, 15, 15))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(112, 112, 112)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(91, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,13 +143,13 @@ public class PnlControlPagos extends javax.swing.JPanel {
         this.jLabel2 = jLabel2;
     }
 
-    public JScrollPane getjScrollPane1() {
+    /*public JScrollPane getjScrollPane1() {
         return jScrollPane1;
     }
 
     public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
-    }
+    }*/
 
     public JComboBox<String> getJcbFiltro() {
         return jcbFiltro;

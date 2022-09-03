@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Factura extends Persona{
     private String id_factura;
+    private String tipo_impuesto;
     private Date fecha_emision;
     private Date fecha_vencimiento;
     private Date fecha_pago_factura;
@@ -15,17 +16,14 @@ public class Factura extends Persona{
     private String aviso_pago;
     private String multa;
     private String aviso_recargo;
+    private int dias_restantes_pago;
 
     public Factura(){};
-    
-    public Factura(String id_factura, Date fecha_emision,
-            Date fecha_vencimiento, Date fecha_pago_factura, float valor_recargo,
-            int id_estado_factura, float valor_total, String aviso_pago, String multa, 
-            String aviso_recargo, String cedula, String nombre, String direccion, 
-            String correo, Date fechaNacimiento, String telefono) {
 
+    public Factura(String id_factura, String tipo_impuesto, Date fecha_emision, Date fecha_vencimiento, Date fecha_pago_factura, float valor_recargo, int id_estado_factura, float valor_total, String aviso_pago, String multa, String aviso_recargo, int dias_restantes_pago, String cedula, String nombre, String direccion, String correo, Date fechaNacimiento, String telefono) {
         super(cedula, nombre, direccion, correo, fechaNacimiento, telefono);
         this.id_factura = id_factura;
+        this.tipo_impuesto = tipo_impuesto;
         this.fecha_emision = fecha_emision;
         this.fecha_vencimiento = fecha_vencimiento;
         this.fecha_pago_factura = fecha_pago_factura;
@@ -35,6 +33,7 @@ public class Factura extends Persona{
         this.aviso_pago = aviso_pago;
         this.multa = multa;
         this.aviso_recargo = aviso_recargo;
+        this.dias_restantes_pago = dias_restantes_pago;
     }
 
     public String getId_factura() {
@@ -164,6 +163,21 @@ public class Factura extends Persona{
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
+
+    public String getTipo_impuesto() {
+        return tipo_impuesto;
+    }
+
+    public void setTipo_impuesto(String tipo_impuesto) {
+        this.tipo_impuesto = tipo_impuesto;
+    }
+
+    public int getDias_restantes_pago() {
+        return dias_restantes_pago;
+    }
+
+    public void setDias_restantes_pago(int dias_restantes_pago) {
+        this.dias_restantes_pago = dias_restantes_pago;
+    }
+     
 }

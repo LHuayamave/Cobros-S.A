@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
-
+/**
+     * Este panel permite visualizar los propietarios domiciliados y 
+     * el estado de los cobros realizados a los mismos 
+     * @author Grupo E
+*/
 import controlador.listenerGestionPropietario.ListenerPnlListarCobrosDomiciliados;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -33,8 +32,11 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(10,tblOctubre);
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(11,tblNoviembre);
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(12,tblDiciembre);
+        
+        aniadirListenerPnlListarPropietarioDomiciliado();
     }
-
+    
+    // Getter and Setter
     public JTable getTblTodos() {
         return tblTodos;
     }
@@ -147,7 +149,9 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
         this.tblSeptiembre = tblSeptiembre;
     }
     
-  
+    private void aniadirListenerPnlListarPropietarioDomiciliado(){
+        btnEmitirAvisoCobro.addActionListener(new ListenerPnlListarCobrosDomiciliados(this));
+    }
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -216,7 +220,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane14.setViewportView(tblEnero);
@@ -247,7 +251,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane15.setViewportView(tblFebrero);
@@ -278,7 +282,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane16.setViewportView(tblMarzo);
@@ -309,7 +313,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane17.setViewportView(tblAbril);
@@ -340,7 +344,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane18.setViewportView(tblMayo);
@@ -371,7 +375,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane19.setViewportView(tblJunio);
@@ -402,7 +406,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane20.setViewportView(tblJulio);
@@ -433,7 +437,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane21.setViewportView(tblAgosto);
@@ -464,7 +468,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane22.setViewportView(tblSeptiembre);
@@ -495,7 +499,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane23.setViewportView(tblOctubre);
@@ -526,7 +530,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane24.setViewportView(tblNoviembre);
@@ -557,7 +561,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane25.setViewportView(tblDiciembre);
@@ -588,7 +592,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "MES COBRO", "COBRO REALIZADO", "SELECCIONAR"
+                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "MES COBRO", "COBRO REALIZADO"
             }
         ));
         jScrollPane13.setViewportView(tblTodos);
@@ -615,11 +619,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
         btnEmitirAvisoCobro.setBackground(new java.awt.Color(51, 51, 51));
         btnEmitirAvisoCobro.setForeground(new java.awt.Color(255, 255, 255));
         btnEmitirAvisoCobro.setText("Emitir aviso de cobro");
-        btnEmitirAvisoCobro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmitirAvisoCobroActionPerformed(evt);
-            }
-        });
 
         btnEmitirRecibo.setBackground(new java.awt.Color(51, 51, 51));
         btnEmitirRecibo.setForeground(new java.awt.Color(255, 255, 255));
@@ -657,21 +656,6 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
                 .addGap(19, 19, 19))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEmitirAvisoCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirAvisoCobroActionPerformed
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(1, tblEnero);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(2,tblFebrero);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(3,tblMarzo);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(4,tblAbril);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(5,tblMayo);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(6,tblJunio);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(7,tblJulio);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(8,tblAgosto);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(9,tblSeptiembre);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(10,tblOctubre);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(11,tblNoviembre);
-        new ListenerPnlListarCobrosDomiciliados(this).ActualizarSaldo(12,tblDiciembre);
-    }//GEN-LAST:event_btnEmitirAvisoCobroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

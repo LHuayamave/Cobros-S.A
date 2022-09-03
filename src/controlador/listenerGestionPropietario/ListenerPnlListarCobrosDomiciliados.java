@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador.listenerGestionPropietario;
 
 import Vista.PnlListarPropietariosDomiciliados;
@@ -16,15 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CobroDomiciliados;
 import modelo.ImgTabla;
 
-/**
- *
- * @author NIEVES
- */
+
 public class ListenerPnlListarCobrosDomiciliados implements ActionListener{
     
     private final PnlListarPropietariosDomiciliados pnlListarPropietariosDomiciliados;
@@ -58,7 +50,6 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener{
             }
             tb.addRow(new Object[]{cobros.getCedulaPropietario(), cobros.getNombrePropietario(), cobros.getTipoImpuesto(),
             cobros.getValorImpuesto(),Month.of(cobros.getMesPago()),new JLabel(new ImageIcon(getClass().getResource(recurso)))});
-            addCheckBox(6,pnlListarPropietariosDomiciliados.getTblTodos());
             pnlListarPropietariosDomiciliados.getTblTodos().setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);
             pnlListarPropietariosDomiciliados.getTblTodos().setRowSorter(sorter);
@@ -68,13 +59,20 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-    }
-   public void addCheckBox(int column, JTable tabla)
-    {
-        TableColumn tc = tabla.getColumnModel().getColumn(column);
-        tc.setCellEditor(tabla.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tabla.getDefaultRenderer(Boolean.class));
+        if (e.getSource() == pnlListarPropietariosDomiciliados.getBtnEmitirAvisoCobro()) {
+            ActualizarSaldo(1, pnlListarPropietariosDomiciliados.getTblEnero());
+            ActualizarSaldo(2,pnlListarPropietariosDomiciliados.getTblFebrero());
+            ActualizarSaldo(3,pnlListarPropietariosDomiciliados.getTblMarzo());
+            ActualizarSaldo(4,pnlListarPropietariosDomiciliados.getTblAbril());
+            ActualizarSaldo(5,pnlListarPropietariosDomiciliados.getTblMayo());
+            ActualizarSaldo(6,pnlListarPropietariosDomiciliados.getTblJunio());
+            ActualizarSaldo(7,pnlListarPropietariosDomiciliados.getTblJulio());
+            ActualizarSaldo(8,pnlListarPropietariosDomiciliados.getTblAgosto());
+            ActualizarSaldo(9,pnlListarPropietariosDomiciliados.getTblSeptiembre());
+            ActualizarSaldo(10,pnlListarPropietariosDomiciliados.getTblOctubre());
+            ActualizarSaldo(11,pnlListarPropietariosDomiciliados.getTblNoviembre());
+            ActualizarSaldo(12,pnlListarPropietariosDomiciliados.getTblDiciembre());
+        }
     }
    
    public void llenarTablaMesCobrosDomiciliados(Integer mes,JTable tabla) {
@@ -97,7 +95,6 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener{
             }
             tb.addRow(new Object[]{cobros.getCedulaPropietario(), cobros.getNombrePropietario(), cobros.getTipoImpuesto(),
             cobros.getValorImpuesto(),new JLabel(new ImageIcon(getClass().getResource(recurso)))});
-            addCheckBox(5,tabla);
             tabla.setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);
             tabla.setRowSorter(sorter);
