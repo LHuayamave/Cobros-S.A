@@ -19,12 +19,20 @@ public class Solicitud {
     
     public Solicitud(){}
 
-    public Solicitud(String id, String id_Factura, String estado, String descripcion, String tipo) {
+    public Solicitud(String id, String tipo, String descripcion, String estado, String id_Factura) {
         this.id = id;
         this.id_Factura = id_Factura;
         this.estado = estado;
         this.descripcion = descripcion;
         this.tipo = tipo;
+    }
+
+    public String getId_Factura() {
+        return id_Factura;
+    }
+
+    public void setId_Factura(String id_Factura) {
+        this.id_Factura = id_Factura;
     }
 
     public String getId() {

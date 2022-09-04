@@ -6,11 +6,14 @@
 package controlador.ListenerSolicitudes;
 
 import Vista.PnlIngresoSolicitudes;
+import controlador.SolicitudDB;
 import controlador.ValidarCampos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import modelo.Empleado;
 import modelo.Solicitud;
 import sun.java2d.pipe.SolidTextRenderer;
 
@@ -22,6 +25,7 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
     
     private PnlIngresoSolicitudes panelIngresoSolicitudes;
     private Solicitud solicitud;
+    private SolicitudDB solicitudDB;
     private ValidarCampos validarCampo;
     static int generadorIdSolicitud = 1;
     
@@ -40,6 +44,7 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
     public ListenerPnlIngresoSolicitudes(PnlIngresoSolicitudes panelIngresoSolicitudes){
         this.panelIngresoSolicitudes = panelIngresoSolicitudes;
         validarCampo = new ValidarCampos();
+        solicitudDB = new SolicitudDB(); 
         addListeners();
         addKeyListeners();
     }
@@ -76,13 +81,17 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
      */
     private void crearSolicitud(){
         
-        String id_Factura = panelIngresoSolicitudes.getTxtIdFactura().getText();
-        String descripcion = panelIngresoSolicitudes.getTxtaDescripcion().getText();
+
+       
         String tipo = (String)panelIngresoSolicitudes.getCmbTipoSolicitud().getSelectedItem();
+        String descripcion = panelIngresoSolicitudes.getTxtaDescripcion().getText();
+        String id_Factura = panelIngresoSolicitudes.getTxtIdFactura().getText();
+     
+        solicitud = new Solicitud(String.valueOf(generadorIdSolicitud) , tipo, descripcion, "Pendiente", id_Factura);
         
-        solicitud = new Solicitud(String.valueOf(generadorIdSolicitud), id_Factura , "Pendiente", descripcion, tipo);
-        
+        mensajeConfirmacion(solicitudDB.agregarSolicitud(solicitud));
         System.out.println(solicitud);
+        
     }
     
     /**
@@ -116,10 +125,13 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
             
         if(e.getSource() == panelIngresoSolicitudes.getBtnGuardarSolicitud()){
             System.out.println("boton guardar");
+            crearSolicitud();
+            limpiarCampos();      
         }
         
         else if(e.getSource() == panelIngresoSolicitudes.getBtnCancelar()){
             System.out.println("boton cancelar papa");
+            
         }
 
     }
@@ -128,6 +140,13 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
     public void keyTyped(KeyEvent e) {
         if(e.getSource() == panelIngresoSolicitudes.getTxtIdFactura()){
             validarCampo.validarNumeros(e, panelIngresoSolicitudes.getTxtIdFactura());
+        }
+    }
+     public void mensajeConfirmacion(int regAfectados){
+        if(regAfectados>0){
+            JOptionPane.showMessageDialog(null,"Se han guardado los datos correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null,"No han guardado los datos.");
         }
     }
 }
