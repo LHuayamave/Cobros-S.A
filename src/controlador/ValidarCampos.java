@@ -230,23 +230,23 @@ public class ValidarCampos {
             return false;
         }
     }
-    public boolean validarCampoVacio(FrmEditarPropietario frmEditarPropietario) {
-        if (!frmEditarPropietario.getTxtCedula().getText().isEmpty()
-                && !frmEditarPropietario.getTxtNombre().getText().isEmpty()
-                && !frmEditarPropietario.getTxtTelefono().getText().isEmpty()
-                && !frmEditarPropietario.getTxtDireccion().getText().isEmpty()
-                && frmEditarPropietario.getDtcFechaNacimiento().getDate() != null
-                && !frmEditarPropietario.getTxtCorreo().getText().isEmpty()
-                && !frmEditarPropietario.getTxtPlaca().getText().isEmpty()
-                && !frmEditarPropietario.getTxtMarca().getText().isEmpty()
-                && !frmEditarPropietario.getTxtModelo().getText().isEmpty()
-                && !frmEditarPropietario.getTxtAnioVehiculo().getText().isEmpty()) {
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "LLene todos los campos");
-            return false;
-        }
-    }
+//    public boolean validarCampoVacio(FrmEditarPropietario frmEditarPropietario) {
+//        if (!frmEditarPropietario.getTxtCedula().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtNombre().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtTelefono().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtDireccion().getText().isEmpty()
+//                && frmEditarPropietario.getDtcFechaNacimiento().getDate() != null
+//                && !frmEditarPropietario.getTxtCorreo().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtPlaca().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtMarca().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtModelo().getText().isEmpty()
+//                && !frmEditarPropietario.getTxtAnioVehiculo().getText().isEmpty()) {
+//            return true;
+//        } else {
+//            JOptionPane.showMessageDialog(null, "LLene todos los campos");
+//            return false;
+//        }
+//    }
     
     public String validarFormatoFecha( Date date){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");

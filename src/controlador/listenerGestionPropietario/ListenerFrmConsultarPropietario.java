@@ -2,8 +2,11 @@ package controlador.listenerGestionPropietario;
 
 import Vista.FrmConsultarPropietario;
 import controlador.PropietarioDB;
+import controlador.ValidarCampos;
+import controlador.VehiculoDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import modelo.CuentaBancaria;
 import modelo.Propietario;
 import modelo.Vehiculo;
@@ -20,10 +23,11 @@ public class ListenerFrmConsultarPropietario implements ActionListener {
 
     private FrmConsultarPropietario frmConsultarPropietario;
     private PropietarioDB propietarioDB;
-    
     private Propietario propietario;
-    private Vehiculo vehiculo ;
     private CuentaBancaria cuentaBancaria;
+    private ValidarCampos validarCampos;
+    private ArrayList<Vehiculo> listaVehiculo;
+    private VehiculoDB vehiculoDB;
 
     public ListenerFrmConsultarPropietario(FrmConsultarPropietario frmConsultarPropietario) {
         this.frmConsultarPropietario = frmConsultarPropietario;
@@ -42,53 +46,60 @@ public class ListenerFrmConsultarPropietario implements ActionListener {
             frmConsultarPropietario.dispose();
         }
     }
-    void llenarFrmConsultarPropietario(String obtenerCedula, String Domiciliado) {
-//        
-//        
-//        propietario = propietarioDB.obtenerPropietario(obtenerCedula);
-//        vehiculo = vehiculoDB.obtenerVehiculo(propietario.getPlaca());
-//        llenarPartePropietario(propietario);
-//        llenarParteVehiculo(vehiculo);
-    }
-
+    
     public void llenarCamposConsultarPropietario() {
+        propietarioDB = new PropietarioDB();
+        vehiculoDB = new VehiculoDB();
         propietario = new Propietario();
         cuentaBancaria = new CuentaBancaria();
         if(frmConsultarPropietario.getDomiciliado().equals("true")){ 
             propietarioDB.consultarPropietarioDomiciliado(
                     cuentaBancaria,propietario,frmConsultarPropietario.getCedula());
-            llenarCampoPropietarioDomiciliado(propietario,cuentaBancaria);
+            llenarDatosPropietario( propietario);
+            llenarDatosCuentaBancaria(cuentaBancaria);            
         }else{
             propietarioDB.consultarPropietarioNoDomiciliado(
                     propietario,frmConsultarPropietario.getCedula());
-            llenarCampoPropietarioNoDomiciliado(propietario);
+            propietarioDB.consultarPropietarioNoDomiciliado(propietario,frmConsultarPropietario.getCedula());
+            llenarDatosPropietario( propietario); 
         }
-
+        listaVehiculo = vehiculoDB.listarVehiculo(frmConsultarPropietario.getCedula());
+        llenarDatosVechiculo(listaVehiculo);
     }
 
-    private void llenarCampoPropietarioDomiciliado(Propietario propietario, CuentaBancaria cuentaBancaria) {
-//        frmConsultarPropietario.getTxtCedula().setText(propietario.getCedula()); 
-//        frmConsultarPropietario.getTxtNombre().setText(propietario.getNombre());
-//        frmConsultarPropietario.getTxtCorreo().setText(propietario.getCorreo());
-//        frmConsultarPropietario.getTxtTelefono().setText(propietario.getTelefono());
-//        frmConsultarPropietario.getTxtDireccion().setText(propietario.getDireccion());
-//        //frmConsultarPropietario.getTxtFechaNacimiento().setText(propietario.getFechaNacimiento());
-//        frmConsultarPropietario.getCmbEstadoPropietario();
-//        frmConsultarPropietario.getrBtnDomiciliado();
-//        
-//        frmConsultarPropietario.getTxtCtaBancaria();
-//        frmConsultarPropietario.getTxtCVV();
-//        frmConsultarPropietario.getCmbMes();
-//        frmConsultarPropietario.getCmbAnio();
-//        frmConsultarPropietario.getCmbTipoCtaBancaria();
-//        frmConsultarPropietario.getTxtSaldo();
-//        frmConsultarPropietario.getCmbBanco();
-
+        private void llenarDatosPropietario(Propietario propietario){
+        validarCampos = new ValidarCampos();
+        frmConsultarPropietario.getTxtCedula().setText(propietario.getCedula()); 
+        frmConsultarPropietario.getTxtNombre().setText(propietario.getNombre());
+        frmConsultarPropietario.getTxtCorreo().setText(propietario.getCorreo());
+        frmConsultarPropietario.getTxtTelefono().setText(propietario.getTelefono());
+        frmConsultarPropietario.getTxtDireccion().setText(propietario.getDireccion());
+        frmConsultarPropietario.getTxtFechaNacimiento().setText(
+                validarCampos.validarFormatoFecha(propietario.getFechaNacimiento()));
+        frmConsultarPropietario.getCmbEstadoPropietario().setSelectedIndex(propietario.getId_estado_propietario());
+        frmConsultarPropietario.getrBtnDomiciliado().setSelected(propietario.getDomiciliado()); 
     }
-
-    private void llenarCampoPropietarioNoDomiciliado(Propietario propietario) {
-
+    private void llenarDatosCuentaBancaria(CuentaBancaria cuentaBancaria){
+        frmConsultarPropietario.getTxtCtaBancaria().setText(cuentaBancaria.getNumeroCuentaBancaria());
+        frmConsultarPropietario.getTxtCVV().setText(cuentaBancaria.getCvv());
+        frmConsultarPropietario.getCmbMes().setSelectedIndex(cuentaBancaria.getMes()-1);
+        frmConsultarPropietario.getTxtAnio().setText(cuentaBancaria.getAnio()+"");
+        frmConsultarPropietario.getCmbTipoCtaBancaria().setSelectedIndex(cuentaBancaria.getIdTipoCuenta());
+        frmConsultarPropietario.getTxtSaldo().setText(String.valueOf(cuentaBancaria.getSaldo()));
+        frmConsultarPropietario.getCmbBanco().setSelectedIndex(cuentaBancaria.getIdBanco());
     }
     
-
+    private void llenarDatosVechiculo(ArrayList<Vehiculo> listaVehiculo){
+        
+        for(int i = 0; i < listaVehiculo.size(); i++) {
+            Object[] fila = {
+                listaVehiculo.get(i).getPlaca(),
+                listaVehiculo.get(i).getMarca(),
+                listaVehiculo.get(i).getModelo(),
+                listaVehiculo.get(i).getAnioVehiculo(),
+                listaVehiculo.get(i).getId_tipo_impuesto()
+            };
+        frmConsultarPropietario.getModeloTabla().addRow(fila);
+        }
+    }
 }

@@ -4,23 +4,17 @@ package Vista;
      * donde se puede elegir una opcion para listarla o modificarla.
      * @author Grupo E
 */
-import controlador.PropietarioDB;
-import controlador.VehiculoDB;
 import controlador.listenerGestionPropietario.ListenerFrmListarPropietario;
-import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
+
 
 public class FrmListarPropietario extends javax.swing.JPanel {
     public FrmListarPropietario() {
         initComponents();
         new ListenerFrmListarPropietario(this).llenarTablaPropietario();
-        // Añade los listeners a los botones.
         aniadirListenerFrmListarPropietario();
     }
 
@@ -158,44 +152,7 @@ public class FrmListarPropietario extends javax.swing.JPanel {
     public void setBtnRefrescar(JButton btnRefrescar) {
         this.btnRefrescar = btnRefrescar;
     }
-    /**
-     * Metodo que rellena el contenido de la tabla haciendo uso de los controladores
-     * de VehiculoDB y PropietarioDB
-     * @param cs {@link VehiculoDB} clase que maneja la informacion de vehiculo
-     * @param cs {@link PropietarioDB} clase que maneja la informacion de propietario.
-     */
-//    public void llenarTablaPropietario() {
-//        listaPropietario = propietarioDB.listarPropietarios();
-//        int i = 0;
-//        DefaultTableModel tb = (DefaultTableModel) tblPropietarios.getModel();
-//        for (Propietario propietario : listaPropietario) {
-////            vehiculo = vehiculoDB.obtenerVehiculo(propietario.getPlaca());
-//            tb.addRow(new Object[]{propietario.getCedula(), propietario.getNombre(), propietario.getTelefono(),
-//                vehiculo.getPlaca(), vehiculo.getMarca()});
-//            tblPropietarios.setAutoCreateRowSorter(true);
-//            sorter = new TableRowSorter<>(tb);
-//            tblPropietarios.setRowSorter(sorter);
-//            i++;
-//        }
-//    }
-    /*Permite validar que se haya selecionado una celda de la tabla*/
-    public void validarCedulaModificar(FrmEditarPropietario frmEditarPropietario, String cedula) {
-        if (obtenerCedula() != null) {
-            frmEditarPropietario.llenarFrmEditarPropietario(obtenerCedula());
-            frmEditarPropietario.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un Propietario");
-        }
-    }
-    /*Permite validar que se haya selecionado una celda de la tabla*/
-//    public void validarCedulaCosultar(FrmConsultarPropietario frmConsultarPropietario, String cedula) {
-//        if (obtenerCedula() != null) {
-//            frmConsultarPropietario.llenarFrmConsultarPropietario(obtenerCedula());
-//            frmConsultarPropietario.setVisible(true);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Seleccione un Propietario");
-//        }
-//    }
+
     /*Metodo que obtiene la cedula de la celda selecionada*/
     public String obtenerCedula() {
         int fila = -1;
@@ -223,14 +180,7 @@ public class FrmListarPropietario extends javax.swing.JPanel {
             tb.removeRow(i);
         }
     }
-//    /*Permite Filtar el contenido de la tabla.*/
-//    public void Filtrar() {
-//        try {
-//            sorter.setRowFilter(RowFilter.regexFilter(txtBusqueda.getText()));
-//        } catch (Exception e) {
-//
-//        }
-//    }
+
     /**
      * Metodo que agrega los listener a sus respectivo botones mediante una clase 
      * que implementa las interfaces ActionListener.

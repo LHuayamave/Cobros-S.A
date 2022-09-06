@@ -13,19 +13,24 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmConsultarPropietario extends javax.swing.JFrame {
     private String cedula;
     private String domiciliado;
     private PropietarioDB propietarioDB;
     int posicion;
+    private DefaultTableModel modeloTabla;
+    
     public FrmConsultarPropietario(String cedula,String domiciliado) {
         initComponents();
         this.cedula=cedula;
-        this.domiciliado=domiciliado;   
+        this.domiciliado=domiciliado;  
+        propietarioDB = new PropietarioDB();
         propietarioDB.llenarCmbEstadoPropietario(cmbEstadoPropietario);
         propietarioDB.llenarCmbTipoCtaBancaria(cmbTipoCtaBancaria);
         propietarioDB.llenarCmbBanco(cmbBanco);
+        modeloTabla =(DefaultTableModel)tblVehiculo.getModel();
         AniadirListenerConsultarPropietario();
         llenarConsultaPropietario();
     }
@@ -76,7 +81,6 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         txtCVV = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        cmbAnio = new javax.swing.JComboBox<>();
         txtSaldo = new javax.swing.JTextField();
         cmbMes = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
@@ -88,6 +92,7 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVehiculo = new javax.swing.JTable();
         rBtnDomiciliado = new javax.swing.JRadioButton();
+        txtAnio = new javax.swing.JTextField();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -192,8 +197,6 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
 
         jLabel22.setText("Año:");
 
-        cmbAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
-
         txtSaldo.setEditable(false);
         txtSaldo.setText("0");
 
@@ -223,6 +226,8 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
 
         rBtnDomiciliado.setText("Es domiciliado");
         rBtnDomiciliado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        txtAnio.setEditable(false);
 
         javax.swing.GroupLayout pnlConsultaPropietarioLayout = new javax.swing.GroupLayout(pnlConsultaPropietario);
         pnlConsultaPropietario.setLayout(pnlConsultaPropietarioLayout);
@@ -287,11 +292,11 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
                                 .addGroup(pnlConsultaPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(pnlConsultaPropietarioLayout.createSequentialGroup()
                                         .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(78, 78, 78)
                                         .addComponent(jLabel21))
                                     .addGroup(pnlConsultaPropietarioLayout.createSequentialGroup()
-                                        .addComponent(cmbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(47, 47, 47)
+                                        .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel23)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlConsultaPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,9 +356,9 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlConsultaPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(cmbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addGroup(pnlConsultaPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,7 +406,6 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cmbAnio;
     private javax.swing.JComboBox<String> cmbBanco;
     private javax.swing.JComboBox<String> cmbEstadoPropietario;
     private javax.swing.JComboBox<String> cmbMes;
@@ -444,6 +448,7 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
     private javax.swing.JPanel pnlConsultaPropietario;
     private javax.swing.JRadioButton rBtnDomiciliado;
     private javax.swing.JTable tblVehiculo;
+    private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtCVV;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
@@ -469,14 +474,6 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
 
     public void setDomiciliado(String domiciliado) {
         this.domiciliado = domiciliado;
-    }
-
-    public JComboBox<String> getCmbAnio() {
-        return cmbAnio;
-    }
-
-    public void setCmbAnio(JComboBox<String> cmbAnio) {
-        this.cmbAnio = cmbAnio;
     }
 
     public JComboBox<String> getCmbBanco() {
@@ -598,5 +595,22 @@ public class FrmConsultarPropietario extends javax.swing.JFrame {
     public void setCmbTipoCtaBancaria(JComboBox<String> cmbTipoCtaBancaria) {
         this.cmbTipoCtaBancaria = cmbTipoCtaBancaria;
     }
+
+    public DefaultTableModel getModeloTabla() {
+        return modeloTabla;
+    }
+
+    public void setModeloTabla(DefaultTableModel modeloTabla) {
+        this.modeloTabla = modeloTabla;
+    }
+
+    public JTextField getTxtAnio() {
+        return txtAnio;
+    }
+
+    public void setTxtAnio(JTextField txtAnio) {
+        this.txtAnio = txtAnio;
+    }
    
+    
 }

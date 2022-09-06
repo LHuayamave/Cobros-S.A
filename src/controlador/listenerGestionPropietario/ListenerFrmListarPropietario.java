@@ -67,10 +67,9 @@ public class ListenerFrmListarPropietario implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmListarPropietario.getBtnConsultar()) {
-            validarSeleccionPropietario();
+            validarSeleccionPropietarioConsultar();
         } else if (e.getSource() == frmListarPropietario.getBtnModificar()) {
-            FrmEditarPropietario frmEditarPropietario = new FrmEditarPropietario();
-            frmListarPropietario.validarCedulaModificar(frmEditarPropietario, frmListarPropietario.obtenerCedula());
+            validarSeleccionPropietarioEditar();
         } else if (e.getSource() == frmListarPropietario.getBtnRefrescar()) {
             frmListarPropietario.LimpiarFormulario();
             llenarTablaPropietario();
@@ -78,7 +77,8 @@ public class ListenerFrmListarPropietario implements ActionListener {
             Filtrar();
         }
     }
-    public void validarSeleccionPropietario(){
+    
+    public void validarSeleccionPropietarioConsultar(){
         if(frmListarPropietario.obtenerCedula()!=null){
             FrmConsultarPropietario frmConsultarPropietario = new FrmConsultarPropietario(
                     frmListarPropietario.obtenerCedula(),frmListarPropietario.obtenerDomiciliado()
@@ -88,4 +88,26 @@ public class ListenerFrmListarPropietario implements ActionListener {
             JOptionPane.showMessageDialog(null, "Selecione un Propietario"); 
         }
     }
+    
+    public void validarSeleccionPropietarioEditar(){
+        if(frmListarPropietario.obtenerCedula()!=null){
+            FrmEditarPropietario frmEditarPropietario = new FrmEditarPropietario(
+                    frmListarPropietario.obtenerCedula(),frmListarPropietario.obtenerDomiciliado()
+                );
+            frmEditarPropietario.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione un Propietario"); 
+        }
+    }
+    
+//    public void validarSeleccionPropietario(){
+//        if(frmListarPropietario.obtenerCedula()!=null){
+//            FrmConsultarPropietario frmConsultarPropietario = new FrmConsultarPropietario(
+//                    frmListarPropietario.obtenerCedula(),frmListarPropietario.obtenerDomiciliado()
+//                );
+//            frmConsultarPropietario.setVisible(true);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Selecione un Propietario"); 
+//        }
+//    }
 }

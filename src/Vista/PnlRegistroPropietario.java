@@ -80,7 +80,7 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         cmbBanco = new javax.swing.JComboBox<>();
         cmbMes = new javax.swing.JComboBox<>();
-        cmbAnio = new javax.swing.JComboBox<>();
+        txtAnio = new javax.swing.JTextField();
 
         jLabel20.setText("CVV:");
 
@@ -162,7 +162,8 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
 
         cmbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
-        cmbAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        txtAnio.setEditable(false);
+        txtAnio.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -202,12 +203,11 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(4, 4, 4)
-                                                        .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(cmbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
+                                                .addGap(4, 4, 4)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtCVV, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                                    .addComponent(txtAnio))
+                                                .addGap(38, 38, 38)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(jLabel21)
                                                     .addComponent(jLabel23))
@@ -320,7 +320,7 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
                     .addComponent(jLabel23)
                     .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(cmbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -548,12 +548,12 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
         this.txtSaldo = txtSaldo;
     }
 
-    public JComboBox<String> getCmbAnio() {
-        return cmbAnio;
+    public JTextField getTxtAnio() {
+        return txtAnio;
     }
 
-    public void setCmbAnio(JComboBox<String> cmbAnio) {
-        this.cmbAnio = cmbAnio;
+    public void setTxtAnio(JTextField txtAnio) {
+        this.txtAnio = txtAnio;
     }
 
     public JComboBox<String> getCmbMes() {
@@ -568,7 +568,6 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cmbAnio;
     private javax.swing.JComboBox<String> cmbBanco;
     private javax.swing.JComboBox<String> cmbEstadoPropietario;
     private javax.swing.JComboBox<String> cmbMes;
@@ -600,6 +599,7 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton rBtnDomiciliado;
+    private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtAnioVehiculo;
     private javax.swing.JTextField txtCVV;
     private javax.swing.JTextField txtCedula;

@@ -86,36 +86,6 @@ public class PropietarioDB {
         return listaPropietarios;
     }
 
-    /*
-    * Este metodo permite obtener el propietario apartir de la cedula.
-     */
-//    public Propietario obtenerPropietario(String cedula) { 
-//        propietario = new Propietario();
-//        try {
-//            nuevaConexion= ConexionDB.conectar();
-//            statement = nuevaConexion.createStatement();
-//            resultSet = statement.executeQuery("SELECT * FROM ADMIN_COBROS.PROPIETARIO WHERE CEDULA="+ cedula);
-//            while (resultSet.next()) {
-//                propietario.setCedula(resultSet.getString("CEDULA"));
-//                propietario.setNombre(resultSet.getString("NOMBRE"));
-//                propietario.setCorreo(resultSet.getString("CORREO"));
-//                propietario.setTelefono(resultSet.getString("TELEFONO"));
-//                propietario.setDireccion(resultSet.getString("DIRECCION"));
-//                propietario.setFechaNacimiento(resultSet.getDate("FECHA_NAC"));
-//                //propietario.setPlaca(resultSet.getString("PLACA"));
-//                propietario.setId_estado_propietario(resultSet.getInt("ID_ESTADO_PROPIETARIO"));
-//            }  
-//            statement.close();
-//            nuevaConexion.close();
-//            resultSet.close();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//        return propietario ;
-//    }
-    /*
-    * Este metodo permite registrar a los propietarios. en la BD
-     */
     public int registrarPropietarioNoDomiciliado(Propietario propietario, Vehiculo vehiculo) {
         resultado = 0;
         ejecutarSentencia = "{ call AGREGAR_PROPIETARIO_NO_DOMICILIADO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
@@ -129,10 +99,10 @@ public class PropietarioDB {
             cs.setString(4, propietario.getTelefono());
             cs.setString(5, propietario.getDireccion());
             cs.setString(6, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
-            cs.setInt(7, propietario.obtenerMesPago());
-            cs.setInt(8, propietario.getId_estado_propietario());
+            cs.setInt(7, propietario.obtenerMesPago()); 
+            cs.setInt(8, propietario.getId_estado_propietario()); 
             cs.setString(9, null);// cuenta bancaria
-            cs.setString(10, Boolean.toString(propietario.getDomiciliado())); // domiciliado
+            cs.setString(10, Boolean.toString (propietario.getDomiciliado()));
             cs.setString(11, vehiculo.getPlaca());
             cs.setString(12, vehiculo.getMarca());
             cs.setString(13, vehiculo.getModelo());
@@ -145,7 +115,7 @@ public class PropietarioDB {
             nuevaConexion.close();
             mensajeConfirmacion("El ropietario insertado con exito.");
         } catch (Exception e) {
-            mensajeConfirmacion("El propietario no a sido insertado.Error: " + e);
+            mensajeConfirmacion("El propietario no a sido insertado.Error: " +e);
         }
         return resultado;
     }

@@ -5,6 +5,7 @@ package controlador;
 */
 
 import configSQL.ConexionDB;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,18 +15,54 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.Vehiculo;
+import oracle.jdbc.OracleTypes;
 
 
 public class VehiculoDB {
 
-    private static PreparedStatement sentencia_preparada;
+    private ArrayList<Vehiculo> listarVehiculo;
     private static ResultSet resultSet;
+    private String ejecutarSentencia;
+    private Connection nuevaConeccion ;
+    private CallableStatement callableStatement;
+    
+    private static PreparedStatement sentencia_preparada;
+    
     Statement statement;
     private Connection nuevaConexion;
     private Vehiculo vehiculo;
-    private ArrayList<Vehiculo> Vehiculo = new ArrayList();
+    
     private int resultado;
-    private String ejecutarSentencia;
+    
+    public ArrayList<Vehiculo> listarVehiculo(String cedula) {
+        listarVehiculo = new ArrayList();
+        
+        ejecutarSentencia= "{ call VER_TABLA_VEHICULO(?,?)}";
+        try {
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            callableStatement.setString(1, cedula); 
+            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+            callableStatement.executeQuery();
+            resultSet = (ResultSet)callableStatement.getObject(2);  
+            while (resultSet.next()) {
+                vehiculo = new Vehiculo();
+                vehiculo.setPlaca(resultSet.getString(1));
+                vehiculo.setMarca(resultSet.getString(2));
+                vehiculo.setModelo(resultSet.getString(3));
+                vehiculo.setAnioVehiculo(resultSet.getString(4));
+                vehiculo.setId_tipo_impuesto(resultSet.getInt(5));
+                listarVehiculo.add(vehiculo);
+            }
+            nuevaConeccion.close();
+            callableStatement.close();
+            resultSet.close();   
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Error en listado");
+        }
+        return  listarVehiculo;
+    }
     
     // Ingresa el vehiculo en la BD 
     public int registrarVehiculo(String placa, String marca, String modelo, 
