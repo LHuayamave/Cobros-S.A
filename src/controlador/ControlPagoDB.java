@@ -1,11 +1,15 @@
-
 package controlador;
 
+/**
+ * Este es el modelo que maneja los datos del control de pagos que se encuentra
+ * la BD y la interfaz.
+ *
+ * @author Grupo E
+ */
 
 import configSQL.ConexionDB;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,14 +17,11 @@ import oracle.jdbc.OracleTypes;
 import modelo.Factura;
 
 public class ControlPagoDB {
- private Connection nuevaConeccion;
+    private Connection nuevaConeccion;
     private String sentenciaPL_SQL;
     private CallableStatement callableStatement;
     private ResultSet resultSet;
     private Factura factura;
-    private static PreparedStatement sentencia_preparada;
-    private Connection nuevaConexion;
-    private int resultado;
 
     ConexionDB cnx = new ConexionDB();
     Connection conexion = cnx.conectar();
@@ -31,6 +32,9 @@ public class ControlPagoDB {
         arrayFactura = new ArrayList();
     }
     
+    /*
+    * Este metodo extrae la lista de los pagos para presentarlo en la tabla listarControlPago
+    */
     public ArrayList<Factura> ListFactura() {
         arrayFactura = new ArrayList();
         try {
@@ -65,6 +69,10 @@ public class ControlPagoDB {
         System.out.println(arrayFactura);
         return arrayFactura;
     }
+    
+    /*
+    * Este metodo actualiza la multa del propietario presentado en la tablaControlPago
+    */
     public void ActualizarEstadoMulta(String cod_factura, float recargo){
         sentenciaPL_SQL= "{call ACTUALIZAR_MULTA_FACTURA('"+cod_factura+"',"+recargo+")}";
         try {    

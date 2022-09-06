@@ -15,8 +15,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.ImgTabla;
 
+/**
+ * Esta clase agrega los listener a los botones del formulario listar control pago
+ *  haciendo uso de la interfaz ActionListener .
+ *
+ * @param cs {@link ActionListener } clase que permite agregar a los
+ * escuchadores a los botones.
+ * @author Grupo E
+ */
 
 public class ListenerControlPagos extends KeyAdapter implements ActionListener{
+    
    ControlPagoDB ctrlPagoDB = new ControlPagoDB();
     private PnlControlPagos controlPagos;
     private ArrayList<Factura> arrayFactura;
@@ -24,14 +33,26 @@ public class ListenerControlPagos extends KeyAdapter implements ActionListener{
     private String recurso;
     private String recurso2;
 
+     /**
+     * Constructor vacio para el control de la ventana PnlControlPagos.java
+     */
     public ListenerControlPagos() {
     }
-
+    
+    /**
+     * Constructor para el control de la ventana PnlControlPagos.java
+     *
+     * @param controlPagos El parámetro controlPagos recibe el panel a
+     * controlar
+     */
     public ListenerControlPagos(PnlControlPagos controlPagos) {
         this.controlPagos = controlPagos;
         addListeners();
     }
-
+    
+    /*
+    * Este metodo permite llenar la tabla TblControlPago
+    */
     public void llenarTablaControlTodos() {
         recurso = "";
         recurso2 = "";
@@ -60,14 +81,20 @@ public class ListenerControlPagos extends KeyAdapter implements ActionListener{
             i++;
         }
     }
-
+    
+    /*
+    * Este metodo limpiar la tabla TblControlPago
+    */
     public void LimpiarTabla() {
         DefaultTableModel tablaModel = (DefaultTableModel) controlPagos.getTblControlPago().getModel();
         tablaModel.getDataVector().removeAllElements();
         tablaModel.fireTableDataChanged();
         System.out.println("tabla Limpiada");
     }
-
+    
+    /*
+    * Este metodo permite llenar la tabla TblControlPago
+    */
     public void llenarTablaControlDeuda() {
         recurso = "";
         recurso2 = "";
@@ -92,7 +119,10 @@ public class ListenerControlPagos extends KeyAdapter implements ActionListener{
             i++;
         }
     }
-
+    
+    /*
+    * Este metodo permite llenar la tabla TblControlPago
+    */
     public void llenarTablaControlPago() {
         recurso = "";
         recurso2 = "";
@@ -113,7 +143,10 @@ public class ListenerControlPagos extends KeyAdapter implements ActionListener{
             i++;
         }
     }
-
+    
+    /*
+    * Este metodo permite actualizar la multa del propietario
+    */
     public void ActualizarMulta(JTable tabla) {
         float recargo;
         int fila = 0;
@@ -145,7 +178,14 @@ public class ListenerControlPagos extends KeyAdapter implements ActionListener{
         controlPagos.getBtnGenerarMulta().addActionListener(this);
         controlPagos.getJcbFiltro().addActionListener(this);
     }
-
+    
+     /**
+     * Este metodo recibe el evento del boton presionado y lo compara para tomar
+     * un desicion.
+     *
+     * @param cs {@link ActionEvent } captura el evento que se causo al
+     * presionar un boton y ejecuta la acciones definidas.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == controlPagos.getJcbFiltro()) {
@@ -175,6 +215,5 @@ public class ListenerControlPagos extends KeyAdapter implements ActionListener{
                 llenarTablaControlTodos();
             }   
         }
-
     }
 }

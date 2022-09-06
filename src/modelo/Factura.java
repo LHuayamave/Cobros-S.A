@@ -1,5 +1,10 @@
-
 package modelo;
+
+/**
+     * Esta es una clase extiende de la clase absatracta Persona y se la utiliza para instanciar objetos factura
+     * y guardar información.
+     * @author Grupo E
+*/
 
 import java.util.Date;
 
@@ -18,9 +23,13 @@ public class Factura extends Persona{
     private String aviso_recargo;
     private int dias_restantes_pago;
 
+    /*Constructores*/
     public Factura(){};
 
-    public Factura(String id_factura, String tipo_impuesto, Date fecha_emision, Date fecha_vencimiento, Date fecha_pago_factura, float valor_recargo, int id_estado_factura, float valor_total, String aviso_pago, String multa, String aviso_recargo, int dias_restantes_pago, String cedula, String nombre, String direccion, String correo, Date fechaNacimiento, String telefono) {
+    public Factura(String id_factura, String tipo_impuesto, Date fecha_emision, Date fecha_vencimiento,
+            Date fecha_pago_factura, float valor_recargo, int id_estado_factura, float valor_total, 
+            String aviso_pago, String multa, String aviso_recargo, int dias_restantes_pago, String cedula, 
+            String nombre, String direccion, String correo, Date fechaNacimiento, String telefono) {
         super(cedula, nombre, direccion, correo, fechaNacimiento, telefono);
         this.id_factura = id_factura;
         this.tipo_impuesto = tipo_impuesto;
@@ -35,7 +44,7 @@ public class Factura extends Persona{
         this.aviso_recargo = aviso_recargo;
         this.dias_restantes_pago = dias_restantes_pago;
     }
-
+    /*Getter and Setter*/
     public String getId_factura() {
         return id_factura;
     }
