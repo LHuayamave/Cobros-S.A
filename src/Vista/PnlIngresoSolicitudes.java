@@ -42,9 +42,9 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaDescripcion = new javax.swing.JTextArea();
         txtIdFactura = new javax.swing.JTextField();
+        lblNumeroSolicitud = new javax.swing.JLabel();
         btnGuardarSolicitud = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
-        txtNumeroSolicitud = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,12 +72,12 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
         txtaDescripcion.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txtaDescripcion);
 
+        lblNumeroSolicitud.setText("1");
+
         btnGuardarSolicitud.setText("Guardar Solicitud");
 
         BtnCancelar.setBackground(new java.awt.Color(243, 12, 54));
         BtnCancelar.setText("Cancelar");
-
-        txtNumeroSolicitud.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,7 +102,7 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
                             .addComponent(cmbTipoSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumeroSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblNumeroSolicitud)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(234, 234, 234)
                         .addComponent(btnGuardarSolicitud)
@@ -121,7 +121,7 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNumeroSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNumeroSolicitud))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -134,7 +134,7 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarSolicitud)
                     .addComponent(BtnCancelar))
@@ -171,14 +171,14 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
         this.cmbTipoSolicitud = cmbTipoSolicitud;
     }
 
-    public JTextField getTxtNumeroSolicitud() {
-        return txtNumeroSolicitud;
+    public JLabel getLblNumeroSolicitud() {
+        return lblNumeroSolicitud;
     }
 
-    public void setTxtNumeroSolicitud(JTextField txtNumeroSolicitud) {
-        this.txtNumeroSolicitud = txtNumeroSolicitud;
+    public void setLblNumeroSolicitud(JLabel lblNumeroSolicitud) {
+        this.lblNumeroSolicitud = lblNumeroSolicitud;
     }
-    
+
     public JTextField getTxtIdFactura() {
         return txtIdFactura;
     }
@@ -209,8 +209,8 @@ public class PnlIngresoSolicitudes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblNumeroSolicitud;
     private javax.swing.JTextField txtIdFactura;
-    private javax.swing.JTextField txtNumeroSolicitud;
     private javax.swing.JTextArea txtaDescripcion;
     // End of variables declaration//GEN-END:variables
 }

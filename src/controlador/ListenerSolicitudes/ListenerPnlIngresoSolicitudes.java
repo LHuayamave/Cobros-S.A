@@ -47,7 +47,6 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
         solicitudDB = new SolicitudDB(); 
         addListeners();
         addKeyListeners();
-        incrementarIdSolicitud();
     }
 
     /**
@@ -111,7 +110,7 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
      * Metodo que incrementa el numero de solicitud en el JLabel lblNumeroSolicitud
      */
     private void incrementarIdSolicitud(){
-        panelIngresoSolicitudes.getTxtNumeroSolicitud().setText(generarIdSolicitud());
+        panelIngresoSolicitudes.getLblNumeroSolicitud().setText(generarIdSolicitud());
     }
     
     /**
