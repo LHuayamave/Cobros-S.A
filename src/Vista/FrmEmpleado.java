@@ -1,9 +1,10 @@
 package Vista;
 
 /**
-     * Este es el formulario principal del modulo Empleado.
-     * @author Grupo E
-*/
+ * Este es el formulario principal del modulo Empleado.
+ *
+ * @author Grupo E
+ */
 import controlador.EmpleadoDB;
 import controlador.listenerGestionPropietario.ListenerFrmEmpleado;
 import java.awt.Image;
@@ -29,7 +30,8 @@ public class FrmEmpleado extends javax.swing.JFrame {
         this.pintarImagen(lblLogo, "src/img/cobros.png");
         aniadirListenerFrmEmpleado();
     }
- // ---------------- temporal   
+    // ---------------- temporal   
+
     public FrmEmpleado() {
         initComponents();
         //lblNombreUsuario.setText(empleado.getNombre());
@@ -40,6 +42,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
     }
 // --------------------------------------------
     // Getter and Setter
+
     public JButton getBtnCerrarSesion() {
         return btnCerrarSesion;
     }
@@ -72,6 +75,14 @@ public class FrmEmpleado extends javax.swing.JFrame {
         this.mniListarPropietariosDomiciliados = mniListarPropietariosDomiciliados;
     }
 
+    public JMenuItem getMniListarPropietariosNoDomiciliados() {
+        return mniListarPropietariosNoDomiciliados;
+    }
+
+    public void setMniListarPropietariosNoDomiciliados(JMenuItem mniListarPropietariosNoDomiciliados) {
+        this.mniListarPropietariosNoDomiciliados = mniListarPropietariosNoDomiciliados;
+    }
+
     public JMenuItem getMniIngresarSolicitudes() {
         return mniIngresarSolicitudes;
     }
@@ -87,9 +98,6 @@ public class FrmEmpleado extends javax.swing.JFrame {
     public void setMniControlPagos(JMenuItem mniControlPagos) {
         this.mniControlPagos = mniControlPagos;
     }
-    
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -112,7 +120,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
         mniListarPropietario = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         mniListarPropietariosDomiciliados = new javax.swing.JMenuItem();
-        mniEstadisticaPag = new javax.swing.JMenuItem();
+        mniListarPropietariosNoDomiciliados = new javax.swing.JMenuItem();
         mniControlPagos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mniIngresarSolicitudes = new javax.swing.JMenuItem();
@@ -263,9 +271,9 @@ public class FrmEmpleado extends javax.swing.JFrame {
         mniListarPropietariosDomiciliados.setText("Listar Propietarios Domiciliados");
         jMenu4.add(mniListarPropietariosDomiciliados);
 
-        mniEstadisticaPag.setBackground(new java.awt.Color(255, 255, 255));
-        mniEstadisticaPag.setText("Listar Propietarios no Domiciliados");
-        jMenu4.add(mniEstadisticaPag);
+        mniListarPropietariosNoDomiciliados.setBackground(new java.awt.Color(255, 255, 255));
+        mniListarPropietariosNoDomiciliados.setText("Listar Propietarios no Domiciliados");
+        jMenu4.add(mniListarPropietariosNoDomiciliados);
 
         mniControlPagos.setBackground(new java.awt.Color(255, 255, 255));
         mniControlPagos.setText("Control de Pagos");
@@ -301,7 +309,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     // Permite agregar  la imagen del logotipo de la empresa en el formulario
     private void pintarImagen(JLabel lbl, String ruta) {
         this.imagen = new ImageIcon(ruta);
@@ -314,7 +322,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
         lbl.setIcon(this.icono);
         this.repaint();
     }
-    
+
     // Permite agregar  la imagen del logotipo de la empresa en el formulario
     public void ShowPanel(JPanel p) {
         p.setSize(864, 424);
@@ -325,15 +333,20 @@ public class FrmEmpleado extends javax.swing.JFrame {
         panelAdmin.repaint();
 
     }
+
     /**
-     * Metodo que agrega los listener a sus respectivo botones mediante una clase 
-     * que implementa las interfaces ActionListener.
-     * @param cs {@link ActionEvent} clase que permite agregar listener a los botones.
+     * Metodo que agrega los listener a sus respectivo botones mediante una
+     * clase que implementa las interfaces ActionListener.
+     *
+     * @param cs {@link ActionEvent} clase que permite agregar listener a los
+     * botones.
      */
-    private void aniadirListenerFrmEmpleado(){
+    private void aniadirListenerFrmEmpleado() {
         this.mniRegistrarPropietario.addActionListener(new ListenerFrmEmpleado(this));
         this.mniListarPropietario.addActionListener(new ListenerFrmEmpleado(this));
         this.mniListarPropietariosDomiciliados.addActionListener(new ListenerFrmEmpleado(this));
+        this.mniListarPropietariosNoDomiciliados.addActionListener(new ListenerFrmEmpleado(this));
+
         this.btnCerrarSesion.addActionListener(new ListenerFrmEmpleado(this));
         this.mniIngresarSolicitudes.addActionListener(new ListenerFrmEmpleado(this));
         this.mniControlPagos.addActionListener(new ListenerFrmEmpleado(this));
@@ -357,10 +370,10 @@ public class FrmEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblRol;
     private javax.swing.JMenuItem mniControlPagos;
-    private javax.swing.JMenuItem mniEstadisticaPag;
     private javax.swing.JMenuItem mniIngresarSolicitudes;
     private javax.swing.JMenuItem mniListarPropietario;
     private javax.swing.JMenuItem mniListarPropietariosDomiciliados;
+    private javax.swing.JMenuItem mniListarPropietariosNoDomiciliados;
     private javax.swing.JMenuItem mniRegistrarPropietario;
     private javax.swing.JPanel panelAdmin;
     // End of variables declaration//GEN-END:variables

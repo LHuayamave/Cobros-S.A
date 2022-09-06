@@ -7,12 +7,10 @@ import Vista.FrmLogin;
 import Vista.PnlIngresoSolicitudes;
 import Vista.PnlListarPropietariosDomiciliados;
 import Vista.PnlRegistroPropietario;
+import Vista.PnlListarPropietariosNoDomiciliados;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.PnlControlPagos;
-import controlador.ListenerSolicitudes.ListenerPnlIngresoSolicitudes;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 
 /**
  * Esta clase agraga los listener a los botones del formulario empleado haciendo
@@ -24,15 +22,10 @@ import javax.swing.JPanel;
  */
 public class ListenerFrmEmpleado implements ActionListener {
     
-    private FrmEmpleado frmEmpleado;
-    private ListenerPnlIngresoSolicitudes oListenerPnlIngresoSolicitudes;
-    private PnlIngresoSolicitudes oingresoSolicitudes;
+    FrmEmpleado frmEmpleado;
 
     public ListenerFrmEmpleado(FrmEmpleado frmEmpleado) {
         this.frmEmpleado = frmEmpleado;
-        oingresoSolicitudes = new PnlIngresoSolicitudes();
-        oListenerPnlIngresoSolicitudes = new ListenerPnlIngresoSolicitudes(oingresoSolicitudes);
-        
     }
 
     /**
@@ -53,8 +46,9 @@ public class ListenerFrmEmpleado implements ActionListener {
         } else if (e.getSource() == frmEmpleado.getMniListarPropietariosDomiciliados()) {
             PnlListarPropietariosDomiciliados frmListaPropietarioDom = new PnlListarPropietariosDomiciliados();
             frmEmpleado.ShowPanel(frmListaPropietarioDom);
-        }else if (e.getSource() == frmEmpleado.getMniIngresarSolicitudes()) {
-           frmEmpleado.ShowPanel(oingresoSolicitudes);
+        }else if (e.getSource() == frmEmpleado.getMniListarPropietariosNoDomiciliados()) {
+            PnlListarPropietariosNoDomiciliados frmListaPropietarioNoDom = new PnlListarPropietariosNoDomiciliados();
+            frmEmpleado.ShowPanel(frmListaPropietarioNoDom);
         }  else if (e.getSource() == frmEmpleado.getBtnCerrarSesion()) {
             frmEmpleado.dispose();
         } else if (e.getSource() == frmEmpleado.getMniControlPagos()) {
