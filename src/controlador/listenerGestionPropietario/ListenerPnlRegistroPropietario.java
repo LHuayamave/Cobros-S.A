@@ -11,16 +11,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import modelo.CuentaBancaria;
 import modelo.EvaluarCampo;
 import modelo.Propietario;
 import modelo.Vehiculo;
 
 /**
- * Esta clase agraga los listener a los botones al panel  registrar
- * propietario haciendo uso de la interfaz ActionListener y extiende de la clase
- * KeyAdapter para agregar listener de tipeo a las cajas de texto.
+ * Esta clase agraga los listener a los botones al panel registrar propietario
+ * haciendo uso de la interfaz ActionListener y extiende de la clase KeyAdapter
+ * para agregar listener de tipeo a las cajas de texto.
  *
  * @param cs {@link ActionListener } clase que permite agregar a los
  * escuchadores a los botones.
@@ -33,10 +32,10 @@ public class ListenerPnlRegistroPropietario extends KeyAdapter implements Action
     private final PropietarioDB propietarioDB = new PropietarioDB();
     private final VehiculoDB vehiculoDB = new VehiculoDB();
     private final ValidarCampos validarCampos = new ValidarCampos();
-    private  Propietario propietario;
+    private Propietario propietario;
     private Vehiculo vehiculo;
     private CuentaBancaria cuentaBancaria;
-    
+
     // Obtiene lel formulario que lo esta utilizando.
     public ListenerPnlRegistroPropietario(PnlRegistroPropietario pnlRegistroPropietario) {
         this.pnlRegistroPropietario = pnlRegistroPropietario;
@@ -59,56 +58,49 @@ public class ListenerPnlRegistroPropietario extends KeyAdapter implements Action
     }
 
     /**
-     * Este metodo recibe el evento de la caja de texto que esta siendo tipeado 
+     * Este metodo recibe el evento de la caja de texto que esta siendo tipeado
      * las compara para saber cual es y realiza las acciones predefinidas.
      *
-     * @param cs {@link KeyEvent } captura el evento que se causo al
-     * presionar un boton y ejecuta la acciones definidas.
+     * @param cs {@link KeyEvent } captura el evento que se causo al presionar
+     * un boton y ejecuta la acciones definidas.
      */
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == pnlRegistroPropietario.getTxtCedula()) {
             validarCampos.validarCampoNumerico(new EvaluarCampo(
-                    e,pnlRegistroPropietario.getTxtCedula(),9) ); 
+                    e, pnlRegistroPropietario.getTxtCedula(), 9));
             validarCampos.verificarSiExistePropietario(pnlRegistroPropietario.getTxtCedula());
         } else if (e.getSource() == pnlRegistroPropietario.getTxtNombre()) {
             validarCampos.validaLetras(e);
         } else if (e.getSource() == pnlRegistroPropietario.getTxtTelefono()) {
             validarCampos.validarCampoNumerico(new EvaluarCampo(
-                    e,pnlRegistroPropietario.getTxtTelefono(),9) ); 
+                    e, pnlRegistroPropietario.getTxtTelefono(), 9));
         } else if (e.getSource() == pnlRegistroPropietario.getTxtPlaca()) {
             validarCampos.verificarSiExistePlaca(pnlRegistroPropietario.getTxtPlaca());
         } else if (e.getSource() == pnlRegistroPropietario.getTxtAnioVehiculo()) {
             validarCampos.validarCampoNumerico(new EvaluarCampo(
-                    e,pnlRegistroPropietario.getTxtAnioVehiculo(),3) ); 
-        }else if(e.getSource() == pnlRegistroPropietario.getTxtCVV()){
+                    e, pnlRegistroPropietario.getTxtAnioVehiculo(), 3));
+        } else if (e.getSource() == pnlRegistroPropietario.getTxtCVV()) {
             validarCampos.validarCampoNumerico(new EvaluarCampo(
-                    e,pnlRegistroPropietario.getTxtCVV(),2) ); 
-        }else if(e.getSource() == pnlRegistroPropietario.getTxtAnio()){
+                    e, pnlRegistroPropietario.getTxtCVV(), 2));
+        } else if (e.getSource() == pnlRegistroPropietario.getTxtAnio()) {
             validarCampos.validarCampoNumerico(new EvaluarCampo(
-                    e,pnlRegistroPropietario.getTxtAnio(),3) ); 
+                    e, pnlRegistroPropietario.getTxtAnio(), 3));
         }
     }
-//       public void registrarPropietarioNoDomiciliado() {
-//        if (ingresarDatosPropietario() > 0) {
-//            JOptionPane.showMessageDialog(null, "Datos Guardados Correctamente");
-//            pnlRegistroPropietario.limpiarCampos();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No se han podido guardar los datos");
-//        }
-//    }
-        public void extraerDatosPropietario() {
+
+    public void extraerDatosPropietario() {
         cuentaBancaria = new CuentaBancaria();
         propietario = new Propietario();
         vehiculo = new Vehiculo();
         cuentaBancaria.setNumeroCuentaBancaria(pnlRegistroPropietario.getTxtCtaBancaria().getText());
         cuentaBancaria.setCvv(pnlRegistroPropietario.getTxtCVV().getText());
-        cuentaBancaria.setMes(pnlRegistroPropietario.getCmbMes().getSelectedIndex()+1);
+        cuentaBancaria.setMes(pnlRegistroPropietario.getCmbMes().getSelectedIndex() + 1);
         cuentaBancaria.setAnio(Integer.valueOf(pnlRegistroPropietario.getTxtAnio().getText()));
-        cuentaBancaria.setIdTipoCuenta(pnlRegistroPropietario.getCmbTipoCtaBancaria().getSelectedIndex()); 
-        cuentaBancaria.setSaldo(Float.valueOf(pnlRegistroPropietario.getTxtSaldo().getText())); 
+        cuentaBancaria.setIdTipoCuenta(pnlRegistroPropietario.getCmbTipoCtaBancaria().getSelectedIndex());
+        cuentaBancaria.setSaldo(Float.valueOf(pnlRegistroPropietario.getTxtSaldo().getText()));
         cuentaBancaria.setIdBanco(pnlRegistroPropietario.getCmbBanco().getSelectedIndex());
-        
+
         propietario.setCedula(pnlRegistroPropietario.getTxtCedula().getText());
         propietario.setNombre(pnlRegistroPropietario.getTxtNombre().getText());
         propietario.setCorreo(pnlRegistroPropietario.getTxtCorreo().getText());
@@ -118,31 +110,42 @@ public class ListenerPnlRegistroPropietario extends KeyAdapter implements Action
                 new java.sql.Date(((Date) pnlRegistroPropietario.getDtcFechaNacimiento().getDate()).getTime()));
         propietario.setId_estado_propietario(pnlRegistroPropietario.getCmbEstadoPropietario().getSelectedIndex());
         propietario.setDomiciliado(pnlRegistroPropietario.getrBtnDomiciliado().isSelected());
-        
+
         vehiculo.setPlaca(pnlRegistroPropietario.getTxtPlaca().getText());
         vehiculo.setMarca(pnlRegistroPropietario.getTxtMarca().getText());
         vehiculo.setModelo(pnlRegistroPropietario.getTxtModelo().getText());
         vehiculo.setAnioVehiculo(pnlRegistroPropietario.getTxtAnioVehiculo().getText());
-        vehiculo.setId_tipo_impuesto(pnlRegistroPropietario.getCmbTipoImpuesto().getSelectedIndex());  
-        
-        validarCampos(cuentaBancaria,propietario,vehiculo);
-        //return propietarioDB.registrarPropietarioNoDomiciliado( propietario,  vehiculo);
+        vehiculo.setId_tipo_impuesto(pnlRegistroPropietario.getCmbTipoImpuesto().getSelectedIndex());
+
+        validarCampos(cuentaBancaria, propietario, vehiculo);
     }
+
     private void validarCampos(CuentaBancaria cuentaBancaria, Propietario propietario, Vehiculo vehiculo) {
-        if(propietario.getDomiciliado()){
-            validarRegistroDomiciliado(cuentaBancaria,propietario,vehiculo);
-        }else{
-            validarRegistroNoDomiciliado(propietario,vehiculo);
+        if (propietario.getDomiciliado()) {
+            validarRegistroDomiciliado(cuentaBancaria, propietario, vehiculo);
+        } else {
+            validarRegistroNoDomiciliado(propietario, vehiculo);
         }
     }
+
     public void validarRegistroDomiciliado(CuentaBancaria cuentaBancaria, Propietario propietario, Vehiculo vehiculo) {
-        if (validarCampos.validarCampoVacioDomiciliado(this.pnlRegistroPropietario) && validarEdadIngreso()) {
+        if (validarCampos.validarDatosCuentaBancaria(cuentaBancaria)
+                && validarCampos.validarDatosPropietario(propietario)
+                && validarCampos.validarDatosVehiculo(vehiculo)
+                && validarEdadIngreso()) {
             propietarioDB.registrarPropietarioDomiciliado(cuentaBancaria, propietario, vehiculo);
+        }else{
+            validarCampos.mensajeError("Llene todos los campos correctamente.");
         }
     }
+
     public void validarRegistroNoDomiciliado(Propietario propietario, Vehiculo vehiculo) {
-        if (validarCampos.validarCampoVacioNoDomiciliado(this.pnlRegistroPropietario) && validarEdadIngreso()) {
+        if (validarCampos.validarDatosPropietario(propietario)
+                && validarCampos.validarDatosVehiculo(vehiculo)
+                && validarEdadIngreso()) {
             propietarioDB.registrarPropietarioNoDomiciliado(propietario, vehiculo);
+        }else{
+            validarCampos.mensajeError("Llene todos los campos correctamente.");
         }
     }
 
@@ -153,38 +156,43 @@ public class ListenerPnlRegistroPropietario extends KeyAdapter implements Action
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource()== pnlRegistroPropietario.getrBtnDomiciliado()){
-            if(pnlRegistroPropietario.getrBtnDomiciliado().isSelected()){
-                pnlRegistroPropietario.getTxtCtaBancaria().setEditable(true);
-                pnlRegistroPropietario.getTxtCVV().setEditable(true);
-                pnlRegistroPropietario.getCmbMes().setEnabled(true);
-                pnlRegistroPropietario.getTxtAnio().setEditable(true);
-                pnlRegistroPropietario.getTxtSaldo().setEditable(true);
-                pnlRegistroPropietario.getCmbTipoCtaBancaria().setEnabled(true);
-                pnlRegistroPropietario.getCmbBanco().setEnabled(true); 
-            }else{
-                pnlRegistroPropietario.getTxtCtaBancaria().setEditable(false);
-                pnlRegistroPropietario.getTxtCVV().setEditable(false);
-                pnlRegistroPropietario.getCmbMes().setEnabled(false);
-                pnlRegistroPropietario.getTxtAnio().setEditable(false);
-                pnlRegistroPropietario.getTxtSaldo().setEditable(false);
-                pnlRegistroPropietario.getCmbTipoCtaBancaria().setEnabled(false);
-                pnlRegistroPropietario.getCmbBanco().setEnabled(false);
-            }
+        if (e.getSource() == pnlRegistroPropietario.getrBtnDomiciliado()) {
+            isSelectBtnDomiciliado();
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {}
+    private void isSelectBtnDomiciliado() {
+        if (pnlRegistroPropietario.getrBtnDomiciliado().isSelected()) {
+            habilitarCtaBancaria(true);
+        } else {
+            habilitarCtaBancaria(false);
+        }
+    }
+
+    private void habilitarCtaBancaria(Boolean estado) {
+        pnlRegistroPropietario.getTxtCtaBancaria().setEditable(estado);
+        pnlRegistroPropietario.getTxtCVV().setEditable(estado);
+        pnlRegistroPropietario.getCmbMes().setEnabled(estado);
+        pnlRegistroPropietario.getTxtAnio().setEditable(estado);
+        pnlRegistroPropietario.getTxtSaldo().setEditable(estado);
+        pnlRegistroPropietario.getCmbTipoCtaBancaria().setEnabled(estado);
+        pnlRegistroPropietario.getCmbBanco().setEnabled(estado);
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 
 }

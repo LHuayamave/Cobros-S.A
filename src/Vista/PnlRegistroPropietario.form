@@ -368,8 +368,16 @@
     <Component class="javax.swing.JTextField" name="txtCedula">
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dtcFechaNacimiento">
+      <Properties>
+        <Property name="date" type="java.util.Date" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Date()" type="code"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtModelo">
     </Component>

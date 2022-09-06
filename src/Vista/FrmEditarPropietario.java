@@ -8,6 +8,7 @@ package Vista;
 import com.toedter.calendar.JDateChooser;
 import controlador.PropietarioDB;
 import controlador.listenerGestionPropietario.ListenerFrmEditarPropietario;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
@@ -20,8 +21,8 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
     private String domiciliado;
     private PropietarioDB propietarioDB;
     private int posicion;
-    private DefaultTableModel modeloTabla;
-    private String cuentaBancariaAntigua;
+    private DefaultTableModel modeloTablaVehiculo;
+    private String antiguaCtaBancaria="";
     
 
     
@@ -33,7 +34,7 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
         propietarioDB.llenarCmbEstadoPropietario(cmbEstadoPropietario);
         propietarioDB.llenarCmbTipoCtaBancaria(cmbTipoCtaBancaria);
         propietarioDB.llenarCmbBanco(cmbBanco);
-        modeloTabla =(DefaultTableModel)tblVehiculo.getModel();
+        modeloTablaVehiculo =(DefaultTableModel)tblVehiculo.getModel();
         
         AniadirListenerConsultarPropietario();
         aniadirMouseListener();
@@ -193,6 +194,7 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
         jLabel22.setText("Año:");
 
         txtAnio.setEditable(false);
+        txtAnio.setText("0");
 
         txtCVV.setEditable(false);
 
@@ -230,6 +232,8 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
         btnModificarVehiculo.setBackground(new java.awt.Color(88, 80, 80));
         btnModificarVehiculo.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarVehiculo.setText("Modificar");
+
+        dtcFechaNacimiento.setDate(new Date());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -408,7 +412,21 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
         listenerFrmEditarPropietario.llenarCamposEditarPropietario();
     }
   
-   
+   public String obtenerPlaca() {
+        int fila = -1;
+        fila = tblVehiculo.getSelectedRow();
+        if (fila != -1) {
+            return tblVehiculo.getValueAt(fila, 0).toString();
+        } else {
+            return null;
+        }
+    }
+   public void LimpiarFormulario() {
+        DefaultTableModel tb = (DefaultTableModel) tblVehiculo.getModel();
+        for (int i = tb.getRowCount() - 1; i >= 0; i--) {
+            tb.removeRow(i);
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -500,12 +518,12 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
         this.posicion = posicion;
     }
 
-    public DefaultTableModel getModeloTabla() {
-        return modeloTabla;
+    public DefaultTableModel getModeloTablaVehiculo() {
+        return modeloTablaVehiculo;
     }
 
-    public void setModeloTabla(DefaultTableModel modeloTabla) {
-        this.modeloTabla = modeloTabla;
+    public void setModeloTablaVehiculo(DefaultTableModel modeloTablaVehiculo) {
+        this.modeloTablaVehiculo = modeloTablaVehiculo;
     }
 
     public JButton getBtnCancelar() {
@@ -660,12 +678,13 @@ public class FrmEditarPropietario extends javax.swing.JFrame {
         this.txtTelefono = txtTelefono;
     }
 
-    public String getCuentaBancariaAntigua() {
-        return cuentaBancariaAntigua;
+    public String getAntiguaCtaBancaria() {
+        return antiguaCtaBancaria;
     }
 
-    public void setCuentaBancariaAntigua(String cuentaBancariaAntigua) {
-        this.cuentaBancariaAntigua = cuentaBancariaAntigua;
+    public void setAntiguaCtaBancaria(String antiguaCtaBancaria) {
+        this.antiguaCtaBancaria = antiguaCtaBancaria;
     }
+
  
 }

@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import controlador.PropietarioDB;
 import controlador.VehiculoDB;
 import controlador.listenerGestionPropietario.ListenerPnlRegistroPropietario;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
@@ -123,6 +124,10 @@ public class PnlRegistroPropietario extends javax.swing.JPanel {
         jLabel5.setText("Año del Vehículo:");
 
         jLabel6.setText("Modelo:");
+
+        dtcFechaNacimiento.setDate(new Date());
+
+        txtCorreo.setToolTipText("");
 
         jLabel15.setText("Tipo Propietario:");
 

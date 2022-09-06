@@ -1,6 +1,7 @@
 package controlador.listenerGestionPropietario;
 
 import Vista.FrmEditarPropietario;
+import Vista.FrmEditarVehiculo;
 import controlador.PropietarioDB;
 import controlador.ValidarCampos;
 import controlador.VehiculoDB;
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.CuentaBancaria;
 import modelo.EvaluarCampo;
 import modelo.Propietario;
@@ -29,13 +31,14 @@ import modelo.Vehiculo;
 public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionListener, MouseListener {
 
     FrmEditarPropietario frmEditarPropietario;
-    private PropietarioDB propietarioDB;
+    private final PropietarioDB propietarioDB = new PropietarioDB();
+    private final ValidarCampos validarCampos = new ValidarCampos();
     private Propietario propietario;
     private CuentaBancaria cuentaBancaria;
-    private ValidarCampos validarCampos;
     private ArrayList<Vehiculo> listaVehiculo;
     private VehiculoDB vehiculoDB;
-    
+    private int confirmarCambio;
+
     public ListenerFrmEditarPropietario(FrmEditarPropietario frmEditarPropietario) {
         this.frmEditarPropietario = frmEditarPropietario;
     }
@@ -50,9 +53,9 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmEditarPropietario.getBtnModificar()) {
-            
+            extraerDatosPropietario();
         } else if (e.getSource() == frmEditarPropietario.getBtnModificarVehiculo()) {
-            //
+            validarSeleccionVehiculo();
         } else if (e.getSource() == frmEditarPropietario.getBtnCancelar()) {
             frmEditarPropietario.dispose();
         }
@@ -85,7 +88,6 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
     }
     
     public void llenarCamposEditarPropietario() {
-        propietarioDB = new PropietarioDB();
         cuentaBancaria = new CuentaBancaria();
         propietario = new Propietario();
         vehiculoDB = new VehiculoDB();
@@ -102,11 +104,10 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
             llenarDatosPropietario(propietario);
         }
         listaVehiculo = vehiculoDB.listarVehiculo(frmEditarPropietario.getCedula());
-        llenarDatosVechiculo(listaVehiculo);
+        llenarDatosVehiculo(listaVehiculo);
     }
     
     private void llenarDatosPropietario(Propietario propietario) {
-        validarCampos = new ValidarCampos();
         frmEditarPropietario.getTxtCedula().setText(propietario.getCedula());
         frmEditarPropietario.getTxtNombre().setText(propietario.getNombre());
         frmEditarPropietario.getTxtCorreo().setText(propietario.getCorreo());
@@ -118,7 +119,7 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
     }
     
     private void llenarDatosCuentaBancaria(CuentaBancaria cuentaBancaria) {
-        frmEditarPropietario.setCuentaBancariaAntigua(cuentaBancaria.getNumeroCuentaBancaria()); 
+        frmEditarPropietario.setAntiguaCtaBancaria(cuentaBancaria.getNumeroCuentaBancaria()); 
         frmEditarPropietario.getTxtCtaBancaria().setText(cuentaBancaria.getNumeroCuentaBancaria());
         frmEditarPropietario.getTxtCVV().setText(cuentaBancaria.getCvv());
         frmEditarPropietario.getCmbMes().setSelectedIndex(cuentaBancaria.getMes() - 1);
@@ -127,7 +128,7 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
         frmEditarPropietario.getTxtSaldo().setText(String.valueOf(cuentaBancaria.getSaldo()));
         frmEditarPropietario.getCmbBanco().setSelectedIndex(cuentaBancaria.getIdBanco());
     }
-    private void llenarDatosVechiculo(ArrayList<Vehiculo> listaVehiculo) {
+    public void llenarDatosVehiculo(ArrayList<Vehiculo> listaVehiculo) {
 
         for (int i = 0; i < listaVehiculo.size(); i++) {
             Object[] fila = {
@@ -137,7 +138,7 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
                 listaVehiculo.get(i).getAnioVehiculo(),
                 listaVehiculo.get(i).getId_tipo_impuesto()
             };
-            frmEditarPropietario.getModeloTabla().addRow(fila);
+            frmEditarPropietario.getModeloTablaVehiculo().addRow(fila);
         }
     }
     public void mouseClicked(MouseEvent e) {
@@ -155,12 +156,104 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
     }
     
     private void habilitarCtaBancaria(Boolean estado) {
+        frmEditarPropietario.getTxtCtaBancaria().setEditable(estado);
         frmEditarPropietario.getTxtCVV().setEditable(estado);
         frmEditarPropietario.getCmbMes().setEnabled(estado);
         frmEditarPropietario.getTxtAnio().setEditable(estado);
         frmEditarPropietario.getTxtSaldo().setEditable(estado);
         frmEditarPropietario.getCmbTipoCtaBancaria().setEnabled(estado);
         frmEditarPropietario.getCmbBanco().setEnabled(estado);
+    }
+    
+    /*Valida la edad haciendo uso de la clase ValidarCampos*/
+    public boolean validarEdadIngreso() {
+        return validarCampos.validarEdad(frmEditarPropietario.getDtcFechaNacimiento().getDate());
+    }
+    
+    public void extraerDatosPropietario() {
+        cuentaBancaria = new CuentaBancaria();
+        propietario = new Propietario();
+        cuentaBancaria.setNumeroCuentaBancaria(frmEditarPropietario.getTxtCtaBancaria().getText());
+        cuentaBancaria.setCvv(frmEditarPropietario.getTxtCVV().getText());
+        cuentaBancaria.setMes(frmEditarPropietario.getCmbMes().getSelectedIndex()+1);
+        cuentaBancaria.setAnio(Integer.valueOf(frmEditarPropietario.getTxtAnio().getText()));
+        cuentaBancaria.setIdTipoCuenta(frmEditarPropietario.getCmbTipoCtaBancaria().getSelectedIndex()); 
+        cuentaBancaria.setSaldo(Float.valueOf(frmEditarPropietario.getTxtSaldo().getText())); 
+        cuentaBancaria.setIdBanco(frmEditarPropietario.getCmbBanco().getSelectedIndex());
+        
+        propietario.setCedula(frmEditarPropietario.getTxtCedula().getText());
+        propietario.setNombre(frmEditarPropietario.getTxtNombre().getText());
+        propietario.setCorreo(frmEditarPropietario.getTxtCorreo().getText());
+        propietario.setTelefono(frmEditarPropietario.getTxtTelefono().getText());
+        propietario.setDireccion(frmEditarPropietario.getTxtDireccion().getText());
+        propietario.setFechaNacimiento(
+                new java.sql.Date(((Date) frmEditarPropietario.getDtcFechaNacimiento().getDate()).getTime()));
+        propietario.setId_estado_propietario(frmEditarPropietario.getCmbEstadoPropietario().getSelectedIndex());
+        propietario.setDomiciliado(frmEditarPropietario.getrBtnDomiciliado().isSelected());
+ 
+        validarCampos(cuentaBancaria,propietario);
+    }
+    
+    private void validarCampos(CuentaBancaria cuentaBancaria, Propietario propietario) {
+        if(propietario.getDomiciliado()){
+            validarRegistroDomiciliado(cuentaBancaria,propietario);
+        }else{
+            validarRegistroNoDomiciliado(propietario);
+        }
+    }
+    
+    public void validarRegistroNoDomiciliado(Propietario propietario) {
+        if (validarCampos.validarDatosPropietario(propietario)
+                && validarEdadIngreso()) {
+            verficarAntiguaCuentaBancaria( propietario);
+        }else{
+            validarCampos.mensajeError("Llene todos los campos correctamente.");
+        }
+    }
+    
+    public void validarRegistroDomiciliado(CuentaBancaria cuentaBancaria, Propietario propietario) {
+        if (validarCampos.validarDatosCuentaBancaria(cuentaBancaria)
+                && validarCampos.validarDatosPropietario(propietario)
+                && validarEdadIngreso()) {
+            verficarAntiguaCuentaBancaria(cuentaBancaria, propietario);
+        }else{
+            validarCampos.mensajeError("Llene todos los campos correctamente.");
+        }
+    }
+    public void verficarAntiguaCuentaBancaria( Propietario propietario){
+        System.out.println("antigua cuenta bancaria: " +frmEditarPropietario.getAntiguaCtaBancaria());
+        if(frmEditarPropietario.getAntiguaCtaBancaria().isEmpty()){
+            propietarioDB.confirmarRegistrosModificados( 
+                    propietarioDB.modificarPropietarioNoDomiciliado(propietario));
+        }else{
+            propietarioDB.confirmarRegistrosModificados(
+                    propietarioDB.modificarPropietarioDomiciliadoANoDomiciliado(propietario));
+        } 
+    }
+    
+    public void verficarAntiguaCuentaBancaria(CuentaBancaria cuentaBancaria, Propietario propietario){
+        if(frmEditarPropietario.getAntiguaCtaBancaria().isEmpty()){
+            propietarioDB.confirmarRegistrosModificados(
+                    propietarioDB.modificarPropietarioNoDomiciliadoADomiciliado(cuentaBancaria, propietario));
+        }else if(frmEditarPropietario.getAntiguaCtaBancaria().equals(cuentaBancaria.getNumeroCuentaBancaria())){
+            propietarioDB.confirmarRegistrosModificados(
+                    propietarioDB.modificarPropietarioDomiciliado(cuentaBancaria, propietario));
+        }else{
+            propietarioDB.confirmarRegistrosModificados(
+                    propietarioDB.modificarPropietarioDomiciliadoNuevaCtaBancaria(cuentaBancaria, propietario));
+        }  
+    }
+
+    public void validarSeleccionVehiculo(){
+        if(frmEditarPropietario.obtenerPlaca()!=null){
+            FrmEditarVehiculo frmEditarVehiculo = new FrmEditarVehiculo(
+                    frmEditarPropietario,true,frmEditarPropietario.obtenerPlaca()
+                );
+            frmEditarVehiculo.setListenerFrmEditarPropietario(this);
+            frmEditarVehiculo.setVisible(true);
+        }else{
+            validarCampos.mensajeError("Seleccione un vehiculo.");
+        }
     }
     @Override
     public void mousePressed(MouseEvent e) {
@@ -176,10 +269,14 @@ public class ListenerFrmEditarPropietario extends KeyAdapter implements ActionLi
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }  
+
+    public FrmEditarPropietario getFrmEditarPropietario() {
+        return frmEditarPropietario;
+    }
+
+    public void setFrmEditarPropietario(FrmEditarPropietario frmEditarPropietario) {
+        this.frmEditarPropietario = frmEditarPropietario;
     }
     
-    /*Valida la edad haciendo uso de la clase ValidarCampos*/
-    public boolean validarEdadIngreso() {
-        return validarCampos.validarEdad(frmEditarPropietario.getDtcFechaNacimiento().getDate());
-    }
 }

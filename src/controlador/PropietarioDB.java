@@ -30,7 +30,6 @@ public class PropietarioDB {
     private String sentenciaPL_SQL;
     private CallableStatement callableStatement;
     private ResultSet resultSet;
-    private int regAfectados;
 
     private static PreparedStatement sentencia_preparada;
     private Statement statement;
@@ -45,7 +44,7 @@ public class PropietarioDB {
     private ArrayList<CobroDomiciliados> listaCobrosDomiciliadosMes;
     private ArrayList<PagoNoDomiciliado> listaPagosNoDomiciliados;
     private ArrayList<PagoNoDomiciliado> listaPagoNoDomiciliadosMes;
-    
+
     private PagoNoDomiciliado pagoNoDomiciliado;
     private CobroDomiciliados cobrosDomiciliados;
 
@@ -99,10 +98,10 @@ public class PropietarioDB {
             cs.setString(4, propietario.getTelefono());
             cs.setString(5, propietario.getDireccion());
             cs.setString(6, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
-            cs.setInt(7, propietario.obtenerMesPago()); 
-            cs.setInt(8, propietario.getId_estado_propietario()); 
+            cs.setInt(7, propietario.obtenerMesPago());
+            cs.setInt(8, propietario.getId_estado_propietario());
             cs.setString(9, null);// cuenta bancaria
-            cs.setString(10, Boolean.toString (propietario.getDomiciliado()));
+            cs.setString(10, Boolean.toString(propietario.getDomiciliado()));
             cs.setString(11, vehiculo.getPlaca());
             cs.setString(12, vehiculo.getMarca());
             cs.setString(13, vehiculo.getModelo());
@@ -113,9 +112,9 @@ public class PropietarioDB {
             cs.execute();
             resultado = cs.getInt(16);
             nuevaConexion.close();
-            mensajeConfirmacion("El ropietario insertado con exito.");
+            mensajeError("El ropietario insertado con exito.");
         } catch (Exception e) {
-            mensajeConfirmacion("El propietario no a sido insertado.Error: " +e);
+            mensajeError("El propietario no a sido insertado.Error: " + e);
         }
         return resultado;
     }
@@ -156,10 +155,10 @@ public class PropietarioDB {
             cs.execute();
             resultado = cs.getInt(22);
             nuevaConexion.close();
-            mensajeConfirmacion("El ropietario insertado con exito.");
+            mensajeError("El ropietario insertado con exito.");
         } catch (Exception e) {
             System.out.println(e);
-            mensajeConfirmacion("El propietario no a sido insertado.Error: " + e);
+            mensajeError("El propietario no a sido insertado.Error: " + e);
         }
         return resultado;
     }
@@ -267,10 +266,6 @@ public class PropietarioDB {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-    }
-
-    private void mensajeConfirmacion(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje);
     }
 
     public void consultarPropietarioDomiciliado(CuentaBancaria cuentaBancaria, Propietario propietario, String cedula) {
@@ -417,14 +412,11 @@ public class PropietarioDB {
             System.out.println("Error en listado");
         }
     }
+
     /* Metodos para emitir aviso de Cobro*/
-    
-    
-    
-    /*Metodos para emitir aviso de Pago*/
-    
-    
-    /* Metodos para Listar Pagos No Domicilaidos*/
+
+ /*Metodos para emitir aviso de Pago*/
+ /* Metodos para Listar Pagos No Domicilaidos*/
     public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
         listaPagosNoDomiciliados = new ArrayList();
         ejecutarSentencia = "{ call VER_TABLA_PAGOS_NO_DOMICILIADO(?)}";
@@ -433,9 +425,9 @@ public class PropietarioDB {
             callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
             callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
             callableStatement.executeQuery();
-                    
+
             resultSet = (ResultSet) callableStatement.getObject(1);
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 pagoNoDomiciliado = new PagoNoDomiciliado();
                 pagoNoDomiciliado.setCedulaPropietario(resultSet.getString("CEDULA"));
                 pagoNoDomiciliado.setNombrePropietario(resultSet.getString("NOMBRE"));
@@ -451,7 +443,7 @@ public class PropietarioDB {
             System.out.println(ex);
             System.out.println("Erro en listado");
         }
-     
+
         return listaPagosNoDomiciliados;
     }
 
@@ -485,4 +477,174 @@ public class PropietarioDB {
         return listaPagoNoDomiciliadosMes;
     }
 
+    public int modificarPropietarioNoDomiciliado(Propietario propietario) {
+        resultado = 0;
+        ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_NO_DOMICILIADO(?,?,?,?,?,?,?,?,?)}";
+        try {
+            nuevaConexion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+
+            cs.setString(1, propietario.getCedula());
+            cs.setString(2, propietario.getNombre());
+            cs.setString(3, propietario.getCorreo());
+            cs.setString(4, propietario.getTelefono());
+            cs.setString(5, propietario.getDireccion());
+            cs.setString(6, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
+            cs.setInt(7, propietario.getMesPago());
+            cs.setInt(8, propietario.getId_estado_propietario());
+            cs.registerOutParameter(9, java.sql.Types.INTEGER);
+            cs.execute();
+            resultado = cs.getInt(9);
+            nuevaConexion.close();
+        } catch (Exception e) {
+            mensajeError("Error: " + e);
+        }
+        return resultado;
+    }
+
+    public int modificarPropietarioNoDomiciliadoADomiciliado(CuentaBancaria cuentaBancaria,
+            Propietario propietario) {
+        resultado = 0;
+        ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_NO_DOMICILIADO_A_DOMICILIADO (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            nuevaConexion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+
+            cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
+            cs.setString(2, cuentaBancaria.getCvv());
+            cs.setInt(3,cuentaBancaria.getMes());
+            cs.setInt(4,cuentaBancaria.getAnio());
+            cs.setInt(5,cuentaBancaria.getIdTipoCuenta());
+            cs.setFloat(6, cuentaBancaria.getSaldo());
+            cs.setInt(7, cuentaBancaria.getIdBanco());
+            
+            cs.setString(8, propietario.getCedula());
+            cs.setString(9, propietario.getNombre());
+            cs.setString(10, propietario.getCorreo());
+            cs.setString(11, propietario.getTelefono());
+            cs.setString(12, propietario.getDireccion());
+            cs.setString(13, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
+            cs.setInt(14, propietario.getMesPago());
+            cs.setInt(15, propietario.getId_estado_propietario());
+            cs.setString(16, "true");
+            cs.registerOutParameter(17, java.sql.Types.INTEGER);
+            cs.execute();
+            resultado = cs.getInt(17);
+            nuevaConexion.close();
+        } catch (Exception e) {
+            mensajeError("Error: " + e);
+        }
+        return resultado;
+    }
+
+    public int modificarPropietarioDomiciliado(CuentaBancaria cuentaBancaria,
+            Propietario propietario) {
+        resultado = 0;
+        ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_DOMICILIADO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            nuevaConexion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+
+            cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
+            cs.setString(2, cuentaBancaria.getCvv());
+            cs.setInt(3,cuentaBancaria.getMes());
+            cs.setInt(4,cuentaBancaria.getAnio());
+            cs.setInt(5,cuentaBancaria.getIdTipoCuenta());
+            cs.setFloat(6, cuentaBancaria.getSaldo());
+            cs.setInt(7, cuentaBancaria.getIdBanco());
+            
+            cs.setString(8, propietario.getCedula());
+            cs.setString(9, propietario.getNombre());
+            cs.setString(10, propietario.getCorreo());
+            cs.setString(11, propietario.getTelefono());
+            cs.setString(12, propietario.getDireccion());
+            cs.setString(13, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
+            cs.setInt(14, propietario.getMesPago());
+            cs.setInt(15, propietario.getId_estado_propietario());
+            cs.setString(16, "true");
+            cs.registerOutParameter(17, java.sql.Types.INTEGER);
+            cs.execute();
+            resultado = cs.getInt(17);
+            nuevaConexion.close();
+        } catch (Exception e) {
+            mensajeError("Error: " + e);
+        }
+        return resultado;
+    }
+
+    public int modificarPropietarioDomiciliadoANoDomiciliado(Propietario propietario) {
+        resultado = 0;
+        ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_DOMICILIADO_A_NO_DOMICILIADO(?,?,?,?,?,?,?,?,?)}";
+        try {
+            nuevaConexion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+
+            cs.setString(1, propietario.getCedula());
+            cs.setString(2, propietario.getNombre());
+            cs.setString(3, propietario.getCorreo());
+            cs.setString(4, propietario.getTelefono());
+            cs.setString(5, propietario.getDireccion());
+            cs.setString(6, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
+            cs.setInt(7, propietario.getMesPago());
+            cs.setInt(8, propietario.getId_estado_propietario());
+            cs.registerOutParameter(9, java.sql.Types.INTEGER);
+            cs.execute();
+            resultado = cs.getInt(9);
+            nuevaConexion.close();
+        } catch (Exception e) {
+            mensajeError("Error: " + e);
+        }
+        return resultado;
+    }
+
+    public int modificarPropietarioDomiciliadoNuevaCtaBancaria(CuentaBancaria cuentaBancaria,
+            Propietario propietario) {
+        resultado = 0;
+        ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_DOMICILIADO_NUEVA_CTA_BANCARIA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            nuevaConexion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+
+            cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
+            cs.setString(2, cuentaBancaria.getCvv());
+            cs.setInt(3,cuentaBancaria.getMes());
+            cs.setInt(4,cuentaBancaria.getAnio());
+            cs.setInt(5,cuentaBancaria.getIdTipoCuenta());
+            cs.setFloat(6, cuentaBancaria.getSaldo());
+            cs.setInt(7, cuentaBancaria.getIdBanco());
+            
+            cs.setString(8, propietario.getCedula());
+            cs.setString(9, propietario.getNombre());
+            cs.setString(10, propietario.getCorreo());
+            cs.setString(11, propietario.getTelefono());
+            cs.setString(12, propietario.getDireccion());
+            cs.setString(13, new ValidarCampos().validarFormatoFecha(propietario.getFechaNacimiento()));
+            cs.setInt(14, propietario.getMesPago());
+            cs.setInt(15, propietario.getId_estado_propietario());
+            cs.setString(16, "true");
+            cs.registerOutParameter(17, java.sql.Types.INTEGER);
+            cs.execute();
+            resultado = cs.getInt(17);
+            nuevaConexion.close();
+        } catch (Exception e) {
+            mensajeError("Error: " + e);
+        }
+        return resultado;
+    }
+
+    private void mensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+    
+    public void confirmarRegistrosModificados(int regAlterados){
+        if(regAlterados>0){
+            JOptionPane.showMessageDialog(null, "La informacion se ingreso correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "La informacion no se ingreso");
+        }
+    }
+
+//    public int DialogoConfirmar() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }

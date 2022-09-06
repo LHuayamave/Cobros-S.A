@@ -18,7 +18,10 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import modelo.CuentaBancaria;
 import modelo.EvaluarCampo;
+import modelo.Propietario;
+import modelo.Vehiculo;
 
 public class ValidarCampos {
 
@@ -191,63 +194,28 @@ public class ValidarCampos {
             System.out.print("ok");
         }
     }
-
-    public boolean validarCampoVacioNoDomiciliado(PnlRegistroPropietario pnlRegistroPropietario) {
-        if (!pnlRegistroPropietario.getTxtCedula().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtNombre().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtTelefono().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtDireccion().getText().isEmpty()
-                && pnlRegistroPropietario.getDtcFechaNacimiento().getDate() != null
-                && !pnlRegistroPropietario.getTxtCorreo().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtPlaca().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtMarca().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtModelo().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtAnioVehiculo().getText().isEmpty()) {
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "LLene todos los campos");
-            return false;
-        }
-    }
-    public boolean validarCampoVacioDomiciliado(PnlRegistroPropietario pnlRegistroPropietario) {
-        if (!pnlRegistroPropietario.getTxtCedula().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtNombre().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtTelefono().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtDireccion().getText().isEmpty()
-                && pnlRegistroPropietario.getDtcFechaNacimiento().getDate() != null
-                && !pnlRegistroPropietario.getTxtCorreo().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtPlaca().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtMarca().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtModelo().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtAnioVehiculo().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtCtaBancaria().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtCVV().getText().isEmpty()
-                && !pnlRegistroPropietario.getTxtSaldo().getText().isEmpty()   
-            ) {
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "LLene todos los campos");
-            return false;
-        }
-    }
-//    public boolean validarCampoVacio(FrmEditarPropietario frmEditarPropietario) {
-//        if (!frmEditarPropietario.getTxtCedula().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtNombre().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtTelefono().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtDireccion().getText().isEmpty()
-//                && frmEditarPropietario.getDtcFechaNacimiento().getDate() != null
-//                && !frmEditarPropietario.getTxtCorreo().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtPlaca().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtMarca().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtModelo().getText().isEmpty()
-//                && !frmEditarPropietario.getTxtAnioVehiculo().getText().isEmpty()) {
-//            return true;
-//        } else {
-//            JOptionPane.showMessageDialog(null, "LLene todos los campos");
-//            return false;
-//        }
-//    }
     
+    public boolean validarDatosPropietario(Propietario propietario){
+        return !propietario.getCedula().isEmpty()
+                &&!propietario.getNombre().isEmpty()
+                &&!propietario.getTelefono().isEmpty()
+                &&!propietario.getDireccion().isEmpty()
+                && propietario.getFechaNacimiento()!= null
+                && !propietario.getCorreo().isEmpty();    
+    }
+    public boolean validarDatosCuentaBancaria(CuentaBancaria cuentaBancaria){
+        return !cuentaBancaria.getNumeroCuentaBancaria().isEmpty()
+                && !cuentaBancaria.getCvv().isEmpty()
+                && cuentaBancaria.getSaldo()>0
+                && cuentaBancaria.getAnio()>0;    
+    }
+    public boolean validarDatosVehiculo(Vehiculo vehiculo){
+        return !vehiculo.getPlaca().isEmpty()
+                &&!vehiculo.getMarca().isEmpty()
+                &&!vehiculo.getModelo().isEmpty()
+                &&!vehiculo.getAnioVehiculo().isEmpty();         
+    }
+            
     public String validarFormatoFecha( Date date){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String fechaConFormato = simpleDateFormat.format(date);
@@ -271,6 +239,17 @@ public class ValidarCampos {
         if (Character.isLetter(c)){
             evt.consume();
             JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }
+    public void mensajeError(String mensaje){
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+    
+    public void confirmarRegistrosModificados(int regAlterados){
+        if(regAlterados>0){
+            JOptionPane.showMessageDialog(null, "La informacion se ingreso correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "La informacion no se ingreso");
         }
     }
 }
