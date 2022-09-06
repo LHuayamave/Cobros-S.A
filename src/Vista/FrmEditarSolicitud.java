@@ -7,6 +7,8 @@ package Vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -249,6 +251,22 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
                 new FrmEditarSolicitud().setVisible(true);
             }
         });
+    }
+
+    public JLabel getLblTipoSolicitud() {
+        return lblTipoSolicitud;
+    }
+
+    public void setLblTipoSolicitud(JLabel lblTipoSolicitud) {
+        this.lblTipoSolicitud = lblTipoSolicitud;
+    }
+
+    public JTextArea getTxtaDescripcion() {
+        return txtaDescripcion;
+    }
+
+    public void setTxtaDescripcion(JTextArea txtaDescripcion) {
+        this.txtaDescripcion = txtaDescripcion;
     }
 
     public JButton getBtnCancelar() {

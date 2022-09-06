@@ -80,25 +80,22 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
      * textfield de la clase panelIngresoSolicitudes.java 
      */
     private void crearSolicitud(){
-        
-
-       
-        String tipo = (String)panelIngresoSolicitudes.getCmbTipoSolicitud().getSelectedItem();
-        String descripcion = panelIngresoSolicitudes.getTxtaDescripcion().getText();
-        String id_Factura = panelIngresoSolicitudes.getTxtIdFactura().getText();
-     
-        solicitud = new Solicitud(String.valueOf(generadorIdSolicitud) , tipo, descripcion, "Pendiente", id_Factura);
-        
+        solicitud = new Solicitud();
+        solicitud.setId(generarIdSolicitud());
+        solicitud.setTipo((String)panelIngresoSolicitudes.getCmbTipoSolicitud().getSelectedItem());
+        solicitud.setDescripcion(panelIngresoSolicitudes.getTxtaDescripcion().getText());
+        solicitud.setEstado("Pendiente");
+        solicitud.setId_Factura(panelIngresoSolicitudes.getTxtIdFactura().getText());
         mensajeConfirmacion(solicitudDB.agregarSolicitud(solicitud));
-        System.out.println(solicitud);
         
     }
-    
+   
     /**
      * Metodo que genera un IdSolicitud
      */
     private String generarIdSolicitud(){
-        return String.valueOf(++generadorIdSolicitud);
+        //return String.valueOf(++generadorIdSolicitud);
+        return String.valueOf(solicitudDB.obternerIdMaximoSoli()+1);
     }
     
      /**

@@ -5,10 +5,12 @@
  */
 package controlador;
 
+import Vista.FrmEditarSolicitud;
 import configSQL.ConexionDB;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Solicitud;
 import oracle.jdbc.OracleTypes;
@@ -54,5 +56,47 @@ public class SolicitudDB {
     private void mensajeConfirmacion(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
-   
+    public int obternerIdMaximoSoli() {
+        int idEmpleado = 0;
+
+        try {
+            sentenciaPL_SQL = "{ call OBTENER_ID_MAX_SOLICITUD(?)}";
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.executeQuery();
+            resultSet = (ResultSet) callableStatement.getObject(1);
+            while (resultSet.next()) {
+                idEmpleado = Integer.valueOf(resultSet.getString(1));
+            }
+            nuevaConeccion.close();
+            callableStatement.close();
+            resultSet.close();
+        } catch (Exception e) {
+            System.out.println(e + " Error al generar id solicitud");
+        }
+        return idEmpleado;
+    }
+//   public int modificarSolicitud(FrmEditarSolicitud ventanaSolicitud) {
+//        regAfectados = 0;
+//        try {
+//            sentenciaPL_SQL = "{ call MODIFICAR_SOLICITUD(?,?,?,?,?,?)}";
+//            nuevaConeccion = ConexionDB.conectar();
+//            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+//            callableStatement.setString(1, ventanaSolicitud.txtNombre.getText());
+//            callableStatement.setString(2, ventanaSolicitud.txtNombre.getText());
+//            callableStatement.setString(3, ventanaSolicitud.txtCorreo.getText());
+//            callableStatement.setString(4, ventanaSolicitud.txtTelefono.getText());
+//            callableStatement.setString(5, ventanaSolicitud.txtDireccion.getText());
+//            callableStatement.registerOutParameter(6, java.sql.Types.INTEGER);
+//            callableStatement.executeQuery();
+//            regAfectados = callableStatement.getInt(6);
+//            nuevaConeccion.close();
+//            callableStatement.close();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e + "No se logró actualizar");
+//            return regAfectados;
+//        }
+//        return regAfectados;
+//    }
 }
