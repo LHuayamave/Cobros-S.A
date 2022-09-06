@@ -47,6 +47,7 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
         solicitudDB = new SolicitudDB(); 
         addListeners();
         addKeyListeners();
+        incrementarIdSolicitud();
     }
 
     /**
