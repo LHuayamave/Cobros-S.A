@@ -20,7 +20,7 @@ import modelo.PagoNoDomiciliado;
  *
  * @author Luis
  */
-public class ListenerPnlListarPagosNoDomiciliados {
+public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
 
     private final PnlListarPropietariosNoDomiciliados pnlListarPropietariosNoDomiciliados;
     private ArrayList<PagoNoDomiciliado> listaPagoNoDomiciliado;
@@ -87,7 +87,7 @@ public class ListenerPnlListarPagosNoDomiciliados {
         System.out.println("tabla Limpiada");
     }
 
-    /*private void addListeners() {
+    private void addListeners() {
         pnlListarPropietariosNoDomiciliados.getBtnEmitirAvisoPago().addActionListener(this);
         
     }
@@ -104,5 +104,5 @@ public class ListenerPnlListarPagosNoDomiciliados {
                 llenarTablaTodosPagosNoDomiciliados();
             }
         }
-    }*/
+    }
 }
