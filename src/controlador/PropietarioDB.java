@@ -417,7 +417,7 @@ public class PropietarioDB {
 
  /*Metodos para emitir aviso de Pago*/
  /* Metodos para Listar Pagos No Domicilaidos*/
-    public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
+public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
         listaPagosNoDomiciliados = new ArrayList();
         ejecutarSentencia = "{ call VER_TABLA_PAGOS_NO_DOMICILIADO(?)}";
         try {
@@ -429,10 +429,11 @@ public class PropietarioDB {
             resultSet = (ResultSet) callableStatement.getObject(1);
             while (resultSet.next()) {
                 pagoNoDomiciliado = new PagoNoDomiciliado();
+                pagoNoDomiciliado.setId_factura(resultSet.getString("ID_FACTURA"));
                 pagoNoDomiciliado.setCedulaPropietario(resultSet.getString("CEDULA"));
                 pagoNoDomiciliado.setNombrePropietario(resultSet.getString("NOMBRE"));
                 pagoNoDomiciliado.setTipoImpuesto(resultSet.getString("DESCRIPCION"));
-                pagoNoDomiciliado.setValorImpuesto(resultSet.getFloat("VALOR"));
+                pagoNoDomiciliado.setValorImpuesto(resultSet.getFloat("VALOR_TOTAL"));
                 pagoNoDomiciliado.setMesPago(resultSet.getInt("MES_PAGO"));
                 listaPagosNoDomiciliados.add(pagoNoDomiciliado);
             }
@@ -460,10 +461,11 @@ public class PropietarioDB {
             resultSet = (ResultSet) callableStatement.getObject(1);
             while (resultSet.next()) {
                 pagoNoDomiciliado = new PagoNoDomiciliado();
+                pagoNoDomiciliado.setId_factura(resultSet.getString("ID_FACTURA"));
                 pagoNoDomiciliado.setCedulaPropietario(resultSet.getString("CEDULA"));
                 pagoNoDomiciliado.setNombrePropietario(resultSet.getString("NOMBRE"));
                 pagoNoDomiciliado.setTipoImpuesto(resultSet.getString("DESCRIPCION"));
-                pagoNoDomiciliado.setValorImpuesto(resultSet.getFloat("VALOR"));
+                pagoNoDomiciliado.setValorImpuesto(resultSet.getFloat("VALOR_TOTAL"));
                 pagoNoDomiciliado.setMesPago(resultSet.getInt("MES_PAGO"));
                 listaPagoNoDomiciliadosMes.add(pagoNoDomiciliado);
             }
@@ -644,7 +646,22 @@ public class PropietarioDB {
         }
     }
 
-//    public int DialogoConfirmar() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    public int ActualizarFechaPago(String id_factura) {
+        resultado = 0;
+        ejecutarSentencia = "{call actualizar_pago (?,?)}";
+        try {
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            callableStatement.setString(1, id_factura);
+            callableStatement.registerOutParameter(2, java.sql.Types.INTEGER);
+            callableStatement.executeQuery();
+            resultado = callableStatement.getInt(2);
+            nuevaConeccion.close();
+            callableStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Error en actualizar");
+        }
+        return resultado;
+    }
 }

@@ -1,5 +1,6 @@
 package controlador.listenerGestionPropietario;
 
+import Vista.FrmIngresoPago;
 import Vista.PnlListarPropietariosNoDomiciliados;
 import controlador.PropietarioDB;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ import modelo.PagoNoDomiciliado;
  *
  * @author Luis
  */
-public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
+public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
 
     private final PnlListarPropietariosNoDomiciliados pnlListarPropietariosNoDomiciliados;
     private ArrayList<PagoNoDomiciliado> listaPagoNoDomiciliado;
@@ -28,6 +29,7 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
     private TableRowSorter<DefaultTableModel> sorter;
     private PropietarioDB propietarioDB = new PropietarioDB();
     private PagoNoDomiciliado pagoNoDom;
+    private FrmIngresoPago frmIngresoPago;
 
     public ListenerPnlListarPagosNoDomiciliados(PnlListarPropietariosNoDomiciliados pnlListarPropietariosNoDomiciliados) {
         this.pnlListarPropietariosNoDomiciliados = pnlListarPropietariosNoDomiciliados;
@@ -42,18 +44,20 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
         int i = 0;
         DefaultTableModel tb = (DefaultTableModel) pnlListarPropietariosNoDomiciliados.getTblTodos().getModel();
         for (PagoNoDomiciliado pagos : listaPagoNoDomiciliado) {
-            if (pagos.getMesPago() > mesActual) {
+            if (pagos.getMesPago() <= mesActual) {
+                recurso = "/img/hecho.png";
+
+            } else if (pagos.getMesPago() > mesActual) {
                 recurso = "/img/pendiente.png";
             } else {
                 recurso = "/img/nohecho.png";
             }
-            tb.addRow(new Object[]{pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
+            tb.addRow(new Object[]{pagos.getId_factura(), pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
                 pagos.getValorImpuesto(), Month.of(pagos.getMesPago()), new JLabel(new ImageIcon(getClass().getResource(recurso)))});
             pnlListarPropietariosNoDomiciliados.getTblTodos().setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);
             pnlListarPropietariosNoDomiciliados.getTblTodos().setRowSorter(sorter);
             i++;
-
         }
     }
 
@@ -66,12 +70,15 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
         int i = 0;
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
         for (PagoNoDomiciliado pagos : listaPagoNoDomiciliadoMes) {
-            if (pagos.getMesPago() > mesActual) {
+            if (pagos.getMesPago() <= mesActual) {
+                recurso = "/img/hecho.png";
+
+            } else if (pagos.getMesPago() > mesActual) {
                 recurso = "/img/pendiente.png";
             } else {
                 recurso = "/img/nohecho.png";
             }
-            tb.addRow(new Object[]{pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
+            tb.addRow(new Object[]{pagos.getId_factura(), pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
                 pagos.getValorImpuesto(), new JLabel(new ImageIcon(getClass().getResource(recurso)))});
             tabla.setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);
@@ -89,7 +96,22 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
 
     private void addListeners() {
         pnlListarPropietariosNoDomiciliados.getBtnEmitirAvisoPago().addActionListener(this);
-        
+        pnlListarPropietariosNoDomiciliados.getBtnIngresarPago().addActionListener(this);
+    }
+
+    public void verificarSelecion(String num_factura, String cedula, String nombre, String valor) {
+        if (cedula != null) {
+            frmIngresoPago = new FrmIngresoPago(num_factura, cedula, nombre, valor);
+            frmIngresoPago.setPnlListarPropietariosNoDomiciliados(this.pnlListarPropietariosNoDomiciliados);
+            frmIngresoPago.setListenerPnlListarPagosNoDomiciliados(this);
+            frmIngresoPago.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para ingresar el pago.");
+        }
+    }
+
+    public void llamarFormularioIngresoPago() {
+
     }
 
     @Override
@@ -103,6 +125,11 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener{
                 LimpiarTabla();
                 llenarTablaTodosPagosNoDomiciliados();
             }
+        } else if (e.getSource() == pnlListarPropietariosNoDomiciliados.getBtnIngresarPago()) {
+            verificarSelecion(pnlListarPropietariosNoDomiciliados.obtenerNumFactura(),
+                    pnlListarPropietariosNoDomiciliados.obtenerCedula(),
+                    pnlListarPropietariosNoDomiciliados.obtenerNombre(),
+                    pnlListarPropietariosNoDomiciliados.obtenerValor());
         }
     }
 }
