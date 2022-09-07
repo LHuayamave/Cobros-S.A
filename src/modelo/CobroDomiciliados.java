@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 /**
+ * Esta es una clase utilizada para instanciar objetos de los cobros de los
+ * propietarios domiciliados y guardar información de estos.
  *
- * @author NIEVES
+ * @author Grupo E
  */
 public class CobroDomiciliados {
 
@@ -19,6 +16,7 @@ public class CobroDomiciliados {
     private float saldo;
     private int mesPago;
 
+    /*Constructores*/
     public CobroDomiciliados(String ctaBancaria, String cedulaPropietario, String nombrePropietario, String tipoImpuesto, float valorImpuesto, float saldo, int mesPago) {
         this.ctaBancaria = ctaBancaria;
         this.cedulaPropietario = cedulaPropietario;
@@ -29,11 +27,11 @@ public class CobroDomiciliados {
         this.mesPago = mesPago;
     }
 
-    
     public CobroDomiciliados() {
 
     }
 
+    /*Getter and Setter*/
     public String getCedulaPropietario() {
         return cedulaPropietario;
     }

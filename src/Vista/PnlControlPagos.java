@@ -1,28 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
+/**
+ * Este panel permite visualizar el estado de los pagos de todos los
+ * propietarios además permite agregarles una multa en caso de que la fecha de
+ * pago de su factura haya vencido.
+ *
+ * @author Grupo E
+ */
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Ronaldo
- */
 public class PnlControlPagos extends javax.swing.JPanel {
-    
+
     DefaultTableModel modeloTabla;
 
-    /**
-     * Creates new form PnlControlPagos
-     */
     public PnlControlPagos() {
         initComponents();
         modeloTabla = new DefaultTableModel();
@@ -56,11 +50,6 @@ public class PnlControlPagos extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         btnGenerarMulta.setText("Generar multa");
-        btnGenerarMulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarMultaActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setText("Control de Pagos");
@@ -115,10 +104,7 @@ public class PnlControlPagos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerarMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarMultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarMultaActionPerformed
-
+    //getters and setters
     public DefaultTableModel getModeloTabla() {
         return modeloTabla;
     }
@@ -143,14 +129,6 @@ public class PnlControlPagos extends javax.swing.JPanel {
         this.jLabel2 = jLabel2;
     }
 
-    /*public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }*/
-
     public JComboBox<String> getJcbFiltro() {
         return jcbFiltro;
     }
@@ -166,8 +144,7 @@ public class PnlControlPagos extends javax.swing.JPanel {
     public void setTblControlPago(JTable tblControlPago) {
         this.tblControlPago = tblControlPago;
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerarMulta;

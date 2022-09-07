@@ -1,11 +1,13 @@
-
 package modelo;
 
 /**
+ * Esta es una clase utilizada para instanciar objetos de las cuentas bancarias
+ * de los propietarios domiciliados y guardar información de los mismos.
  *
- * @author Soldado
+ * @author Grupo E
  */
 public class CuentaBancaria {
+
     private String numeroCuentaBancaria;
     private String cvv;
     private int mes;
@@ -13,10 +15,12 @@ public class CuentaBancaria {
     private int idTipoCuenta;
     private float saldo;
     private int idBanco;
-    
-    public CuentaBancaria(){}
 
-    public CuentaBancaria(String numeroCuentaBancaria, String cvv, int mes, int anio, int idTipoCuenta, 
+    /*Constructores*/
+    public CuentaBancaria() {
+    }
+
+    public CuentaBancaria(String numeroCuentaBancaria, String cvv, int mes, int anio, int idTipoCuenta,
             float saldo, int idBanco) {
         this.numeroCuentaBancaria = numeroCuentaBancaria;
         this.cvv = cvv;
@@ -27,7 +31,7 @@ public class CuentaBancaria {
         this.idBanco = idBanco;
     }
 
-    
+    /*Getter and Setter*/
     public int getIdTipoCuenta() {
         return idTipoCuenta;
     }
@@ -35,7 +39,6 @@ public class CuentaBancaria {
     public void setIdTipoCuenta(int idTipoCuenta) {
         this.idTipoCuenta = idTipoCuenta;
     }
-    
 
     public String getNumeroCuentaBancaria() {
         return numeroCuentaBancaria;
@@ -84,5 +87,5 @@ public class CuentaBancaria {
     public void setIdBanco(int idBanco) {
         this.idBanco = idBanco;
     }
-    
+
 }

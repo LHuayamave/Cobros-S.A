@@ -1,27 +1,34 @@
 package modelo;
+
 /**
-     * Esta es una clase extiende de la clase absatracta Persona y se la utiliza para instanciar objetos empleados
-     * y guardar información.
-     * @author Grupo E
-*/
+ * Esta es una clase extiende de la clase absatracta Persona y se la utiliza
+ * para instanciar objetos empleados y guardar información.
+ *
+ * @author Grupo E
+ */
 import java.util.Date;
 
-public class Empleado extends Persona{
-   private String idEmpleado;
-   private String idTrabajo;
-   private String contrasenia;
+public class Empleado extends Persona {
 
-  /*Constructores*/ 
-   public Empleado(){};
+    private String idEmpleado;
+    private String idTrabajo;
+    private String contrasenia;
+
+    /*Constructores*/
+    public Empleado() {
+    }
+
+    ;
    
-    public Empleado(String idEmpleado, String nombre, String direccion, String correo, String telefono, 
-            Date fechaNacimiento,String cedula,String contrasenia,String idTrabajo ) {
+    public Empleado(String idEmpleado, String nombre, String direccion, String correo, String telefono,
+            Date fechaNacimiento, String cedula, String contrasenia, String idTrabajo) {
         super(cedula, nombre, direccion, correo, fechaNacimiento, telefono);
         this.idEmpleado = idEmpleado;
         this.idTrabajo = idTrabajo;
         this.contrasenia = contrasenia;
     }
-/*Getter and Setter*/
+
+    /*Getter and Setter*/
     public String getIdEmpleado() {
         return idEmpleado;
     }

@@ -1,41 +1,40 @@
 package Vista;
+
 /**
-     * Este panel permite visualizar los propietarios domiciliados y 
-     * el estado de los cobros realizados a los mismos 
-     * @author Grupo E
-*/
+ * Este panel permite visualizar los propietarios domiciliados y el estado de
+ * los cobros realizados a los mismos, así mismo se puede realizar el débito de
+ * los impuestos de dichos propietarios haciendo clic en el botón enviar
+ * notificación de cobros que a su vez informará a los propietarios sobre dicha
+ * acción.
+ *
+ * @author Grupo E
+ */
 import controlador.listenerGestionPropietario.ListenerPnlListarCobrosDomiciliados;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
-/**
- *
- * @author NIEVES
- */
 public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PnlListarPropietariosDomiciliados
-     */
     public PnlListarPropietariosDomiciliados() {
         initComponents();
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaTodosCobrosDomiciliados();
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(1,tblEnero);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(2,tblFebrero);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(3,tblMarzo);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(4,tblAbril);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(5,tblMayo);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(6,tblJunio);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(7,tblJulio);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(8,tblAgosto);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(9,tblSeptiembre);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(10,tblOctubre);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(11,tblNoviembre);
-        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(12,tblDiciembre);
-        
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(1, tblEnero);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(2, tblFebrero);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(3, tblMarzo);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(4, tblAbril);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(5, tblMayo);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(6, tblJunio);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(7, tblJulio);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(8, tblAgosto);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(9, tblSeptiembre);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(10, tblOctubre);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(11, tblNoviembre);
+        new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(12, tblDiciembre);
+
+        // Añade los listeners a los botones.
         aniadirListenerPnlListarPropietarioDomiciliado();
     }
-    
+
     // Getter and Setter
     public JTable getTblTodos() {
         return tblTodos;
@@ -148,11 +147,11 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
     public void setTblSeptiembre(JTable tblSeptiembre) {
         this.tblSeptiembre = tblSeptiembre;
     }
-    
-    private void aniadirListenerPnlListarPropietarioDomiciliado(){
+
+    private void aniadirListenerPnlListarPropietarioDomiciliado() {
         btnEmitirAvisoCobro.addActionListener(new ListenerPnlListarCobrosDomiciliados(this));
     }
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
