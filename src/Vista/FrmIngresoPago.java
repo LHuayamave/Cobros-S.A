@@ -19,12 +19,12 @@ public class FrmIngresoPago extends javax.swing.JFrame {
     private ListenerPnlListarPagosNoDomiciliados listenerPnlListarPagosNoDomiciliados;
     
     
-    public FrmIngresoPago(String num_factura, String cedula, String nombre, String valor) {
+    public FrmIngresoPago(String datosNoDomiciliado[]) {
         initComponents();
-        this.num_factura = num_factura;
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.valor = valor;
+        this.num_factura = datosNoDomiciliado[0];
+        this.cedula = datosNoDomiciliado[1];
+        this.nombre = datosNoDomiciliado[2];
+        this.valor = datosNoDomiciliado[3];
 
         aniadirListener();
         aniadirKeyListener();

@@ -41,8 +41,9 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
     
 
     public void aniadirListener() {
-        btnEmitirRecibo.addActionListener(new ListenerPnlListarPagosNoDomiciliados(this));
+        btnIngresarPago.addActionListener(new ListenerPnlListarPagosNoDomiciliados(this));
         btnEmitirAvisoPago.addActionListener(new ListenerPnlListarPagosNoDomiciliados(this));
+        btnEmitirFactura.addActionListener(new ListenerPnlListarPagosNoDomiciliados(this));
     }
     
     public String obtenerNumFactura () {
@@ -94,11 +95,11 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
     }
 
     public JButton getBtnIngresarPago() {
-        return btnEmitirRecibo;
+        return btnIngresarPago;
     }
 
     public void setBtnIngresarPago(JButton btnIngresarPago) {
-        this.btnEmitirRecibo = btnIngresarPago;
+        this.btnIngresarPago = btnIngresarPago;
     }
 
     public JTabbedPane getTbdMesesPago() {
@@ -204,21 +205,20 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
     public void setTblTodos(JTable tblTodos) {
         this.tblTodos = tblTodos;
     }
-
-    public JButton getBtnEmitirRecibo() {
-        return btnEmitirRecibo;
-    }
-
-    public void setBtnEmitirRecibo(JButton btnEmitirRecibo) {
-        this.btnEmitirRecibo = btnEmitirRecibo;
-    }
-
     public FrmEmpleado getFrmEmpleado() {
         return frmEmpleado;
     }
 
     public void setFrmEmpleado(FrmEmpleado frmEmpleado) {
         this.frmEmpleado = frmEmpleado;
+    }
+
+    public JButton getBtnEmitirFactura() {
+        return btnEmitirFactura;
+    }
+
+    public void setBtnEmitirFactura(JButton btnEmitirFactura) {
+        this.btnEmitirFactura = btnEmitirFactura;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -265,8 +265,9 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
         jScrollPane13 = new javax.swing.JScrollPane();
         tblTodos = new javax.swing.JTable();
         btnEmitirAvisoPago = new javax.swing.JButton();
-        btnEmitirRecibo = new javax.swing.JButton();
+        btnIngresarPago = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnEmitirFactura = new javax.swing.JButton();
 
         tbdMesesPago.setBackground(new java.awt.Color(154, 227, 182));
 
@@ -677,12 +678,16 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
         btnEmitirAvisoPago.setForeground(new java.awt.Color(255, 255, 255));
         btnEmitirAvisoPago.setText("Emitir aviso de cobro");
 
-        btnEmitirRecibo.setBackground(new java.awt.Color(51, 51, 51));
-        btnEmitirRecibo.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmitirRecibo.setText("EmitirRecibo");
+        btnIngresarPago.setBackground(new java.awt.Color(51, 51, 51));
+        btnIngresarPago.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresarPago.setText("Ingresar pago");
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Propietarios No Domiciliados");
+
+        btnEmitirFactura.setBackground(new java.awt.Color(51, 51, 51));
+        btnEmitirFactura.setForeground(new java.awt.Color(255, 255, 255));
+        btnEmitirFactura.setText("Emitir Factura");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -691,8 +696,11 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnEmitirAvisoPago)
-                .addGap(54, 54, 54)
-                .addComponent(btnEmitirRecibo))
+                .addGap(18, 18, 18)
+                .addComponent(btnIngresarPago)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEmitirFactura)
+                .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -710,7 +718,8 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEmitirAvisoPago)
-                    .addComponent(btnEmitirRecibo))
+                    .addComponent(btnIngresarPago)
+                    .addComponent(btnEmitirFactura))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -718,7 +727,8 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEmitirAvisoPago;
-    private javax.swing.JButton btnEmitirRecibo;
+    private javax.swing.JButton btnEmitirFactura;
+    private javax.swing.JButton btnIngresarPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane13;
@@ -761,4 +771,6 @@ public class PnlListarPropietariosNoDomiciliados extends javax.swing.JPanel {
     private javax.swing.JTable tblSeptiembre;
     private javax.swing.JTable tblTodos;
     // End of variables declaration//GEN-END:variables
+
+   
 }

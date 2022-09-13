@@ -98,9 +98,7 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
             }   
         }else if(e.getSource() == pnlListarPropietariosDomiciliados.getBtnEmitirRecibo()){
 
-            FrmEmitirRecibo frmEmitirRecibo  = new FrmEmitirRecibo(pnlListarPropietariosDomiciliados.getFrmEmpleado(),true);
-
-            frmEmitirRecibo.setVisible(true); 
+            //FrmEmitirRecibo frmEmitirRecibo  = new FrmEmitirRecibo(pnlListarPropietariosDomiciliados.getFrmEmpleado(),true);
         }
         
     }
@@ -139,6 +137,7 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
         }
     }
 
+    
     /**
      * Esta método permite actualizar los datos de los propietarios domiciliados
      * al momento de realizarles el cobro de su impuesto vehicular.

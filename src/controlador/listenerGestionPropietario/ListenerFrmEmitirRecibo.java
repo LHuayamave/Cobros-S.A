@@ -1,7 +1,7 @@
 package controlador.listenerGestionPropietario;
 
 import Vista.FrmEmitirRecibo;
-import Vista.PnlListarPropietariosDomiciliados;
+import controlador.FacturaDB;
 import controlador.PropietarioDB;
 import controlador.VehiculoDB;
 import java.awt.event.ActionEvent;
@@ -14,6 +14,7 @@ import modelo.Propietario;
  * @author Soldado
  */
 public class ListenerFrmEmitirRecibo implements ActionListener{
+    private FacturaDB facturaDB;
     private FrmEmitirRecibo frmEmitirRecibo;
     private PropietarioDB propietarioDB;
     private VehiculoDB vehiculoDB;
@@ -31,17 +32,19 @@ public class ListenerFrmEmitirRecibo implements ActionListener{
         }
     }
 
-    public int llenarCampos(Boolean esDomiciliado) {
+    public int llenarCampos() {
+        facturaDB = new FacturaDB();
         propietarioDB = new PropietarioDB();
         vehiculoDB = new VehiculoDB();
         propietario = new Propietario();
         cuentaBancaria = new  CuentaBancaria();
 
         System.out.print(propietario.getCedula()); 
-        if(esDomiciliado){
-            frmEmitirRecibo.getTxtCorreo().setEditable(true);
+        if(frmEmitirRecibo.getEsDomiciliado()){
+            
         }else{
-            frmEmitirRecibo.getTxtCorreo().setEditable(false);
+            frmEmitirRecibo.getLblEmail().setText("");
+            facturaDB.obtenerReciboaNoDomiciliado(frmEmitirRecibo);
         }
         return 0;
     }

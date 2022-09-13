@@ -227,7 +227,6 @@ public class ValidarCampos {
                 && !pnlIngresoSolicitudes.getTxtaDescripcion().getText().isEmpty()){
             return true;
         }
-        
         else {
             JOptionPane.showMessageDialog(null, "LLene todos los campos");
             return false;
