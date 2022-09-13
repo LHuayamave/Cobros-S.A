@@ -348,6 +348,7 @@ public class PropietarioDB {
             resultSet = (ResultSet) callableStatement.getObject(1);
             while (resultSet.next()) {
                 cobrosDomiciliados = new CobroDomiciliados();
+                cobrosDomiciliados.setIdFactura(resultSet.getInt("ID_FACTURA"));
                 cobrosDomiciliados.setCedulaPropietario(resultSet.getString("CEDULA"));
                 cobrosDomiciliados.setNombrePropietario(resultSet.getString("NOMBRE"));
                 cobrosDomiciliados.setTipoImpuesto(resultSet.getString("DESCRIPCION"));
@@ -380,6 +381,7 @@ public class PropietarioDB {
             resultSet = (ResultSet) callableStatement.getObject(1);
             while (resultSet.next()) {
                 cobrosDomiciliados = new CobroDomiciliados();
+                cobrosDomiciliados.setIdFactura(resultSet.getInt("ID_FACTURA"));
                 cobrosDomiciliados.setCedulaPropietario(resultSet.getString("CEDULA"));
                 cobrosDomiciliados.setNombrePropietario(resultSet.getString("NOMBRE"));
                 cobrosDomiciliados.setTipoImpuesto(resultSet.getString("DESCRIPCION"));

@@ -121,7 +121,8 @@
                 <Component class="javax.swing.JTable" name="tblEnero">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -217,7 +218,8 @@
                 <Component class="javax.swing.JTable" name="tblFebrero">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -276,7 +278,8 @@
                 <Component class="javax.swing.JTable" name="tblMarzo">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -335,7 +338,8 @@
                 <Component class="javax.swing.JTable" name="tblAbril">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -394,7 +398,8 @@
                 <Component class="javax.swing.JTable" name="tblMayo">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -453,7 +458,8 @@
                 <Component class="javax.swing.JTable" name="tblJunio">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -512,7 +518,8 @@
                 <Component class="javax.swing.JTable" name="tblJulio">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -571,7 +578,8 @@
                 <Component class="javax.swing.JTable" name="tblAgosto">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -630,7 +638,8 @@
                 <Component class="javax.swing.JTable" name="tblSeptiembre">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -689,7 +698,8 @@
                 <Component class="javax.swing.JTable" name="tblOctubre">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -748,7 +758,8 @@
                 <Component class="javax.swing.JTable" name="tblNoviembre">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -807,7 +818,8 @@
                 <Component class="javax.swing.JTable" name="tblDiciembre">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>
@@ -866,7 +878,8 @@
                 <Component class="javax.swing.JTable" name="tblTodos">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="0">
+                      <Table columnCount="7" rowCount="0">
+                        <Column editable="true" title="# FACTURA" type="java.lang.Object"/>
                         <Column editable="true" title="CEDULA" type="java.lang.Object"/>
                         <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                         <Column editable="true" title="TIPO IMPUESTO" type="java.lang.Object"/>

@@ -58,7 +58,7 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
             } else {
                 recurso = "/img/nohecho.png";
             }
-            tb.addRow(new Object[]{cobros.getCedulaPropietario(), cobros.getNombrePropietario(), cobros.getTipoImpuesto(),
+            tb.addRow(new Object[]{cobros.getIdFactura(),cobros.getCedulaPropietario(), cobros.getNombrePropietario(), cobros.getTipoImpuesto(),
                 cobros.getValorImpuesto(), Month.of(cobros.getMesPago()), new JLabel(new ImageIcon(getClass().getResource(recurso)))});
             pnlListarPropietariosDomiciliados.getTblTodos().setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);
@@ -128,7 +128,7 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
             } else {
                 recurso = "/img/nohecho.png";
             }
-            tb.addRow(new Object[]{cobros.getCedulaPropietario(), cobros.getNombrePropietario(), cobros.getTipoImpuesto(),
+            tb.addRow(new Object[]{cobros.getIdFactura(),cobros.getCedulaPropietario(), cobros.getNombrePropietario(), cobros.getTipoImpuesto(),
                 cobros.getValorImpuesto(), new JLabel(new ImageIcon(getClass().getResource(recurso)))});
             tabla.setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);

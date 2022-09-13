@@ -7,7 +7,7 @@ package modelo;
  * @author Grupo E
  */
 public class CobroDomiciliados {
-
+private int idFactura;
     private String ctaBancaria;
     private String cedulaPropietario;
     private String nombrePropietario;
@@ -17,7 +17,9 @@ public class CobroDomiciliados {
     private int mesPago;
 
     /*Constructores*/
-    public CobroDomiciliados(String ctaBancaria, String cedulaPropietario, String nombrePropietario, String tipoImpuesto, float valorImpuesto, float saldo, int mesPago) {
+
+    public CobroDomiciliados(int idFactura, String ctaBancaria, String cedulaPropietario, String nombrePropietario, String tipoImpuesto, float valorImpuesto, float saldo, int mesPago) {
+        this.idFactura = idFactura;
         this.ctaBancaria = ctaBancaria;
         this.cedulaPropietario = cedulaPropietario;
         this.nombrePropietario = nombrePropietario;
@@ -26,9 +28,10 @@ public class CobroDomiciliados {
         this.saldo = saldo;
         this.mesPago = mesPago;
     }
+  
+  
 
     public CobroDomiciliados() {
-
     }
 
     /*Getter and Setter*/
@@ -86,6 +89,14 @@ public class CobroDomiciliados {
 
     public void setMesPago(int mesPago) {
         this.mesPago = mesPago;
+    }
+
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
     }
 
 }

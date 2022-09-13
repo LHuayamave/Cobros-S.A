@@ -239,7 +239,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane14.setViewportView(tblEnero);
@@ -270,7 +270,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane15.setViewportView(tblFebrero);
@@ -301,7 +301,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane16.setViewportView(tblMarzo);
@@ -332,7 +332,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane17.setViewportView(tblAbril);
@@ -363,7 +363,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane18.setViewportView(tblMayo);
@@ -394,7 +394,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane19.setViewportView(tblJunio);
@@ -425,7 +425,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane20.setViewportView(tblJulio);
@@ -456,7 +456,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane21.setViewportView(tblAgosto);
@@ -487,7 +487,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane22.setViewportView(tblSeptiembre);
@@ -518,7 +518,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane23.setViewportView(tblOctubre);
@@ -549,7 +549,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane24.setViewportView(tblNoviembre);
@@ -580,7 +580,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "COBRO REALIZADO"
             }
         ));
         jScrollPane25.setViewportView(tblDiciembre);
@@ -611,7 +611,7 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "MES COBRO", "COBRO REALIZADO"
+                "# FACTURA", "CEDULA", "NOMBRE", "TIPO IMPUESTO", "VALOR", "MES COBRO", "COBRO REALIZADO"
             }
         ));
         jScrollPane13.setViewportView(tblTodos);
