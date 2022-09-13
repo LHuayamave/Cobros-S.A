@@ -1,5 +1,6 @@
 package controlador.listenerGestionPropietario;
 
+import Vista.FrmEmitirRecibo;
 import Vista.PnlListarPropietariosDomiciliados;
 import controlador.PropietarioDB;
 import java.awt.event.ActionEvent;
@@ -95,6 +96,11 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
                         + "como evidencia de dicha transacción.", "Notificar",
                     JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE, icon2);
             }   
+        }else if(e.getSource() == pnlListarPropietariosDomiciliados.getBtnEmitirRecibo()){
+
+            FrmEmitirRecibo frmEmitirRecibo  = new FrmEmitirRecibo(pnlListarPropietariosDomiciliados.getFrmEmpleado(),true);
+
+            frmEmitirRecibo.setVisible(true); 
         }
         
     }

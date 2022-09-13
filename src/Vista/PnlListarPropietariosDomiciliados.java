@@ -14,9 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
+    private FrmEmpleado frmEmpleado;
 
-    public PnlListarPropietariosDomiciliados() {
+    public PnlListarPropietariosDomiciliados(FrmEmpleado frmEmpleado) {
         initComponents();
+        this.frmEmpleado = frmEmpleado;
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaTodosCobrosDomiciliados();
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(1, tblEnero);
         new ListenerPnlListarCobrosDomiciliados(this).llenarTablaMesCobrosDomiciliados(2, tblFebrero);
@@ -148,8 +150,26 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
         this.tblSeptiembre = tblSeptiembre;
     }
 
+    public JButton getBtnEmitirRecibo() {
+        return btnEmitirRecibo;
+    }
+
+    public void setBtnEmitirRecibo(JButton btnEmitirRecibo) {
+        this.btnEmitirRecibo = btnEmitirRecibo;
+    }
+
+    public FrmEmpleado getFrmEmpleado() {
+        return frmEmpleado;
+    }
+
+    public void setFrmEmpleado(FrmEmpleado frmEmpleado) {
+        this.frmEmpleado = frmEmpleado;
+    }
+
     private void aniadirListenerPnlListarPropietarioDomiciliado() {
         btnEmitirAvisoCobro.addActionListener(new ListenerPnlListarCobrosDomiciliados(this));
+        btnEmitirRecibo.addActionListener(new ListenerPnlListarCobrosDomiciliados(this));
+        
     }
 
     /**

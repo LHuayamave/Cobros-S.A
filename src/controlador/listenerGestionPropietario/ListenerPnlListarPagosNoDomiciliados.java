@@ -1,5 +1,6 @@
 package controlador.listenerGestionPropietario;
 
+import Vista.FrmEmitirRecibo;
 import Vista.FrmIngresoPago;
 import Vista.PnlListarPropietariosNoDomiciliados;
 import controlador.PropietarioDB;
@@ -130,6 +131,11 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
                     pnlListarPropietariosNoDomiciliados.obtenerCedula(),
                     pnlListarPropietariosNoDomiciliados.obtenerNombre(),
                     pnlListarPropietariosNoDomiciliados.obtenerValor());
+        }else if(e.getSource() == pnlListarPropietariosNoDomiciliados.getBtnEmitirRecibo()){
+
+            FrmEmitirRecibo frmEmitirRecibo  = new FrmEmitirRecibo(pnlListarPropietariosNoDomiciliados.getFrmEmpleado(),false);
+
+            frmEmitirRecibo.setVisible(true); 
         }
     }
 }

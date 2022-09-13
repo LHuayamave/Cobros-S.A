@@ -44,10 +44,10 @@ public class ListenerFrmEmpleado implements ActionListener {
             FrmListarPropietario frmListaPropietario = new FrmListarPropietario();
             frmEmpleado.ShowPanel(frmListaPropietario);
         } else if (e.getSource() == frmEmpleado.getMniListarPropietariosDomiciliados()) {
-            PnlListarPropietariosDomiciliados frmListaPropietarioDom = new PnlListarPropietariosDomiciliados();
+            PnlListarPropietariosDomiciliados frmListaPropietarioDom = new PnlListarPropietariosDomiciliados(frmEmpleado);
             frmEmpleado.ShowPanel(frmListaPropietarioDom);
         }else if (e.getSource() == frmEmpleado.getMniListarPropietariosNoDomiciliados()) {
-            PnlListarPropietariosNoDomiciliados frmListaPropietarioNoDom = new PnlListarPropietariosNoDomiciliados();
+            PnlListarPropietariosNoDomiciliados frmListaPropietarioNoDom = new PnlListarPropietariosNoDomiciliados(frmEmpleado);
             frmEmpleado.ShowPanel(frmListaPropietarioNoDom);
         }  else if (e.getSource() == frmEmpleado.getBtnCerrarSesion()) {
             frmEmpleado.dispose();
