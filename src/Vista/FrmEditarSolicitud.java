@@ -299,7 +299,7 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardarCambios;
-    private javax.swing.JComboBox<String> cmbEstado;
+    public javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

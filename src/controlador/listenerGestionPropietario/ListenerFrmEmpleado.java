@@ -11,6 +11,7 @@ import Vista.PnlListarPropietariosNoDomiciliados;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Vista.PnlControlPagos;
+import controlador.ListenerSolicitudes.ListenerPnlIngresoSolicitudes;
 
 /**
  * Esta clase agraga los listener a los botones del formulario empleado haciendo
@@ -23,9 +24,13 @@ import Vista.PnlControlPagos;
 public class ListenerFrmEmpleado implements ActionListener {
     
     FrmEmpleado frmEmpleado;
+    private ListenerPnlIngresoSolicitudes oListenerPnlIngresoSolicitudes;
+    private PnlIngresoSolicitudes oingresoSolicitudes;
 
     public ListenerFrmEmpleado(FrmEmpleado frmEmpleado) {
         this.frmEmpleado = frmEmpleado;
+        oingresoSolicitudes = new PnlIngresoSolicitudes();
+        oListenerPnlIngresoSolicitudes = new ListenerPnlIngresoSolicitudes(oingresoSolicitudes);
     }
 
     /**
@@ -49,6 +54,8 @@ public class ListenerFrmEmpleado implements ActionListener {
         }else if (e.getSource() == frmEmpleado.getMniListarPropietariosNoDomiciliados()) {
             PnlListarPropietariosNoDomiciliados frmListaPropietarioNoDom = new PnlListarPropietariosNoDomiciliados(frmEmpleado);
             frmEmpleado.ShowPanel(frmListaPropietarioNoDom);
+        }else if (e.getSource() == frmEmpleado.getMniIngresarSolicitudes()) {
+           frmEmpleado.ShowPanel(oingresoSolicitudes);
         }  else if (e.getSource() == frmEmpleado.getBtnCerrarSesion()) {
             frmEmpleado.dispose();
         } else if (e.getSource() == frmEmpleado.getMniControlPagos()) {

@@ -80,17 +80,13 @@ public class SolicitudDB {
 //   public int modificarSolicitud(FrmEditarSolicitud ventanaSolicitud) {
 //        regAfectados = 0;
 //        try {
-//            sentenciaPL_SQL = "{ call MODIFICAR_SOLICITUD(?,?,?,?,?,?)}";
+//            sentenciaPL_SQL = "{ call MODIFICAR_SOLICITUD(?,?)}";
 //            nuevaConeccion = ConexionDB.conectar();
 //            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
-//            callableStatement.setString(1, ventanaSolicitud.txtNombre.getText());
-//            callableStatement.setString(2, ventanaSolicitud.txtNombre.getText());
-//            callableStatement.setString(3, ventanaSolicitud.txtCorreo.getText());
-//            callableStatement.setString(4, ventanaSolicitud.txtTelefono.getText());
-//            callableStatement.setString(5, ventanaSolicitud.txtDireccion.getText());
-//            callableStatement.registerOutParameter(6, java.sql.Types.INTEGER);
+//            callableStatement.setString(1, ventanaSolicitud.cmbEstado.getItemAt(resultado));
+//            callableStatement.registerOutParameter(2, java.sql.Types.INTEGER);
 //            callableStatement.executeQuery();
-//            regAfectados = callableStatement.getInt(6);
+//            regAfectados = callableStatement.getInt(2);
 //            nuevaConeccion.close();
 //            callableStatement.close();
 //        } catch (SQLException e) {
@@ -99,4 +95,40 @@ public class SolicitudDB {
 //        }
 //        return regAfectados;
 //    }
+//   public void visualizarSolicitud(JTable tablaEmpleados, FrmConsultarEmpleado ventanaConsultarEmpleado) {
+//        int fila = tablaEmpleados.getSelectedRow();
+//        String cedula = tablaEmpleados.getValueAt(fila, 0).toString();
+//
+//        try {
+//            sentenciaPL_SQL = "{ call VER_SOLICITUD(?,?)}";
+//            nuevaConeccion = ConexionDB.conectar();
+//            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+//            callableStatement.setString(1, cedula);
+//            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+//            callableStatement.executeQuery();
+//            resultSet = (ResultSet) callableStatement.getObject(2);
+//            while (resultSet.next()) {
+//                empleado.setIdEmpleado(resultSet.getString("ID_EMPLEADO"));
+//                empleado.setCedula(cedula);
+//                empleado.setNombre(resultSet.getString("NOMBRE"));
+//                empleado.setCorreo(resultSet.getString("CORREO"));
+//                empleado.setContrasenia(resultSet.getString("CONTRASENIA"));
+//                empleado.setTelefono(resultSet.getString("TELEFONO"));
+//                empleado.setDireccion(resultSet.getString("DIRECCION"));
+//                empleado.setFechaNacimiento(resultSet.getDate("FECHA_NAC"));
+//                empleado.setIdTrabajo(resultSet.getString("ID_TRABAJO"));
+//            }
+//            ventanaConsultarEmpleado.getLblCedula().setText(empleado.getCedula());
+//            ventanaConsultarEmpleado.getLblNombre().setText(empleado.getNombre());
+//            ventanaConsultarEmpleado.getLblTelefono().setText(empleado.getTelefono());
+//            ventanaConsultarEmpleado.getLblDireccion().setText(empleado.getDireccion());
+//            ventanaConsultarEmpleado.getLblCorreo().setText(empleado.getCorreo());
+//            nuevaConeccion.close();
+//            callableStatement.close();
+//            resultSet.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
 }
+
