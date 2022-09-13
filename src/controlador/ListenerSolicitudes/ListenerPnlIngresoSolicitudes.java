@@ -128,7 +128,7 @@ public class ListenerPnlIngresoSolicitudes extends KeyAdapter implements ActionL
         }
         
         else if(e.getSource() == panelIngresoSolicitudes.getBtnCancelar()){
-            System.out.println("boton cancelar papa");
+            System.out.println("Volviendo ventana atras");
             
         }
 
