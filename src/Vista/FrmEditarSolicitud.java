@@ -38,7 +38,6 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
         lblNumeroSolicitud = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaDescripcion = new javax.swing.JTextArea();
@@ -92,10 +91,6 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel3.setText("Tipo de solicitud:");
 
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        jLabel4.setText("Solicitante:");
-
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel5.setText("Descripción:");
@@ -147,8 +142,7 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
                         .addGap(69, 69, 69)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(83, 83, 83)
                                 .addComponent(lblNombre))
                             .addComponent(jLabel5)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -159,7 +153,7 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblTipoSolicitud)))))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(25, 25, 25)
@@ -173,9 +167,7 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(lblNumeroSolicitud)
                 .addGap(45, 45, 45)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblNombre))
+                .addComponent(lblNombre)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -188,7 +180,7 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelar)
                             .addComponent(btnGuardarCambios))
@@ -293,6 +285,14 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
         this.cmbEstado = cmbEstado;
     }
 
+    public JLabel getLblNumeroSolicitud() {
+        return lblNumeroSolicitud;
+    }
+
+    public void setLblNumeroSolicitud(JLabel lblNumeroSolicitud) {
+        this.lblNumeroSolicitud = lblNumeroSolicitud;
+    }
+
     
     
     
@@ -302,7 +302,6 @@ public class FrmEditarSolicitud extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

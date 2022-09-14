@@ -102,30 +102,31 @@ public class SolicitudDB {
 //        }
 //        return regAfectados;
 //    }
-//   public void visualizarSolicitud(JTable tablaSolicitudes, PnlEstadoSolicitud ventanaEstadoSolicitud) {
+//   public void visualizarSolicitud(JTable tablaSolicitudes, FrmEditarSolicitud ventanaSolicitud) {
 //        int fila = tablaSolicitudes.getSelectedRow();
-//        String cedula = tablaSolicitudes.getValueAt(fila, 0).toString();
+//        String id = tablaSolicitudes.getValueAt(fila, 0).toString();
 //
 //        try {
 //            sentenciaPL_SQL = "{ call VER_SOLICITUD(?,?)}";
 //            nuevaConeccion = ConexionDB.conectar();
 //            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
-//            callableStatement.setString(1, cedula);
+//            callableStatement.setString(1, id);
 //            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
 //            callableStatement.executeQuery();
 //            resultSet = (ResultSet) callableStatement.getObject(2);
 //            while (resultSet.next()) {
 //                solicitud.setId(resultSet.getString("ID_SOLICITUD"));
 //                solicitud.setTipo(resultSet.getString("TIPO"));
+//                solicitud.setDescripcion(resultSet.getString("DESCRIPCION"));
 //                solicitud.setEstado(resultSet.getString("ESTADO"));
 //                
 //               
 //            }
-//            ventanaEstadoSolicitud.get().setText(empleado.getCedula());
-//            ventanaEstadoSolicitud.getLblNombre().setText(empleado.getNombre());
-//            ventanaEstadoSolicitud.getLblTelefono().setText(empleado.getTelefono());
-//            ventanaEstadoSolicitud.getLblDireccion().setText(empleado.getDireccion());
-//            ventanaEstadoSolicitud.getLblCorreo().setText(empleado.getCorreo());
+//            ventanaSolicitud.getLblNumeroSolicitud().setText(solicitud.getId());
+//            ventanaSolicitud.getLblTipoSolicitud().setText(solicitud.getTipo());
+//            ventanaSolicitud.getTxtaDescripcion().setText(solicitud.getDescripcion());
+//            ventanaSolicitud.getCmbEstado().setText(solicitud.getEstado());
+//            
 //            nuevaConeccion.close();
 //            callableStatement.close();
 //            resultSet.close();
@@ -133,35 +134,62 @@ public class SolicitudDB {
 //            System.out.println(e);
 //        }
 //    }
-//     public Solicitud obtenerSolicitud(String cedula) {
+//    public void llenarEditarSolicitud(JTable tablaSolicitudes, FrmEditarSolicitud ventanaSolicitud) {
+//        int fila = tablaSolicitudes.getSelectedRow();
+//        String id = tablaSolicitudes.getValueAt(fila, 0).toString();
+//
+//        try {
+//            sentenciaPL_SQL = "{ call VER_SOLICITUD(?,?)}";
+//            nuevaConeccion = ConexionDB.conectar();
+//            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+//            callableStatement.setString(1, id);
+//            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+//            callableStatement.executeQuery();
+//            resultSet = (ResultSet) callableStatement.getObject(2);
+//            while (resultSet.next()) {
+//                solicitud.setId(resultSet.getString("ID_SOLICITUD"));
+//                solicitud.setTipo(resultSet.getString("TIPO"));
+//                solicitud.setDescripcion(resultSet.getString("DESCRIPCION"));
+//                solicitud.setEstado(resultSet.getString("ESTADO"));
+//            }
+//            ventanaSolicitud.lblNumeroSolicitud.setText(solicitud.getId());
+//            ventanaSolicitud.lblTipoSolicitud.setText(solicitud.getTipo());
+//            ventanaSolicitud.txtaDescripcion.setText(solicitud.getDescripcion());
+//            ventanaSolicitud.cmbEstado.setSelectedItem(solicitud.getEstado());
+//            nuevaConeccion.close();
+//            callableStatement.close();
+//            resultSet.close();
+//
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//     public Solicitud obtenerSolicitud(String id) {
 //        solicitud = new Solicitud();
 //        try {
 //            sentenciaPL_SQL = "{ call VER_SOLICITUD(?,?)}";
 //            nuevaConeccion = ConexionDB.conectar();
 //            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
-//            callableStatement.setString(1, cedula);
+//            callableStatement.setString(1, id);
 //            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
 //            callableStatement.executeQuery();
 //            resultSet = (ResultSet) callableStatement.getObject(2);
 //            while (resultSet.next()) {
-//                empleado.setIdEmpleado(resultSet.getString("ID_EMPLEADO"));
-//                empleado.setCedula(cedula);
-//                empleado.setNombre(resultSet.getString("NOMBRE"));
-//                empleado.setCorreo(resultSet.getString("CORREO"));
-//                empleado.setContrasenia(resultSet.getString("CONTRASENIA"));
-//                empleado.setTelefono(resultSet.getString("TELEFONO"));
-//                empleado.setDireccion(resultSet.getString("DIRECCION"));
-//                empleado.setFechaNacimiento(resultSet.getDate("FECHA_NAC"));
-//                empleado.setIdTrabajo(resultSet.getString("ID_TRABAJO"));
+//                solicitud.setId(resultSet.getString("ID_SOLICITUD"));
+//                solicitud.setTipo(resultSet.getString("TIPO"));
+//                solicitud.setDescripcion(resultSet.getString("DESCRIPCION"));
+//                solicitud.setEstado(resultSet.getString("ESTADO"));
+//                
 //            }
 //            nuevaConeccion.close();
 //            callableStatement.close();
 //            resultSet.close();
 //        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+//            JOptionPane.showMessageDialog(null, "Solicitud no encontrada", "Error", JOptionPane.ERROR_MESSAGE);
 //        }
-//        return empleado;
+//        return solicitud;
 //    }
+     
      public ArrayList<Solicitud> ListSolicitud() {
         arraySolicitud = new ArrayList();
 

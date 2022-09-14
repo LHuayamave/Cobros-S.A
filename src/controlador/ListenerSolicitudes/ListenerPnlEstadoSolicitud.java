@@ -5,6 +5,7 @@
  */
 package controlador.ListenerSolicitudes;
 
+import Vista.FrmEditarSolicitud;
 import Vista.PnlEstadoSolicitud;
 import controlador.SolicitudDB;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,8 @@ public class ListenerPnlEstadoSolicitud implements ActionListener{
     private PnlEstadoSolicitud ventanaEstadoSolicitud;
     private ArrayList<Solicitud> arraySolicitudes;
     private TableRowSorter<DefaultTableModel> sorter;
+    private FrmEditarSolicitud ventanaEditarSolicitud;
+    private ListenerFrmEditarSolicitud olistenerFrmEditarSolicitud;
     /**
      * Constructor vacio para el control de la ventana PnlListarSolicitud.java
      */
@@ -36,6 +39,8 @@ public class ListenerPnlEstadoSolicitud implements ActionListener{
      */
     public ListenerPnlEstadoSolicitud(PnlEstadoSolicitud ventanaEstadoSolicitud){
         this.ventanaEstadoSolicitud = ventanaEstadoSolicitud;
+        ventanaEditarSolicitud = new FrmEditarSolicitud();
+        olistenerFrmEditarSolicitud = new ListenerFrmEditarSolicitud(ventanaEditarSolicitud);
         addListeners();
     }
     
@@ -83,7 +88,11 @@ public class ListenerPnlEstadoSolicitud implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == ventanaEstadoSolicitud.getBtnEditar()){
             System.out.println("boton Editar");
-        }
+            ventanaEditarSolicitud.setVisible(true);
+        }//else if(e.getSource() == ventanaEstadoSolicitud.getBtnEditar()){
+//        solidb.llenarEditarEmpleado(ventanaEstadoSolicitud.getTablaEstadoSolicitudes(), ventanaEditarSolicitud);
+//        ventanaEditarSolicitud.setVisible(true);
+//       }
     }
     
 }
