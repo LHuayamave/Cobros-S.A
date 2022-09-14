@@ -6,12 +6,15 @@
 package controlador;
 
 import Vista.FrmEditarSolicitud;
+import Vista.PnlEstadoSolicitud;
 import configSQL.ConexionDB;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import modelo.Solicitud;
 import oracle.jdbc.OracleTypes;
 
@@ -28,8 +31,12 @@ public class SolicitudDB {
     private Solicitud solicitud;
     private int resultado;
     private String ejecutarSentencia;
+    ArrayList<Solicitud> arraySolicitud;
             
-            
+     public SolicitudDB() {
+        arraySolicitud = new ArrayList();
+    }     
+     
     public int agregarSolicitud( Solicitud solicitud){
         resultado = 0;
         ejecutarSentencia= "{ call AGREGAR_SOLICITUD(?,?,?,?,?,?)}";
@@ -95,10 +102,39 @@ public class SolicitudDB {
 //        }
 //        return regAfectados;
 //    }
-//   public void visualizarSolicitud(JTable tablaEmpleados, FrmConsultarEmpleado ventanaConsultarEmpleado) {
-//        int fila = tablaEmpleados.getSelectedRow();
-//        String cedula = tablaEmpleados.getValueAt(fila, 0).toString();
+//   public void visualizarSolicitud(JTable tablaSolicitudes, PnlEstadoSolicitud ventanaEstadoSolicitud) {
+//        int fila = tablaSolicitudes.getSelectedRow();
+//        String cedula = tablaSolicitudes.getValueAt(fila, 0).toString();
 //
+//        try {
+//            sentenciaPL_SQL = "{ call VER_SOLICITUD(?,?)}";
+//            nuevaConeccion = ConexionDB.conectar();
+//            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+//            callableStatement.setString(1, cedula);
+//            callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+//            callableStatement.executeQuery();
+//            resultSet = (ResultSet) callableStatement.getObject(2);
+//            while (resultSet.next()) {
+//                solicitud.setId(resultSet.getString("ID_SOLICITUD"));
+//                solicitud.setTipo(resultSet.getString("TIPO"));
+//                solicitud.setEstado(resultSet.getString("ESTADO"));
+//                
+//               
+//            }
+//            ventanaEstadoSolicitud.get().setText(empleado.getCedula());
+//            ventanaEstadoSolicitud.getLblNombre().setText(empleado.getNombre());
+//            ventanaEstadoSolicitud.getLblTelefono().setText(empleado.getTelefono());
+//            ventanaEstadoSolicitud.getLblDireccion().setText(empleado.getDireccion());
+//            ventanaEstadoSolicitud.getLblCorreo().setText(empleado.getCorreo());
+//            nuevaConeccion.close();
+//            callableStatement.close();
+//            resultSet.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+//     public Solicitud obtenerSolicitud(String cedula) {
+//        solicitud = new Solicitud();
 //        try {
 //            sentenciaPL_SQL = "{ call VER_SOLICITUD(?,?)}";
 //            nuevaConeccion = ConexionDB.conectar();
@@ -118,17 +154,40 @@ public class SolicitudDB {
 //                empleado.setFechaNacimiento(resultSet.getDate("FECHA_NAC"));
 //                empleado.setIdTrabajo(resultSet.getString("ID_TRABAJO"));
 //            }
-//            ventanaConsultarEmpleado.getLblCedula().setText(empleado.getCedula());
-//            ventanaConsultarEmpleado.getLblNombre().setText(empleado.getNombre());
-//            ventanaConsultarEmpleado.getLblTelefono().setText(empleado.getTelefono());
-//            ventanaConsultarEmpleado.getLblDireccion().setText(empleado.getDireccion());
-//            ventanaConsultarEmpleado.getLblCorreo().setText(empleado.getCorreo());
 //            nuevaConeccion.close();
 //            callableStatement.close();
 //            resultSet.close();
 //        } catch (Exception e) {
-//            System.out.println(e);
+//            JOptionPane.showMessageDialog(null, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
 //        }
+//        return empleado;
 //    }
+     public ArrayList<Solicitud> ListSolicitud() {
+        arraySolicitud = new ArrayList();
+
+        try {            
+            sentenciaPL_SQL = "{ call VER_TABLA_SOLICITUD(?)}";
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.executeQuery();
+            resultSet = (ResultSet) callableStatement.getObject(1);
+            while (resultSet.next()) {
+                solicitud = new Solicitud();
+                solicitud.setId(resultSet.getString("ID_SOLICITUD"));
+                solicitud.setTipo(resultSet.getString("TIPO"));
+                solicitud.setDescripcion(resultSet.getString("DESCRIPCION"));
+                solicitud.setEstado(resultSet.getString("ESTADO"));
+                arraySolicitud.add(solicitud);
+            }
+            nuevaConeccion.close();
+            callableStatement.close();
+            resultSet.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println("Error en listado");
+        }
+        return arraySolicitud;
+    }
 }
 

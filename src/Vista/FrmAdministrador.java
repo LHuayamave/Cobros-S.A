@@ -54,7 +54,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         mniEstadisticaDeu = new javax.swing.JMenuItem();
         mniEstadisticaNR = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        mniListarSolicitudes = new javax.swing.JMenuItem();
+        mniEditarSolicitudes = new javax.swing.JMenuItem();
 
         jPanel3.setBackground(new java.awt.Color(205, 235, 217));
 
@@ -223,9 +223,9 @@ public class FrmAdministrador extends javax.swing.JFrame {
         jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Gestión de Solicitudes");
 
-        mniListarSolicitudes.setBackground(new java.awt.Color(255, 255, 255));
-        mniListarSolicitudes.setText("Listar Solicitudes");
-        jMenu1.add(mniListarSolicitudes);
+        mniEditarSolicitudes.setBackground(new java.awt.Color(255, 255, 255));
+        mniEditarSolicitudes.setText("Editar Solicitudes");
+        jMenu1.add(mniEditarSolicitudes);
 
         jMenuBar1.add(jMenu1);
 
@@ -283,6 +283,14 @@ public class FrmAdministrador extends javax.swing.JFrame {
     public JPanel getPanelAdmin() {
         return panelAdmin;
     }
+
+    public JMenuItem getMniEditarSolicitudes() {
+        return mniEditarSolicitudes;
+    }
+
+    public void setMniEditarSolicitudes(JMenuItem mniEditarSolicitudes) {
+        this.mniEditarSolicitudes = mniEditarSolicitudes;
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,11 +309,11 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblRol;
     private javax.swing.JMenuItem mniActualizarTarifas;
+    private javax.swing.JMenuItem mniEditarSolicitudes;
     private javax.swing.JMenuItem mniEstadisticaDeu;
     private javax.swing.JMenuItem mniEstadisticaNR;
     private javax.swing.JMenuItem mniEstadisticaPag;
     private javax.swing.JMenuItem mniListarEmpleado;
-    private javax.swing.JMenuItem mniListarSolicitudes;
     private javax.swing.JMenuItem mniRegistrarEmpleado;
     private javax.swing.JPanel panelAdmin;
     // End of variables declaration//GEN-END:variables
