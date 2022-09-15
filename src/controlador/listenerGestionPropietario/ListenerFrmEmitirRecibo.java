@@ -7,8 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Esta clase agraga los listener a los botones del formulario emitir recibo
+ * haciendo uso de la interfaz ActionListener .
  *
- * @author Soldado
+ * @param cs {@link ActionListener } clase que permite agregar a los
+ * escuchadores a los botones.
+ * @author Grupo E
  */
 public class ListenerFrmEmitirRecibo implements ActionListener {
 

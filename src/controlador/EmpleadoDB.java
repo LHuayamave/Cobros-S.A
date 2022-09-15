@@ -1,5 +1,11 @@
 package controlador;
 
+/**
+ * Esta clase permite controlar la informacion entre el programa y la base de
+ * datos, haciendo uso de modelos y procedimientos almacenados en la BD.
+ *
+ * @author Grupo E
+ */
 import Vista.FrmConsultarEmpleado;
 import Vista.FrmEditarEmpleado;
 import configSQL.ConexionDB;
@@ -28,6 +34,14 @@ public class EmpleadoDB {
         arrayEmpleado = new ArrayList();
     }
 
+    /**
+     * Este metodo permite la cantidad maxima de empleados registrado lo que
+     * permite definir el id del nuevo empleado.
+     *
+     * @return rs regresa el numero maximo de registro del empleado
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int obternerIdMaximo() {
         int idEmpleado = 0;
 
@@ -44,12 +58,22 @@ public class EmpleadoDB {
             nuevaConeccion.close();
             callableStatement.close();
             resultSet.close();
-        } catch (Exception e) {
-            System.out.println(e + " Error al generar id empleado");
+        } catch (SQLException ex) {
+            System.out.println(ex + " Error al generar id empleado");
         }
         return idEmpleado;
     }
 
+    /**
+     * Este metodo permite hacer registro del empleado que recibe a la base de
+     * datos.
+     *
+     * @param cs {@link Empleado} recibe una instancia de un empleado.
+     * @return rs regresa las filas afectadas para verificar si se ingreso
+     * correctamente.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int agregarEmpleado(Empleado empleado) {
         regAfectados = 0;
         try {
@@ -71,13 +95,22 @@ public class EmpleadoDB {
             nuevaConeccion.close();
             callableStatement.close();
             resultSet.close();
-        } catch (Exception e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Empleado no agregado", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return regAfectados;
 
     }
 
+    /**
+     * Este metodo permite obtener el registro del un empleado de la BD mediante
+     * el uso de una cedula.
+     *
+     * @param cs {@link String} recibe la cedula como cadena de caracteres.
+     * @return rs regresa el empleado que se solicita.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public Empleado obtenerEmpleado(String cedula) {
         empleado = new Empleado();
         try {
@@ -102,16 +135,23 @@ public class EmpleadoDB {
             nuevaConeccion.close();
             callableStatement.close();
             resultSet.close();
-        } catch (Exception e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Empleado no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return empleado;
     }
 
+    /**
+     * Este metodo permite obtener los registros de los empleados ´para llenar
+     * las tablas que se presentan.
+     *
+     * @return rs regresa una lista de empleados para rellenar las tablas.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public ArrayList<Empleado> ListEmpleado() {
         arrayEmpleado = new ArrayList();
-
-        try {            
+        try {
             sentenciaPL_SQL = "{ call VER_TABLA_EMPLEADO(?)}";
             nuevaConeccion = ConexionDB.conectar();
             callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
@@ -141,6 +181,15 @@ public class EmpleadoDB {
         return arrayEmpleado;
     }
 
+    /**
+     * Este metodo permite obtener el empleado de una tabla.
+     *
+     * @param cs {@link JTable} Es la tabal donde se va tomar la informacion.
+     * @param cs {@link FrmConsultarEmpleado} Es el formulario donde se va
+     * presentar los valores.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void visualizarEmpleado(JTable tablaEmpleados, FrmConsultarEmpleado ventanaConsultarEmpleado) {
         int fila = tablaEmpleados.getSelectedRow();
         String cedula = tablaEmpleados.getValueAt(fila, 0).toString();
@@ -172,11 +221,18 @@ public class EmpleadoDB {
             nuevaConeccion.close();
             callableStatement.close();
             resultSet.close();
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
 
+    /**
+     * Este metodo permite obtener los registros de los empleados ´para llenar
+     * las tablas de editar empleado.
+     *
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void llenarEditarEmpleado(JTable tablaEmpleados, FrmEditarEmpleado ventanaEmpleado) {
         int fila = tablaEmpleados.getSelectedRow();
         String cedula = tablaEmpleados.getValueAt(fila, 0).toString();
@@ -209,11 +265,19 @@ public class EmpleadoDB {
             callableStatement.close();
             resultSet.close();
 
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
 
+    /**
+     * Este metodo permite modificar la informacion del empleado atravex del uso
+     * del store procedure en la BD.
+     *
+     * @return rs regresa el numero de registro afectados.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int modificarEmpleado(FrmEditarEmpleado ventanaEmpleado) {
         regAfectados = 0;
         try {
@@ -237,6 +301,10 @@ public class EmpleadoDB {
         return regAfectados;
     }
 
+    /**
+     * Limpia la tabla donde se presenta la informacion del empleado para evitar
+     * que se repitan los valores al refrescar la tabla.
+     */
     public void LimpiarFormulario(JTable tablaEmpleados) {
         DefaultTableModel tb = (DefaultTableModel) tablaEmpleados.getModel();
         tb.getDataVector().removeAllElements();
@@ -244,6 +312,13 @@ public class EmpleadoDB {
         System.out.println("Si funciono");
     }
 
+    /**
+     * Este metodo permite verificar si el empleado en la BD.
+     *
+     * @return rs regresa "000" si el empleado no existe
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public String verificarSiExisteEmpleado(String cedula) {
         try {
             sentenciaPL_SQL = "{ call VERIFICAR_SI_EXISTE_EMPLEADO(?,?)}";
@@ -255,12 +330,20 @@ public class EmpleadoDB {
             cedula = callableStatement.getString(2);
             nuevaConeccion.close();
             callableStatement.close();
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
         return cedula;
     }
 
+    /**
+     * Este metodo permite ver que rol cumple el empleado en la base de datos y
+     * devuelve el nombre que sera presentado en la ventana del programa.
+     *
+     * @return rs regresa el nombre del rol del empleado.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public String obtenerNombreRol(int id_rol) {
         String nombreRol = "";
         try {
@@ -273,8 +356,8 @@ public class EmpleadoDB {
             nombreRol = callableStatement.getString(2);
             nuevaConeccion.close();
             callableStatement.close();
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
         return nombreRol;
     }

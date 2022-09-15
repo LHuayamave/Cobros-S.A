@@ -9,10 +9,8 @@ package controlador;
 import configSQL.ConexionDB;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
@@ -27,13 +25,9 @@ import oracle.jdbc.OracleTypes;
 public class PropietarioDB {
 
     private Connection nuevaConeccion;
-    private String sentenciaPL_SQL;
+
     private CallableStatement callableStatement;
     private ResultSet resultSet;
-
-    private static PreparedStatement sentencia_preparada;
-    private Statement statement;
-    private Connection nuevaConexion;
     private ArrayList<Propietario> listaPropietarios;
     private Propietario propietario;
     private ValidarCampos validarCampos;
@@ -52,9 +46,15 @@ public class PropietarioDB {
     }
 
     ;
-    /*
-    * Este metodo extrae la lista de los propietarios para presentarlo en la tabla listarEmpleado
-    */
+    /**
+     * Este metodo permite obtener la lista de los propietarios que se va presentar
+     * en una tabla.
+     * 
+     * @param cs {@link frmEmitirRecibo} recibe el formulario que va presentar 
+     * los valores.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public ArrayList<Propietario> listarPropietarios() {
         listaPropietarios = new ArrayList();
         ejecutarSentencia = "{ call VER_TABLA_PROPIETARIO(?)}";
@@ -85,12 +85,21 @@ public class PropietarioDB {
         return listaPropietarios;
     }
 
+    /**
+     * Este metodo permite regirtrar a un propietario no domiciliado en la BD.
+     *
+     * @param cs {@link Propietario} modelo que contiene los datos del
+     * propietario
+     * @param cs {@link Vehiculo} modelo que contiene los datos del pvehiculo
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int registrarPropietarioNoDomiciliado(Propietario propietario, Vehiculo vehiculo) {
         resultado = 0;
         ejecutarSentencia = "{ call AGREGAR_PROPIETARIO_NO_DOMICILIADO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, propietario.getCedula());
             cs.setString(2, propietario.getNombre());
@@ -111,7 +120,7 @@ public class PropietarioDB {
 
             cs.execute();
             resultado = cs.getInt(16);
-            nuevaConexion.close();
+            nuevaConeccion.close();
             mensajeError("El ropietario insertado con exito.");
         } catch (Exception e) {
             mensajeError("El propietario no a sido insertado.Error: " + e);
@@ -119,13 +128,24 @@ public class PropietarioDB {
         return resultado;
     }
 
+    /**
+     * Este metodo permite regirtrar a un propietario domiciliado en la BD.
+     *
+     * @param cs {@link Propietario} modelo que contiene los datos del
+     * propietario
+     * @param cs {@link Vehiculo} modelo que contiene los datos del pvehiculo
+     * @param cs {@link CuentaBancaria} modelo que contiene los datos del cuenta
+     * Bancaria
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int registrarPropietarioDomiciliado(CuentaBancaria cuentaBancaria, Propietario propietario,
             Vehiculo vehiculo) {
         resultado = 0;
         ejecutarSentencia = "{ call AGREGAR_PROPIETARIO_DOMICILIADO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
@@ -154,7 +174,7 @@ public class PropietarioDB {
 
             cs.execute();
             resultado = cs.getInt(22);
-            nuevaConexion.close();
+            nuevaConeccion.close();
             mensajeError("El ropietario insertado con exito.");
         } catch (Exception e) {
             System.out.println(e);
@@ -168,11 +188,20 @@ public class PropietarioDB {
         return validarCampos.validarEdad(date);
     }
 
+    /**
+     * Este metodo permite obtener los diferentes estados que puede tener un
+     * propietario y llenar el comboBox.
+     *
+     * @param cs {@link JComboBox} permite hacer una lista oara el propietario
+     * elija una opcion.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void llenarCmbEstadoPropietario(JComboBox cmbEstadoPropietario) {
         try {
-            sentenciaPL_SQL = "{call OBTENER_ESTADO_PROPIETARIO(?)}";
+            ejecutarSentencia = "{call OBTENER_ESTADO_PROPIETARIO(?)}";
             nuevaConeccion = ConexionDB.conectar();
-            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
             callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
             callableStatement.executeQuery();
             resultSet = (ResultSet) callableStatement.getObject(1);
@@ -189,9 +218,9 @@ public class PropietarioDB {
 
     public void llenarCmbTipoCtaBancaria(JComboBox cmbTipoCtaBancaria) {
         try {
-            sentenciaPL_SQL = "{call OBTENER_NOMBRE_TIPO_CUENTA(?)}";
+            ejecutarSentencia = "{call OBTENER_NOMBRE_TIPO_CUENTA(?)}";
             nuevaConeccion = ConexionDB.conectar();
-            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
             callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
             callableStatement.executeQuery();
             resultSet = (ResultSet) callableStatement.getObject(1);
@@ -206,11 +235,20 @@ public class PropietarioDB {
         }
     }
 
+    /**
+     * Este metodo permite obtener los diferentes tipos de bancos que puede
+     * tener una cuenta bancaria y llenar el comboBox.
+     *
+     * @param cs {@link JComboBox} permite hacer una lista oara el propietario
+     * elija una opcion.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void llenarCmbBanco(JComboBox cmbBanco) {
         try {
-            sentenciaPL_SQL = "{call OBTENER_NOMBRE_BANCO(?)}";
+            ejecutarSentencia = "{call OBTENER_NOMBRE_BANCO(?)}";
             nuevaConeccion = ConexionDB.conectar();
-            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
             callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
             callableStatement.executeQuery();
             resultSet = (ResultSet) callableStatement.getObject(1);
@@ -225,11 +263,23 @@ public class PropietarioDB {
         }
     }
 
+    /**
+     * Este metodo permite obtener un propietario domiciliado que se va
+     * presentar en un formulario.
+     *
+     * @param cs {@link Propietario} modelo que contiene los datos del
+     * propietario
+     * @param cs {@link Vehiculo} modelo que contiene los datos del pvehiculo
+     * @param cs {@link CuentaBancaria} modelo que contiene los datos del cuenta
+     * Bancaria
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void consultarPropietarioDomiciliado(CuentaBancaria cuentaBancaria, Propietario propietario, String cedula) {
         try {
-            sentenciaPL_SQL = "{call VER_PROPIETARIO_DOMICILIADO(?,?)}";
+            ejecutarSentencia = "{call VER_PROPIETARIO_DOMICILIADO(?,?)}";
             nuevaConeccion = ConexionDB.conectar();
-            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
             callableStatement.setString(1, cedula);
             callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
             callableStatement.executeQuery();
@@ -261,11 +311,23 @@ public class PropietarioDB {
         }
     }
 
+    /**
+     * Este metodo permite obtener un propietario no domiciliado que se va
+     * presentar en un formulario.
+     *
+     * @param cs {@link Propietario} modelo que contiene los datos del
+     * propietario
+     * @param cs {@link Vehiculo} modelo que contiene los datos del pvehiculo
+     * @param cs {@link CuentaBancaria} modelo que contiene los datos del cuenta
+     * Bancaria
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void consultarPropietarioNoDomiciliado(Propietario propietario, String cedula) {
         try {
-            sentenciaPL_SQL = "{call VER_PROPIETARIO_NO_DOMICILIADO(?,?)}";
+            ejecutarSentencia = "{call VER_PROPIETARIO_NO_DOMICILIADO(?,?)}";
             nuevaConeccion = ConexionDB.conectar();
-            callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
             callableStatement.setString(1, cedula);
             callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
             callableStatement.executeQuery();
@@ -438,12 +500,24 @@ public class PropietarioDB {
         return listaPagoNoDomiciliadosMes;
     }
 
+    /**
+     * Acontiniacio se va mostrar las 5 diferentes modificaiones que puede el
+     * propietario.
+     *
+     * @param cs {@link Propietario} modelo que contiene los datos del
+     * propietario
+     * @param cs {@link Vehiculo} modelo que contiene los datos del pvehiculo
+     * @param cs {@link CuentaBancaria} modelo que contiene los datos del cuenta
+     * Bancaria
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int modificarPropietarioNoDomiciliado(Propietario propietario) {
         resultado = 0;
         ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_NO_DOMICILIADO(?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, propietario.getCedula());
             cs.setString(2, propietario.getNombre());
@@ -456,7 +530,7 @@ public class PropietarioDB {
             cs.registerOutParameter(9, java.sql.Types.INTEGER);
             cs.execute();
             resultado = cs.getInt(9);
-            nuevaConexion.close();
+            nuevaConeccion.close();
         } catch (Exception e) {
             mensajeError("Error: " + e);
         }
@@ -468,8 +542,8 @@ public class PropietarioDB {
         resultado = 0;
         ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_NO_DOMICILIADO_A_DOMICILIADO (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
@@ -491,7 +565,7 @@ public class PropietarioDB {
             cs.registerOutParameter(17, java.sql.Types.INTEGER);
             cs.execute();
             resultado = cs.getInt(17);
-            nuevaConexion.close();
+            nuevaConeccion.close();
         } catch (Exception e) {
             mensajeError("Error: " + e);
         }
@@ -503,8 +577,8 @@ public class PropietarioDB {
         resultado = 0;
         ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_DOMICILIADO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
@@ -526,7 +600,7 @@ public class PropietarioDB {
             cs.registerOutParameter(17, java.sql.Types.INTEGER);
             cs.execute();
             resultado = cs.getInt(17);
-            nuevaConexion.close();
+            nuevaConeccion.close();
         } catch (Exception e) {
             mensajeError("Error: " + e);
         }
@@ -537,8 +611,8 @@ public class PropietarioDB {
         resultado = 0;
         ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_DOMICILIADO_A_NO_DOMICILIADO(?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, propietario.getCedula());
             cs.setString(2, propietario.getNombre());
@@ -551,7 +625,7 @@ public class PropietarioDB {
             cs.registerOutParameter(9, java.sql.Types.INTEGER);
             cs.execute();
             resultado = cs.getInt(9);
-            nuevaConexion.close();
+            nuevaConeccion.close();
         } catch (Exception e) {
             mensajeError("Error: " + e);
         }
@@ -563,8 +637,8 @@ public class PropietarioDB {
         resultado = 0;
         ejecutarSentencia = "{ call MODIFICAR_PROPIETARIO_DOMICILIADO_NUEVA_CTA_BANCARIA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
@@ -586,7 +660,7 @@ public class PropietarioDB {
             cs.registerOutParameter(17, java.sql.Types.INTEGER);
             cs.execute();
             resultado = cs.getInt(17);
-            nuevaConexion.close();
+            nuevaConeccion.close();
         } catch (Exception e) {
             mensajeError("Error: " + e);
         }
@@ -605,6 +679,12 @@ public class PropietarioDB {
         }
     }
 
+    /**
+     * Acualiza la factura cuando el propietario no domiciliado canceña.
+     *
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public int ActualizarFechaPago(String id_factura) {
         resultado = 0;
         ejecutarSentencia = "{call actualizar_pago (?,?)}";
@@ -623,7 +703,15 @@ public class PropietarioDB {
         }
         return resultado;
     }
-        public String verificarSiExistePropietario(String cedula) {
+
+    /**
+     * Veridica si la cedula del propietario existe en la BD si no existe
+     * regresa el valor de "000".
+     *
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
+    public String verificarSiExistePropietario(String cedula) {
         try {
             ejecutarSentencia = "{call VERIFICAR_SI_EXISTE_PROPIETARIO(?,?)}";
             nuevaConeccion = ConexionDB.conectar();

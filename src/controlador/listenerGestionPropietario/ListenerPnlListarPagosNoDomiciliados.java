@@ -20,8 +20,12 @@ import modelo.ImgTabla;
 import modelo.PagoNoDomiciliado;
 
 /**
+ * Esta clase agraga los listener a los botones al panel de listar pagos no
+ * domiciliado haciendo uso de la interfaz ActionListener .
  *
- * @author Luis
+ * @param cs {@link ActionListener } clase que permite agregar a los
+ * escuchadores a los botones.
+ * @author Grupo E
  */
 public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
 

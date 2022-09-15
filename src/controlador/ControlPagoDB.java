@@ -6,7 +6,6 @@ package controlador;
  *
  * @author Grupo E
  */
-
 import configSQL.ConexionDB;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -17,6 +16,7 @@ import oracle.jdbc.OracleTypes;
 import modelo.Factura;
 
 public class ControlPagoDB {
+
     private Connection nuevaConeccion;
     private String sentenciaPL_SQL;
     private CallableStatement callableStatement;
@@ -25,16 +25,21 @@ public class ControlPagoDB {
 
     ConexionDB cnx = new ConexionDB();
     Connection conexion = cnx.conectar();
-    
+
     ArrayList<Factura> arrayFactura;
-    
+
     public ControlPagoDB() {
         arrayFactura = new ArrayList();
     }
-    
-    /*
-    * Este metodo extrae la lista de los pagos para presentarlo en la tabla listarControlPago
-    */
+
+    /**
+     * Este metodo permite optener la lista de las faturas para controlar los
+     * pagos .
+     *
+     * @return rs Regresa la lista de las facturas de los propietarios.
+     * @throws SQLException como se esta usando una conreccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public ArrayList<Factura> ListFactura() {
         arrayFactura = new ArrayList();
         try {
@@ -69,22 +74,26 @@ public class ControlPagoDB {
         System.out.println(arrayFactura);
         return arrayFactura;
     }
-    
-    /*
-    * Este metodo actualiza la multa del propietario presentado en la tablaControlPago
-    */
-    public void ActualizarEstadoMulta(String cod_factura, float recargo){
-        sentenciaPL_SQL= "{call ACTUALIZAR_MULTA_FACTURA('"+cod_factura+"',"+recargo+")}";
-        try {    
+
+    /**
+     * Este metodo actualiza la multa del propietario presentado en la
+     * tablaControlPago.
+     *
+     * @throws SQLException como se esta usando una conreccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
+    public void ActualizarEstadoMulta(String cod_factura, float recargo) {
+        sentenciaPL_SQL = "{call ACTUALIZAR_MULTA_FACTURA('" + cod_factura + "'," + recargo + ")}";
+        try {
             nuevaConeccion = ConexionDB.conectar();
             callableStatement = nuevaConeccion.prepareCall(sentenciaPL_SQL);
             callableStatement.executeQuery();
             nuevaConeccion.close();
-            callableStatement.close();  
+            callableStatement.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             System.out.println("Error en listado");
         }
     }
-    
+
 }

@@ -1,7 +1,8 @@
 package controlador;
 
 /**
- * Este es el modelo que maneja los datos con respecto al logeo
+ * Este es el modelo que maneja los datos con respecto al ingreso del empleado
+ * al sistema.
  *
  * @author Grupo E
  */

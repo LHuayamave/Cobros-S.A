@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import controlador.listenerGestionPropietario.ListenerFrmEmitirRecibo;
@@ -12,27 +7,31 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Esta Formulario simula un pdf que va ser impreso, se presenta los datos de
+ * las facturas pagadas
  *
- * @author Soldado
+ * @author Grupo E
  */
 public class FrmEmitirRecibo extends javax.swing.JDialog {
+
     private String idFactura;
     private boolean esDomiciliado;
     private PnlListarPropietariosDomiciliados pnlListarPropietariosDomiciliados;
     private DefaultTableModel modeloTablaVehiculo;
     private ListenerFrmEmitirRecibo listenerFrmEmitirRecibo;
-    
+
     public FrmEmitirRecibo(java.awt.Frame parent, boolean esDomiciliado, String idFactura) {
-        super(parent, true);       
+        super(parent, true);
         initComponents();
         this.idFactura = idFactura;
         this.esDomiciliado = esDomiciliado;
-        modeloTablaVehiculo =(DefaultTableModel)tblVehiculo.getModel();
+        modeloTablaVehiculo = (DefaultTableModel) tblVehiculo.getModel();
         llenarRecibo();
         addListener();
-        this.setVisible(true); 
+        this.setVisible(true);
     }
-    public void addListener(){
+
+    public void addListener() {
         btnEnviar.addActionListener(new ListenerFrmEmitirRecibo(this));
     }
 
@@ -417,13 +416,15 @@ public class FrmEmitirRecibo extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public void llenarRecibo(){
+    public void llenarRecibo() {
         ListenerFrmEmitirRecibo listenerFrmEmitirRecibo = new ListenerFrmEmitirRecibo(this);
         listenerFrmEmitirRecibo.llenarCampos();
     }
-    public void aniadirListener(){
+
+    public void aniadirListener() {
         btnEnviar.addActionListener(new ListenerFrmEmitirRecibo(this));
     }
+
     public JButton getBtnEnviar() {
         return btnEnviar;
     }

@@ -11,8 +11,12 @@ import modelo.EvaluarCampo;
 import modelo.Vehiculo;
 
 /**
+ * Esta clase agraga los listener a los botones del formulario editar vehiculo del
+ * propietario haciendo uso de la interfaz ActionListener .
  *
- * @author Soldado
+ * @param cs {@link ActionListener } clase que permite agregar a los
+ * escuchadores a los botones.
+ * @author Grupo E
  */
 public class ListenerFrmEditarVehiculo extends KeyAdapter implements ActionListener {
 

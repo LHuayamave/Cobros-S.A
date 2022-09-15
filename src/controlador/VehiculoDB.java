@@ -6,14 +6,11 @@ package controlador;
  *
  * @author Grupo E
  */
-
 import configSQL.ConexionDB;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import modelo.Vehiculo;
@@ -26,15 +23,18 @@ public class VehiculoDB {
     private String ejecutarSentencia;
     private Connection nuevaConeccion;
     private CallableStatement callableStatement;
-
-    private static PreparedStatement sentencia_preparada;
-
-    Statement statement;
-    private Connection nuevaConexion;
     private Vehiculo vehiculo;
 
     private int resultado;
 
+    /**
+     * Este metodo permite listar los vehiculos de un propietario en especifico.
+     *
+     * @param cs {@link String} recibe la cedula para buscar los vehiculos
+     * relacionados
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public ArrayList<Vehiculo> listarVehiculo(String cedula) {
         listarVehiculo = new ArrayList();
 
@@ -65,6 +65,14 @@ public class VehiculoDB {
         return listarVehiculo;
     }
 
+    /**
+     * Este metodo permite listar un vehiculo en especifico de un propietario.
+     *
+     * @param cs {@link Vehiculo} Modelo que contiene la informcacion de los
+     * vehiculos. relacionados
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public Vehiculo verVehiculo(Vehiculo vehiculo) {
         ejecutarSentencia = "{ call VER_VEHICULO (?,?)}";
         try {
@@ -92,12 +100,22 @@ public class VehiculoDB {
         return vehiculo;
     }
 
+    /**
+     * Este metodo permite modificar el vehiculo de un propietario en
+     * especifico.
+     *
+     * @param cs {@link Vehiculo} Modelo que contiene la informcacion de los
+     * vehiculos.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
+
     public int modificarVehiculo(Vehiculo vehiculo) {
         resultado = 0;
         ejecutarSentencia = "{ call MODIFICAR_VEHICULO(?,?,?,?,?,?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            CallableStatement cs = nuevaConexion.prepareCall(ejecutarSentencia);
+            nuevaConeccion = ConexionDB.conectar();
+            CallableStatement cs = nuevaConeccion.prepareCall(ejecutarSentencia);
 
             cs.setString(1, vehiculo.getPlaca());
             cs.setString(2, vehiculo.getMarca());
@@ -107,7 +125,7 @@ public class VehiculoDB {
             cs.registerOutParameter(6, java.sql.Types.INTEGER);
             cs.execute();
             resultado = cs.getInt(6);
-            nuevaConexion.close();
+            nuevaConeccion.close();
         } catch (Exception e) {
             new ValidarCampos().mensajeError("Error: " + e);
         }
@@ -115,8 +133,6 @@ public class VehiculoDB {
     }
 
     // Ingresa el vehiculo en la BD 
-
-
     // LLena el comboBox con los datos que se encuentra en la BD.
     public void llenarTipoImpuesto(JComboBox tipoImpuesto) {
         ejecutarSentencia = "{ call OBTENER_TIPO_VEHICULO(?)}";
@@ -138,7 +154,6 @@ public class VehiculoDB {
         }
     }
 
-//    }
     //Verifica si la placa existe n la BD
     public String verificarSiExistePlaca(String placa) {
         try {

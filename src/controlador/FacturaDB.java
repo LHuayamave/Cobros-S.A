@@ -14,8 +14,10 @@ import java.sql.SQLException;
 import oracle.jdbc.OracleTypes;
 
 /**
+ * Esta clase permite controlar la informacion entre el programa y la base de
+ * datos, haciendo uso de modelos y procedimientos almacenados en la BD.
  *
- * @author Soldado
+ * @author Grupo E
  */
 public class FacturaDB {
 
@@ -28,6 +30,15 @@ public class FacturaDB {
     }
     private ValidarCampos validarCampos;
 
+    /**
+     * Este metodo permite obtener el recibo de un propietario domiciliado que 
+     * solicite el empleado.
+     * 
+     * @param cs {@link frmEmitirRecibo} recibe el formulario que va presentar 
+     * los valores.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void obtenerReciboDomiciliado(FrmEmitirRecibo frmEmitirRecibo) {
         validarCampos = new ValidarCampos();
         try {
@@ -69,6 +80,15 @@ public class FacturaDB {
         }
     }
 
+    /**
+     * Este metodo permite obtener el recibo de un propietario no domiciliado que 
+     * solicite el empleado.
+     * 
+     * @param cs {@link frmEmitirRecibo} recibe el formulario que va presentar 
+     * los valores.
+     * @throws SQLException como se esta usando una correccion a la BD se debe
+     * usar un try catch para atrapar algun error propio de la base de datos.
+     */
     public void obtenerReciboaNoDomiciliado(FrmEmitirRecibo frmEmitirRecibo) {
         validarCampos = new ValidarCampos();
         try {
@@ -93,7 +113,7 @@ public class FacturaDB {
                 frmEmitirRecibo.getLblCtaBancaria().setText("XXXX-XXXX-XXXX-XXXX");
                 frmEmitirRecibo.getLblTipoCuenta().setText("---");
                 frmEmitirRecibo.getLlblBanco().setText("---");
-                
+
                 Object[] fila = {resultSet.getString(8),
                     resultSet.getString(9) + " " + resultSet.getString(10),
                     resultSet.getString(11)};

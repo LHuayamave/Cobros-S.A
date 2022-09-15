@@ -10,7 +10,6 @@ import controlador.EmpleadoDB;
 import Vista.FrmEditarEmpleado;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;

@@ -89,10 +89,7 @@ public class ListenerPnlEstadoSolicitud implements ActionListener{
         if(e.getSource() == ventanaEstadoSolicitud.getBtnEditar()){
             System.out.println("boton Editar");
             ventanaEditarSolicitud.setVisible(true);
-        }//else if(e.getSource() == ventanaEstadoSolicitud.getBtnEditar()){
-//        solidb.llenarEditarEmpleado(ventanaEstadoSolicitud.getTablaEstadoSolicitudes(), ventanaEditarSolicitud);
-//        ventanaEditarSolicitud.setVisible(true);
-//       }
+        }
     }
     
 }

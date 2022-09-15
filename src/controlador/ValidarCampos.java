@@ -215,6 +215,10 @@ public class ValidarCampos {
                 &&!vehiculo.getAnioVehiculo().isEmpty();         
     }
             
+    /**
+     * Este metodo permite darle formato a las fechas, se la utiliza para enviar
+     * las diferentes fechas a la BD y evitar que salga algun error.
+     */
     public String validarFormatoFecha( Date date){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String fechaConFormato = simpleDateFormat.format(date);

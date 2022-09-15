@@ -38,17 +38,4 @@ public class ConexionDB {
         }
         return null;
     }
-    /**
-     * Metodo que permite ejecutar store procedure
-     * @param cs {@link CallableStatement} objeto que ejecuta store procedure.
-     * @return rs serie de resultados obtenidos por la ejecucion de la sentencia
-     * @throws SQLException 
-     */
-    public static ResultSet ejecutarStoreProcedure(CallableStatement cs)throws SQLException {   
-        return cs.executeQuery();
-    }
-    
-    public static Connection getConnection(){
-        return connection;
-    }
 }

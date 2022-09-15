@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import modelo.Empleado;
 import controlador.EmpleadoDB;
-import controlador.ValidarCampos;
 import javax.swing.JOptionPane;
 
 

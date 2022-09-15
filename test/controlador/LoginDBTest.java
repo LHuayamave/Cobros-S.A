@@ -15,21 +15,24 @@ import static org.junit.Assert.*;
  * @author Soldado
  */
 public class LoginDBTest {
-    EmpleadoDB empleadoDB ;
-    FrmLogin frmLogin= new FrmLogin();
-    LoginDB instance ;
+    
     public LoginDBTest() {
     }
-
-    @Test
-    public void testObtenerEmpleado() {
-        System.out.println("obtener Empleado"); 
-        String cedula = "9876543210";
-        String contrasenia = "C123456";
-        instance = new LoginDB(frmLogin);
-        int expResult = 2;
-        int result = instance.obtenerEmpleado(cedula, contrasenia);
-        assertEquals(expResult, result);
-    }
+    
+    /**
+     * Modulo Login - Test #1
+     * Ests test permite verificar acceso al programa.
+     */
+//    @Test
+//    public void testObtenerEmpleado() {
+//        String cedula = "9876543210";
+//        String contrasenia = "K123456";
+//        System.out.println("obtenerEmpleado");
+//        FrmLogin frmLogin = new FrmLogin(); 
+//        LoginDB loginDB = new LoginDB(frmLogin );   
+//        int expResult = 1;
+//        int result = loginDB.obtenerEmpleado(cedula, contrasenia);
+//        assertEquals(expResult, result);
+//    }
     
 }
