@@ -94,7 +94,7 @@ public class EmpleadoDB {
             regAfectados = callableStatement.getInt(10);
             nuevaConeccion.close();
             callableStatement.close();
-            resultSet.close();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Empleado no agregado", "Error", JOptionPane.ERROR_MESSAGE);
         }

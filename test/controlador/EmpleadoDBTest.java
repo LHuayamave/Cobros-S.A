@@ -40,29 +40,34 @@ public class EmpleadoDBTest {
 //
 //    }
 
-    @Test
-    public void testAgregarEmpleado() throws ParseException {
-        System.out.println("agregarEmpleado");
-        Empleado empleado = new Empleado();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                
-        empleado.setCedula("5554448881");
-        empleado.setContrasenia("L123456");
-        empleado.setCorreo("prueba");
-        empleado.setDireccion("prueba");
-        empleado.setFechaNacimiento(formato.parse("23/11/2015"));
-        empleado.setIdEmpleado("5");
-        empleado.setIdTrabajo("1");
-        empleado.setNombre("Juanito Alimaña");
-        empleado.setTelefono("000000000");
-        EmpleadoDB instance = new EmpleadoDB();
-        int expResult = 1;
-        int result = instance.agregarEmpleado(empleado);
-        assertEquals(expResult, result);
-    }
+    /**
+     * Modulo Empleado - Test #3
+     * Agregar un empleado.
+     */
+//    @Test
+//    public void testAgregarEmpleado() throws ParseException {
+//        System.out.println("agregarEmpleado");
+//        Empleado empleado = new Empleado();
+//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+//                
+//        empleado.setCedula("5554448881");
+//        empleado.setContrasenia("L123456");
+//        empleado.setCorreo("prueba");
+//        empleado.setDireccion("prueba");
+//        empleado.setFechaNacimiento(formato.parse("23/11/2015"));
+//        empleado.setIdEmpleado("5");
+//        empleado.setIdTrabajo("1");
+//        empleado.setNombre("Juanito Alimaña");
+//        empleado.setTelefono("000000000");
+//        EmpleadoDB instance = new EmpleadoDB();
+//        int expResult = 1;
+//        int result = instance.agregarEmpleado(empleado);
+//        assertEquals(expResult, result);
+//    }
 
     /**
-     * Modulo Empleado - Test #3.
+     * Modulo Empleado - Test #4
+     * Obtener un empleado.
      */
 //    @Test
 //    public void testObtenerEmpleado() {
@@ -77,7 +82,8 @@ public class EmpleadoDBTest {
 //    }
 
     /**
-     * Modulo Empleado - Test #4.
+     * Modulo Empleado - Test #5
+     * Obtener lista de un empleado.
      */
 //    @Test
 //    public void testListEmpleado() {
@@ -89,66 +95,55 @@ public class EmpleadoDBTest {
 //
 //    }
 
-//    @Test
-//    public void testVisualizarEmpleado() {
-//        System.out.println("visualizarEmpleado");
-//        JTable tablaEmpleados = null;
-//        FrmConsultarEmpleado ventanaConsultarEmpleado = null;
-//        EmpleadoDB instance = new EmpleadoDB();
-//        instance.visualizarEmpleado(tablaEmpleados, ventanaConsultarEmpleado);
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testLlenarEditarEmpleado() {
-//        System.out.println("llenarEditarEmpleado");
-//        JTable tablaEmpleados = null;
-//        FrmEditarEmpleado ventanaEmpleado = null;
-//        EmpleadoDB instance = new EmpleadoDB();
-//        instance.llenarEditarEmpleado(tablaEmpleados, ventanaEmpleado);
-//        fail("The test case is a prototype.");
-//    }
-//
+    /**
+     * Modulo Empleado - Test #6
+     * Modificar un empleado.
+     */
+
 //    @Test
 //    public void testModificarEmpleado() {
 //        System.out.println("modificarEmpleado");
-//        FrmEditarEmpleado ventanaEmpleado = null;
+//        FrmEditarEmpleado frmEditarEmpleado = new FrmEditarEmpleado();
+//        frmEditarEmpleado.txtCedula.setText("1231457845");
+//        frmEditarEmpleado.txtCorreo.setText("prueba");
+//        frmEditarEmpleado.txtDireccion.setText("Prueba");
+//        frmEditarEmpleado.txtNombre.setText("Fantasmita");
+//        frmEditarEmpleado.txtTelefono.setText("4444445557");
 //        EmpleadoDB instance = new EmpleadoDB();
 //        int expResult = 0;
-//        int result = instance.modificarEmpleado(ventanaEmpleado);
+//        int result = instance.modificarEmpleado(frmEditarEmpleado);
 //        assertEquals(expResult, result);
-//        fail("The test case is a prototype.");
 //    }
-//
-//    @Test
-//    public void testLimpiarFormulario() {
-//        System.out.println("LimpiarFormulario");
-//        JTable tablaEmpleados = null;
-//        EmpleadoDB instance = new EmpleadoDB();
-//        instance.LimpiarFormulario(tablaEmpleados);
-//        fail("The test case is a prototype.");
-//    }
-//
+
+    /**
+     * Modulo Empleado - Test #7
+     * Verificar si existe empleado.
+     */
+
 //    @Test
 //    public void testVerificarSiExisteEmpleado() {
 //        System.out.println("verificarSiExisteEmpleado");
-//        String cedula = "";
+//        String cedula = "0123456789";
 //        EmpleadoDB instance = new EmpleadoDB();
-//        String expResult = "";
+//        String expResult = "0123456789";
 //        String result = instance.verificarSiExisteEmpleado(cedula);
 //        assertEquals(expResult, result);
-//        fail("The test case is a prototype.");
-//    }
 //
-//    @Test
-//    public void testObtenerNombreRol() {
-//        System.out.println("obtenerNombreRol");
-//        int id_rol = 0;
-//        EmpleadoDB instance = new EmpleadoDB();
-//        String expResult = "";
-//        String result = instance.obtenerNombreRol(id_rol);
-//        assertEquals(expResult, result);
-//        fail("The test case is a prototype.");
 //    }
+
+    /**
+     * Modulo Empleado - Test #8
+     * Obtener nombre del rol del empleado.
+     */
+    @Test
+    public void testObtenerNombreRol() {
+        System.out.println("obtenerNombreRol");
+        int id_rol = 0;
+        EmpleadoDB instance = new EmpleadoDB();
+        String expResult = "Administrador";
+        String result = instance.obtenerNombreRol(id_rol);
+        assertEquals(expResult, result);
+
+    }
     
 }
