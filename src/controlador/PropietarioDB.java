@@ -420,7 +420,7 @@ public class PropietarioDB {
         return listaCobrosDomiciliadosMes;
     }
 
-    public void ActualizarSaldoDomiciliados(String numCtaBancaria, float saldoActualizado) {
+    public int ActualizarSaldoDomiciliados(String numCtaBancaria, float saldoActualizado) {
         ejecutarSentencia = "{call ACTUALIZAR_SALDO_PROPIETARIO_DOMICILIADO('" + numCtaBancaria + "'," + saldoActualizado + ")}";
         try {
             nuevaConeccion = ConexionDB.conectar();
@@ -428,9 +428,11 @@ public class PropietarioDB {
             callableStatement.executeQuery();
             nuevaConeccion.close();
             callableStatement.close();
+            return 1;
         } catch (SQLException ex) {
             System.out.println(ex);
             System.out.println("Error en listado");
+            return 0;
         }
     }
 
