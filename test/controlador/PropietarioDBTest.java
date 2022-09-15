@@ -113,7 +113,7 @@ public class PropietarioDBTest {
 //        vehiculo.setModelo("Prueba pum");
 //        vehiculo.setPlaca("Piu-4125");
 //        PropietarioDB instance = new PropietarioDB();
-//        int expResult = 1;
+//        int expResult = 0;
 //        int result = instance.registrarPropietarioDomiciliado(cuentaBancaria, propietario, vehiculo);
 //        assertEquals(expResult, result);
 //    }
@@ -266,7 +266,7 @@ public class PropietarioDBTest {
 //        System.out.println("listarPagosNoDomiciliadosMes");
 //        Integer mes = 4;
 //        PropietarioDB instance = new PropietarioDB();
-//        int resultado =0;
+//        int resultado =1;
 //        ArrayList<PagoNoDomiciliado> result = instance.listarPagosNoDomiciliadosMes(mes);
 //        assertEquals(resultado, result.size());
 //    }
@@ -296,7 +296,7 @@ public class PropietarioDBTest {
 //    }
 
     /**
-     * Modulo Propietario - Test #23
+     * Modulo Propietario - Test #24
      * Actualizar fecha de pago
      */
 //    @Test
@@ -310,7 +310,7 @@ public class PropietarioDBTest {
 //    }
 
     /**
-     * Modulo Propietario - Test #24
+     * Modulo Propietario - Test #25
      * Verificar si el propietario existe
      */
 //    @Test

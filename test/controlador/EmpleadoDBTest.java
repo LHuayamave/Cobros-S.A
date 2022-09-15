@@ -34,10 +34,9 @@ public class EmpleadoDBTest {
 //    public void testObternerIdMaximo() {
 //        System.out.println("obternerIdMaximo: ");
 //        EmpleadoDB empleadoDB = new EmpleadoDB();
-//        int expResult = 4;
+//        int expResult = 5;
 //        int result = empleadoDB.obternerIdMaximo();
 //        assertEquals(expResult, result);
-//
 //    }
 
     /**
@@ -128,22 +127,19 @@ public class EmpleadoDBTest {
 //        String expResult = "0123456789";
 //        String result = instance.verificarSiExisteEmpleado(cedula);
 //        assertEquals(expResult, result);
-//
 //    }
 
     /**
      * Modulo Empleado - Test #8
      * Obtener nombre del rol del empleado.
      */
-    @Test
-    public void testObtenerNombreRol() {
-        System.out.println("obtenerNombreRol");
-        int id_rol = 0;
-        EmpleadoDB instance = new EmpleadoDB();
-        String expResult = "Administrador";
-        String result = instance.obtenerNombreRol(id_rol);
-        assertEquals(expResult, result);
-
-    }
-    
+//    @Test
+//    public void testObtenerNombreRol() {
+//        System.out.println("obtenerNombreRol");
+//        int id_rol = 0;
+//        EmpleadoDB instance = new EmpleadoDB();
+//        String expResult = "Administrador";
+//        String result = instance.obtenerNombreRol(id_rol);
+//        assertEquals(expResult, result);
+//    }   
 }
