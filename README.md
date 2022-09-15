@@ -7,7 +7,7 @@ Para poder abrir este proyecto se requiere de:
 - Oracle SQL Developer (Base de datos).
 
 # Archivos de Bases de datos
-- [Archivos de tablas, llaves primarias y foraneas](https://drive.google.com/file/d/1kMr4o8ujj1CWmvtlJ6wvYDa5WAOwHfkU/view?usp=sharing)
+- [Archivos de tablas, llaves primarias y foraneas](https://drive.google.com/file/d/14pHmsdj57ydH9DOwpcF1TU_1kbR7x8cR/view?usp=sharing)
 
 
 # Librerias de Netbeans
