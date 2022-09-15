@@ -115,39 +115,22 @@ public class VehiculoDB {
     }
 
     // Ingresa el vehiculo en la BD 
-    public int registrarVehiculo(String placa, String marca, String modelo,
-            String anioVehiculo, String idTipoImpuesto) {
-        resultado = 0;
-        ejecutarSentencia = ("INSERT INTO ADMIN_COBROS.VEHICULO( PLACA, MARCA, MODELO,"
-                + "ANIO_VEHICULO, ID_TIPO_IMPUESTO) VALUES(?,?,?,?,?)");
-        try {
-            nuevaConexion = ConexionDB.conectar();
-            sentencia_preparada = nuevaConexion.prepareStatement(ejecutarSentencia);
-            sentencia_preparada.setString(1, placa);
-            sentencia_preparada.setString(2, marca);
-            sentencia_preparada.setString(3, modelo);
-            sentencia_preparada.setString(4, anioVehiculo);
-            sentencia_preparada.setString(5, idTipoImpuesto);
-            resultado = sentencia_preparada.executeUpdate();
-            sentencia_preparada.close();
-            nuevaConexion.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return resultado;
-    }
+
 
     // LLena el comboBox con los datos que se encuentra en la BD.
     public void llenarTipoImpuesto(JComboBox tipoImpuesto) {
+        ejecutarSentencia = "{ call OBTENER_TIPO_VEHICULO(?)}";
         try {
-            nuevaConexion = ConexionDB.conectar();
-            statement = nuevaConexion.createStatement();
-            resultSet = statement.executeQuery("SELECT DESCRIPCION FROM TIPO_IMPUESTO");
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+            callableStatement.executeQuery();
+            resultSet = (ResultSet) callableStatement.getObject(1);
             while (resultSet.next()) {
                 tipoImpuesto.addItem(resultSet.getString("DESCRIPCION"));
             }
-            statement.close();
-            nuevaConexion.close();
+            nuevaConeccion.close();
+            callableStatement.close();
             resultSet.close();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -159,19 +142,17 @@ public class VehiculoDB {
     //Verifica si la placa existe n la BD
     public String verificarSiExistePlaca(String placa) {
         try {
-            String sentenciaBuscarVehiculo = ("SELECT * FROM ADMIN_COBROS.VEHICULO WHERE PLACA=" + "'" + placa + "'");
-            nuevaConexion = ConexionDB.conectar();
-            statement = nuevaConexion.createStatement();
-            resultSet = statement.executeQuery(sentenciaBuscarVehiculo);
-            placa = null;
-            while (resultSet.next()) {
-                placa = resultSet.getString("PLACA");
-            }
-            statement.close();
-            nuevaConexion.close();
-            resultSet.close();
-        } catch (Exception e) {
-            System.out.println(e);
+            ejecutarSentencia = "{call VERIFICAR_SI_EXISTE_VEHICULO(?,?)}";
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            callableStatement.setString(1, placa);
+            callableStatement.registerOutParameter(2, java.sql.Types.VARCHAR);
+            callableStatement.executeQuery();
+            placa = callableStatement.getString(2);
+            nuevaConeccion.close();
+            callableStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
         return placa;
     }

@@ -4,6 +4,7 @@ import Vista.FrmEmitirRecibo;
 import Vista.FrmIngresoPago;
 import Vista.PnlListarPropietariosNoDomiciliados;
 import controlador.PropietarioDB;
+import controlador.ValidarCampos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
     private PropietarioDB propietarioDB = new PropietarioDB();
     private PagoNoDomiciliado pagoNoDom;
     private FrmIngresoPago frmIngresoPago;
+    private ValidarCampos validarCampos;
 
     public ListenerPnlListarPagosNoDomiciliados(PnlListarPropietariosNoDomiciliados pnlListarPropietariosNoDomiciliados) {
         this.pnlListarPropietariosNoDomiciliados = pnlListarPropietariosNoDomiciliados;
@@ -49,14 +51,14 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
             }
         } else if (e.getSource() == pnlListarPropietariosNoDomiciliados.getBtnIngresarPago()) {
             verificarSelecion(obtenerRegistro());
-        }else if(e.getSource() == pnlListarPropietariosNoDomiciliados.getBtnEmitirFactura()){
+        } else if (e.getSource() == pnlListarPropietariosNoDomiciliados.getBtnEmitirFactura()) {
             verFactura(obtenerRegistro());
         }
     }
-    
+
     public void llenarTablaTodosPagosNoDomiciliados() {
         int mesActual;
-        String recurso ="";
+        String recurso = "";
         mesActual = LocalDate.now().getMonth().getValue();
         pnlListarPropietariosNoDomiciliados.getTblTodos().setDefaultRenderer(Object.class, new ImgTabla());
         listaPagoNoDomiciliado = propietarioDB.listarPagosNoDomiciliados();
@@ -64,10 +66,11 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
         DefaultTableModel tb = (DefaultTableModel) pnlListarPropietariosNoDomiciliados.getTblTodos().getModel();
         for (PagoNoDomiciliado pagos : listaPagoNoDomiciliado) {
             if (pagos.getMesPago() <= mesActual) {
+
                 recurso = "/img/hecho.png";
             } else if (pagos.getMesPago() > mesActual) {
-                recurso = "/img/pendiente.png";        
-            }else{
+                recurso = "/img/pendiente.png";
+            } else {
                 recurso = "/img/nohecho.png";
             }
             tb.addRow(new Object[]{pagos.getId_factura(), pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
@@ -85,14 +88,14 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
         tabla.setDefaultRenderer(Object.class, new ImgTabla());
         listaPagoNoDomiciliadoMes = propietarioDB.listarPagosNoDomiciliadosMes(mes);
         int i = 0;
-        String recurso ="";
+        String recurso = "";
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
         for (PagoNoDomiciliado pagos : listaPagoNoDomiciliadoMes) {
             if (pagos.getMesPago() <= mesActual) {
                 recurso = "/img/hecho.png";
             } else if (pagos.getMesPago() > mesActual) {
-                recurso = "/img/pendiente.png";        
-            }else{
+                recurso = "/img/pendiente.png";
+            } else {
                 recurso = "/img/nohecho.png";
             }
             tb.addRow(new Object[]{pagos.getId_factura(), pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
@@ -101,7 +104,7 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
             sorter = new TableRowSorter<>(tb);
             tabla.setRowSorter(sorter);
             i++;
-            
+
         }
     }
 
@@ -127,7 +130,7 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
             JOptionPane.showMessageDialog(null, "Seleccione una fila para ingresar el pago.");
         }
     }
-    
+
     public String[] obtenerRegistro() {
         String datosNoDomiciliado[] = new String[4];
         datosNoDomiciliado[0] = pnlListarPropietariosNoDomiciliados.obtenerNumFactura();
@@ -136,11 +139,18 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
         datosNoDomiciliado[3] = pnlListarPropietariosNoDomiciliados.obtenerValor();
         return datosNoDomiciliado;
     }
-    public void verFactura(String datosNoDomiciliado[]){
-        if (datosNoDomiciliado[0] != null) {
-            FrmEmitirRecibo frmEmitirRecibo = new FrmEmitirRecibo(frmIngresoPago,false,datosNoDomiciliado[0]);
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila para ingresar el pago.");
+
+    public void verFactura(String datosNoDomiciliado[]) {
+        validarCampos = new ValidarCampos();
+        try {
+            if (datosNoDomiciliado[0] != null) {
+                FrmEmitirRecibo frmEmitirRecibo = new FrmEmitirRecibo(frmIngresoPago, false, datosNoDomiciliado[0]);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una fila para ingresar el pago.");
+            }
+        } catch (Exception e) {
+            validarCampos.mensajeError("El usuario aun no cancela, no se puede emitir el recibo");
         }
+
     }
 }

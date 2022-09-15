@@ -168,49 +168,6 @@ public class PropietarioDB {
         return validarCampos.validarEdad(date);
     }
 
-    public int modificarPropietario(Propietario propietario) {
-        resultado = 0;
-        ejecutarSentencia = "UPDATE ADMIN_COBROS.PROPIETARIO SET "
-                + "NOMBRE='" + propietario.getNombre() + "'"
-                + ",CORREO='" + propietario.getCorreo() + "'"
-                + ",TELEFONO='" + propietario.getTelefono() + "'"
-                + ",DIRECCION='" + propietario.getDireccion() + "'"
-                + ",FECHA_NAC=TO_DATE('" + (java.sql.Date) propietario.getFechaNacimiento()
-                + "', 'YYYY-MM-DD HH24:MI:SS')"
-                //+ ",PLACA='" + propietario.getPlaca()+"'"
-                + ",ID_ESTADO_PROPIETARIO='" + propietario.getId_estado_propietario() + "'"
-                + " WHERE CEDULA=" + propietario.getCedula();
-
-        try {
-            nuevaConexion = ConexionDB.conectar();
-            sentencia_preparada = nuevaConexion.prepareStatement(ejecutarSentencia);
-            resultado = sentencia_preparada.executeUpdate();
-            sentencia_preparada.close();
-            nuevaConexion.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e + "No se logró actualizar");
-        }
-        return resultado;
-    }
-
-    public String verificarSiExistePropietario(String cedula) {
-        try {
-            nuevaConexion = ConexionDB.conectar();
-            statement = nuevaConexion.createStatement();
-            resultSet = statement.executeQuery("SELECT CEDULA FROM ADMIN_COBROS.PROPIETARIO WHERE CEDULA=" + cedula);
-            cedula = null;
-            while (resultSet.next()) {
-                cedula = resultSet.getString("CEDULA");
-            }
-            statement.close();
-            nuevaConexion.close();
-            resultSet.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return cedula;
-    }
-
     public void llenarCmbEstadoPropietario(JComboBox cmbEstadoPropietario) {
         try {
             sentenciaPL_SQL = "{call OBTENER_ESTADO_PROPIETARIO(?)}";
@@ -419,7 +376,7 @@ public class PropietarioDB {
 
  /*Metodos para emitir aviso de Pago*/
  /* Metodos para Listar Pagos No Domicilaidos*/
-public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
+    public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
         listaPagosNoDomiciliados = new ArrayList();
         ejecutarSentencia = "{ call VER_TABLA_PAGOS_NO_DOMICILIADO(?)}";
         try {
@@ -516,12 +473,12 @@ public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
-            cs.setInt(3,cuentaBancaria.getMes());
-            cs.setInt(4,cuentaBancaria.getAnio());
-            cs.setInt(5,cuentaBancaria.getIdTipoCuenta());
+            cs.setInt(3, cuentaBancaria.getMes());
+            cs.setInt(4, cuentaBancaria.getAnio());
+            cs.setInt(5, cuentaBancaria.getIdTipoCuenta());
             cs.setFloat(6, cuentaBancaria.getSaldo());
             cs.setInt(7, cuentaBancaria.getIdBanco());
-            
+
             cs.setString(8, propietario.getCedula());
             cs.setString(9, propietario.getNombre());
             cs.setString(10, propietario.getCorreo());
@@ -551,12 +508,12 @@ public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
-            cs.setInt(3,cuentaBancaria.getMes());
-            cs.setInt(4,cuentaBancaria.getAnio());
-            cs.setInt(5,cuentaBancaria.getIdTipoCuenta());
+            cs.setInt(3, cuentaBancaria.getMes());
+            cs.setInt(4, cuentaBancaria.getAnio());
+            cs.setInt(5, cuentaBancaria.getIdTipoCuenta());
             cs.setFloat(6, cuentaBancaria.getSaldo());
             cs.setInt(7, cuentaBancaria.getIdBanco());
-            
+
             cs.setString(8, propietario.getCedula());
             cs.setString(9, propietario.getNombre());
             cs.setString(10, propietario.getCorreo());
@@ -611,12 +568,12 @@ public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
 
             cs.setString(1, cuentaBancaria.getNumeroCuentaBancaria());
             cs.setString(2, cuentaBancaria.getCvv());
-            cs.setInt(3,cuentaBancaria.getMes());
-            cs.setInt(4,cuentaBancaria.getAnio());
-            cs.setInt(5,cuentaBancaria.getIdTipoCuenta());
+            cs.setInt(3, cuentaBancaria.getMes());
+            cs.setInt(4, cuentaBancaria.getAnio());
+            cs.setInt(5, cuentaBancaria.getIdTipoCuenta());
             cs.setFloat(6, cuentaBancaria.getSaldo());
             cs.setInt(7, cuentaBancaria.getIdBanco());
-            
+
             cs.setString(8, propietario.getCedula());
             cs.setString(9, propietario.getNombre());
             cs.setString(10, propietario.getCorreo());
@@ -639,11 +596,11 @@ public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
     private void mensajeError(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
-    
-    public void confirmarRegistrosModificados(int regAlterados){
-        if(regAlterados>0){
+
+    public void confirmarRegistrosModificados(int regAlterados) {
+        if (regAlterados > 0) {
             JOptionPane.showMessageDialog(null, "La informacion se ingreso correctamente");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "La informacion no se ingreso");
         }
     }
@@ -665,5 +622,21 @@ public ArrayList<PagoNoDomiciliado> listarPagosNoDomiciliados() {
             System.out.println("Error en actualizar");
         }
         return resultado;
+    }
+        public String verificarSiExistePropietario(String cedula) {
+        try {
+            ejecutarSentencia = "{call VERIFICAR_SI_EXISTE_PROPIETARIO(?,?)}";
+            nuevaConeccion = ConexionDB.conectar();
+            callableStatement = nuevaConeccion.prepareCall(ejecutarSentencia);
+            callableStatement.setString(1, cedula);
+            callableStatement.registerOutParameter(2, java.sql.Types.VARCHAR);
+            callableStatement.executeQuery();
+            cedula = callableStatement.getString(2);
+            nuevaConeccion.close();
+            callableStatement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return cedula;
     }
 }

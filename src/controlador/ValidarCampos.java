@@ -5,9 +5,8 @@ package controlador;
  *
  * @author Grupo E
  */
-import Vista.FrmEditarPropietario;
+
 import Vista.PnlIngresoSolicitudes;
-import Vista.PnlRegistroPropietario;
 import controlador.Excepciones.CedulaPropietarioException;
 import controlador.Excepciones.EdadExcepcion;
 import controlador.Excepciones.PlacaException;
@@ -148,7 +147,7 @@ public class ValidarCampos {
 
     public void mensajeSiExistePropietario(JTextField txtCedula) {
         propietarioDB = new PropietarioDB();
-        if (propietarioDB.verificarSiExistePropietario(txtCedula.getText()) != null) {
+        if (!propietarioDB.verificarSiExistePropietario(txtCedula.getText()).equals("000")) {
             try {
                 throw new CedulaPropietarioException();
             } catch (CedulaPropietarioException cedulaPropietarioException) {
@@ -184,7 +183,7 @@ public class ValidarCampos {
 
     public void mensajeSiExistePlaca(JTextField txtPlaca) {
         vehiculoDB = new VehiculoDB();
-        if (vehiculoDB.verificarSiExistePlaca(txtPlaca.getText()) != null) {
+        if (!vehiculoDB.verificarSiExistePlaca(txtPlaca.getText()).equals("000")) { 
             try {
                 throw new PlacaException();
             } catch (PlacaException placaException) {

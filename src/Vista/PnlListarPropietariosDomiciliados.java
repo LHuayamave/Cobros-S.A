@@ -172,6 +172,15 @@ public class PnlListarPropietariosDomiciliados extends javax.swing.JPanel {
         
     }
 
+    public String obtenerNumFactura () {
+        int fila = -1;
+        fila = tblTodos.getSelectedRow();
+        if (fila != -1) {
+            return tblTodos.getValueAt(fila, 0).toString();
+        } else {
+            return null;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

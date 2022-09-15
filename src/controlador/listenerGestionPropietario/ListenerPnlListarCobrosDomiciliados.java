@@ -3,6 +3,7 @@ package controlador.listenerGestionPropietario;
 import Vista.FrmEmitirRecibo;
 import Vista.PnlListarPropietariosDomiciliados;
 import controlador.PropietarioDB;
+import controlador.ValidarCampos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
     private TableRowSorter<DefaultTableModel> sorter;
     private PropietarioDB propietarioDB = new PropietarioDB();
     private CobroDomiciliados cobrosDom;
+    private ValidarCampos validarCampos;
 
     public ListenerPnlListarCobrosDomiciliados(PnlListarPropietariosDomiciliados pnlListarPropietariosDomiciliados) {
         this.pnlListarPropietariosDomiciliados = pnlListarPropietariosDomiciliados;
@@ -97,10 +99,27 @@ public class ListenerPnlListarCobrosDomiciliados implements ActionListener {
                     JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE, icon2);
             }   
         }else if(e.getSource() == pnlListarPropietariosDomiciliados.getBtnEmitirRecibo()){
-
-            //FrmEmitirRecibo frmEmitirRecibo  = new FrmEmitirRecibo(pnlListarPropietariosDomiciliados.getFrmEmpleado(),true);
+            obtenerReciboDomiciliado();
+        }  
+    }
+    public void obtenerReciboDomiciliado(){
+        String datosDomiciliado[] = new String[1];
+        datosDomiciliado[0] = pnlListarPropietariosDomiciliados.obtenerNumFactura();
+        verFactura(datosDomiciliado);
+    }
+    public void verFactura(String datosDomiciliado[]) {
+        validarCampos = new ValidarCampos();
+        try {
+            if (datosDomiciliado[0] != null) {
+                FrmEmitirRecibo frmEmitirRecibo = new FrmEmitirRecibo(
+                        pnlListarPropietariosDomiciliados.getFrmEmpleado(), true, datosDomiciliado[0]);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una fila para ingresar el pago.");
+            }
+        } catch (Exception e) {
+            validarCampos.mensajeError("El usuario aun no cancela, no se puede emitir el recibo");
         }
-        
+
     }
 
     /**

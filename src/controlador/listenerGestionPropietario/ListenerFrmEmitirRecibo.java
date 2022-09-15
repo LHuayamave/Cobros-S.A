@@ -2,24 +2,19 @@ package controlador.listenerGestionPropietario;
 
 import Vista.FrmEmitirRecibo;
 import controlador.FacturaDB;
-import controlador.PropietarioDB;
-import controlador.VehiculoDB;
+import controlador.ValidarCampos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import modelo.CuentaBancaria;
-import modelo.Propietario;
 
 /**
  *
  * @author Soldado
  */
-public class ListenerFrmEmitirRecibo implements ActionListener{
+public class ListenerFrmEmitirRecibo implements ActionListener {
+
     private FacturaDB facturaDB;
     private FrmEmitirRecibo frmEmitirRecibo;
-    private PropietarioDB propietarioDB;
-    private VehiculoDB vehiculoDB;
-    private Propietario propietario;
-    private CuentaBancaria  cuentaBancaria;
+    private ValidarCampos validarCampos;
 
     public ListenerFrmEmitirRecibo(FrmEmitirRecibo frmEmitirRecibo) {
         this.frmEmitirRecibo = frmEmitirRecibo;
@@ -27,27 +22,22 @@ public class ListenerFrmEmitirRecibo implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==frmEmitirRecibo.getBtnEnviar()){
-//            llenarCampos();
+        if (e.getSource() == frmEmitirRecibo.getBtnEnviar()) {
+            frmEmitirRecibo.dispose();
         }
     }
 
     public int llenarCampos() {
         facturaDB = new FacturaDB();
-        propietarioDB = new PropietarioDB();
-        vehiculoDB = new VehiculoDB();
-        propietario = new Propietario();
-        cuentaBancaria = new  CuentaBancaria();
-
-        System.out.print(propietario.getCedula()); 
-        if(frmEmitirRecibo.getEsDomiciliado()){
-            
-        }else{
+        if (frmEmitirRecibo.getEsDomiciliado()) {
+            facturaDB.obtenerReciboDomiciliado(frmEmitirRecibo);
+        } else {
             frmEmitirRecibo.getLblEmail().setText("");
             facturaDB.obtenerReciboaNoDomiciliado(frmEmitirRecibo);
+            frmEmitirRecibo.getBtnEnviar().setText("Imprimir recibo"); 
         }
+
         return 0;
     }
-    
 
 }
