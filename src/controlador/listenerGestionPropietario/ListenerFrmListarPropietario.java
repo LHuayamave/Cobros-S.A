@@ -50,15 +50,15 @@ public class ListenerFrmListarPropietario implements ActionListener {
             tb.addRow(new Object[]{propietario.getCedula(), propietario.getNombre(), propietario.getCorreo(),
                 propietario.getTelefono(), Boolean.toString (propietario.getDomiciliado())});
             frmListarPropietario.getTblPropietarios().setAutoCreateRowSorter(true);
-            sorter = new TableRowSorter<>(tb);
-            frmListarPropietario.getTblPropietarios().setRowSorter(sorter);
+            frmListarPropietario.getSorter().setModel(tb);
+            frmListarPropietario.getTblPropietarios().setRowSorter(frmListarPropietario.getSorter());
             i++;
         }
     }
     
     public void Filtrar() {
         try {
-            sorter.setRowFilter(RowFilter.regexFilter(frmListarPropietario.getTxtBusqueda().getText()));
+            frmListarPropietario.getSorter().setRowFilter(RowFilter.regexFilter(frmListarPropietario.getTxtBusqueda().getText()));
         } catch (Exception e) {
 
         }

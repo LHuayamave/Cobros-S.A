@@ -9,13 +9,20 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class FrmListarPropietario extends javax.swing.JPanel {
+    private TableRowSorter<DefaultTableModel> sorter;
+    private ListenerFrmListarPropietario listenerFrmListarPropietario;
+    
     public FrmListarPropietario() {
         initComponents();
-        new ListenerFrmListarPropietario(this).llenarTablaPropietario();
+        sorter = new TableRowSorter<>();
+        listenerFrmListarPropietario = new ListenerFrmListarPropietario(this);
+        listenerFrmListarPropietario.llenarTablaPropietario();
         aniadirListenerFrmListarPropietario();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -207,6 +214,14 @@ public class FrmListarPropietario extends javax.swing.JPanel {
 
     public void setTxtBusqueda(JTextField txtBusqueda) {
         this.txtBusqueda = txtBusqueda;
+    }
+
+    public TableRowSorter<DefaultTableModel> getSorter() {
+        return sorter;
+    }
+
+    public void setSorter(TableRowSorter<DefaultTableModel> sorter) {
+        this.sorter = sorter;
     }
     
     
