@@ -1,4 +1,4 @@
-package controlador.listenerGestionPropietario;
+package controlador.listenerControlPago;
 
 import Vista.PnlControlPagos;
 import java.awt.event.ActionEvent;

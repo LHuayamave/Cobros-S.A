@@ -1,4 +1,4 @@
-package controlador.listenerGestionPropietario;
+package controlador.listenerControlPago;
 
 import Vista.FrmEmitirRecibo;
 import Vista.FrmIngresoPago;
@@ -78,7 +78,7 @@ public class ListenerPnlListarPagosNoDomiciliados implements ActionListener {
                 recurso = "/img/nohecho.png";
             }
             tb.addRow(new Object[]{pagos.getId_factura(), pagos.getCedulaPropietario(), pagos.getNombrePropietario(), pagos.getTipoImpuesto(),
-                pagos.getValorImpuesto(), Month.of(pagos.getMesPago()), new JLabel(new ImageIcon(getClass().getResource(recurso)))});
+                pagos.getValorImpuesto(), Month.of(pagos.getMesPago()+1), new JLabel(new ImageIcon(getClass().getResource(recurso)))});
             pnlListarPropietariosNoDomiciliados.getTblTodos().setAutoCreateRowSorter(true);
             sorter = new TableRowSorter<>(tb);
             pnlListarPropietariosNoDomiciliados.getTblTodos().setRowSorter(sorter);

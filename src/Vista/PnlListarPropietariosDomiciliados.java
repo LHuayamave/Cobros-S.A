@@ -9,7 +9,7 @@ package Vista;
  *
  * @author Grupo E
  */
-import controlador.listenerGestionPropietario.ListenerPnlListarCobrosDomiciliados;
+import controlador.listenerControlPago.ListenerPnlListarCobrosDomiciliados;
 import javax.swing.JButton;
 import javax.swing.JTable;
 

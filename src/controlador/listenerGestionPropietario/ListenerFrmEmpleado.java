@@ -1,6 +1,7 @@
 package controlador.listenerGestionPropietario;
 
 
+import controlador.listenerControlPago.ListenerControlPagos;
 import Vista.FrmEmpleado;
 import Vista.FrmListarPropietario;
 import Vista.FrmLogin;

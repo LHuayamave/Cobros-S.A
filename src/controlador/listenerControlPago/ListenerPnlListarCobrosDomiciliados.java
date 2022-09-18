@@ -1,4 +1,4 @@
-package controlador.listenerGestionPropietario;
+package controlador.listenerControlPago;
 
 import Vista.FrmEmitirRecibo;
 import Vista.PnlListarPropietariosDomiciliados;

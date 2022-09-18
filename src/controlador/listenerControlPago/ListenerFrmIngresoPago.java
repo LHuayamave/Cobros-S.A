@@ -1,4 +1,4 @@
-package controlador.listenerGestionPropietario;
+package controlador.listenerControlPago;
 
 import Vista.FrmIngresoPago;
 import Vista.PnlListarPropietariosNoDomiciliados;

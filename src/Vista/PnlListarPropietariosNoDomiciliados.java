@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import controlador.listenerGestionPropietario.ListenerPnlListarPagosNoDomiciliados;
+import controlador.listenerControlPago.ListenerPnlListarPagosNoDomiciliados;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;

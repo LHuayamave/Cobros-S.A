@@ -1,7 +1,7 @@
 package Vista;
 
-import controlador.listenerGestionPropietario.ListenerFrmIngresoPago;
-import controlador.listenerGestionPropietario.ListenerPnlListarPagosNoDomiciliados;
+import controlador.listenerControlPago.ListenerFrmIngresoPago;
+import controlador.listenerControlPago.ListenerPnlListarPagosNoDomiciliados;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 

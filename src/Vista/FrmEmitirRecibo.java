@@ -1,6 +1,6 @@
 package Vista;
 
-import controlador.listenerGestionPropietario.ListenerFrmEmitirRecibo;
+import controlador.listenerControlPago.ListenerFrmEmitirRecibo;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
